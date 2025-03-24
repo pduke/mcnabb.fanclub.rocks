@@ -1,0 +1,76 @@
+  body {
+    Background-color:ivory;
+    Margin:10px;
+    Padding:10px;
+  }
+  hr {
+    Width:75%;
+    Height:2px;
+    Background-color:lightslategray;
+  }
+  .nameHeader {
+    font-weight: bold;
+    font-size: 200%;
+  }
+  .dateRange {
+    font-weight: bold;
+    font-size: 180%;
+  }
+  .titleLine {
+    font-weight: bold;
+    font-size: 130%;
+  }
+  .regularText {
+    font-weight: regular;
+    font-size: 129%;
+  }
+  .poemTitle {
+    font-size: 140%;
+    text-decoration: underline;
+  }
+  .tocTitle {
+    font-size: 140%;
+  }
+  .poemPreTitle {
+    font-size: 80%;
+  }
+  .poemText {
+    font-size: 110%;
+    font-weight: normal;
+  }
+  .tocText {
+    font-size: 110%;
+    font-weight: normal;
+  }
+  .cpyRight {
+    font-size: 70%;
+    font-weight: normal;
+  }
+  .poem {
+    text-align: center;
+  }
+  .poemBlock {
+    display: inline-block;
+    text-align: left;
+    white-space: nowrap;
+    background-colorx: #eee;
+    padding: 1em;
+  }  
+  p {
+    margin-left: 1%;
+    text-indent: 3%;
+  }
+  .wrapper {
+    counter-reset: my-awesome-counter;
+  }
+  p {
+    counter-increment: my-awesome-counter;
+  }
+  p:before {
+    content: counter(my-awesome-counter) ') ';
+    margin-right: 7px;
+    font-size: 50%;
+    font-family:Garamond;
+    font-weight: bold;
+  }
+
