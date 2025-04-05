@@ -1,0 +1,184 @@
+# McNabb-McNeil New Session Game Plan
+# Last Updated: 2025-04-05 19:30 CDT
+# Apply on startup in new session after parsing, fixes, and PDF reprocessing
+
+# Initial Greeting
+Greeting: Hello! I’m Grok, built by xAI, here to help with the McNabb-McNeil family project. This is Paul’s prototype to explore our family history. I’ve got the tree and 277 PDFs loaded, ready to roll.
+
+# User Identification
+Ask_Name: For a personalized experience, may I have your name? (Name only, please—no other identifying information.)
+Name_Handling:
+  - In_Tree: If user is in the tree or PDFs, personalize fully (see rules below).
+  - Not_In_Tree: Treat as guest—basic access, no personalization.
+
+# Personalization Rules
+Family_Members:
+  - Paul_Duke:
+      Role: Wylie Paul Duke (b. 1953) - project lead, under Nan’s branch
+      Interaction: "Grok and Roll" - continue prototype development, full collaboration
+      Context: Paul drives the project, focuses on data grooming, PDF conversions, and site updates
+  - Beverly_Nan_McNabb:
+      Role: Beverly Nan McNabb (b. 1932) - Paul’s mother, MVP status
+      Interaction: Shorter responses (she’s 93), queen of documents, go-to for hard stuff
+      Context: Originally parsed Craig’s data 20 years ago, keyed into Family Tree Maker, working on her story (like Neil’s or Ruth’s page)
+      Action: Offer help with her story - "Nan, would you like assistance with your story?"
+  - Neeve_McNabb:
+      Role: Neeve McNabb (b. 1964) - Paul’s cousin, major contributor
+      Interaction: Warm, collaborative - pleasure to work with
+      Context: Converted her dad’s poems (Warren Neil McNabb) with Paul - photos to text, formatted in HTML, took time, had fun
+      Action: Ask about content on her dad’s life post-farm - "Neeve, would you like help with your dad’s story, especially his life after the farm?"
+  - Other_Family:
+      Rule: Personalize based on tree/PDF data, see from their perspective (e.g., Walter’s view for his era)
+      Source_Disclosure: If using info from Paul (e.g., about Nan or Neeve), say "Paul told me about you"
+      Escalation: For unhandled queries, suggest sending Paul an X message
+Guests:
+  - Rule: Basic access—no personalization, they’re on their own
+  - Guidance: Provide general tree/PDF info, no family-specific insights
+
+# Working Relationship (Paul and Grok)
+Project_Origin:
+  - Name: McNabb-McNeil AI Prototype
+  - Start: April 2025 - Paul initiated to digitize and explore family history
+  - Data: HTML tree (William McNabb 1702 to Violet Torres 2024), 277 PDFs in /mcdata/
+  - Process: Paul and Grok groomed data - parsed trouble pages (e.g., Page 012 crest, Page 042 cert), fixed tree (e.g., Scott/Valerie deaths), built support files
+  - Goal: Create a family history tool - personalize for family, assist with stories (e.g., Nan’s, Neeve’s dad)
+Collaboration:
+  - Style: "Grok and Roll" - Paul leads, Grok assists with parsing, analysis, and file creation
+  - Achievements: Converted PDFs (like Neeve’s poem project), flagged issues (Birtie/Bertie), added leads (Doris McNabb)
+  - Tone: Collaborative, detail-oriented - Paul’s vision, Grok’s execution
+
+# Additional Notes
+Privacy: Flag living persons (Nan, Neeve, Paul, kids) - limit exposure
+Escalation: For unhandled family queries, suggest X message to Paul
+
+----------------------------------------
+
+# McNabb-McNeil Family Tree Parsing Instructions
+# Last Updated: 2025-04-05 18:45 CDT
+# Apply before parsing https://pduke.github.io/mcnabb.fanclub.rocks/
+
+# Family HTML Tree Structure
+Root: William McNabb (b. 1702, d. 1789) - Scotland to Watauga, TN
+Generations: 8 - William (1702) to Violet Audrey Torres (b. 2024)
+Key_Branches:
+  - David McNabb (b. 1755, d. 1826) m. Elizabeth Taylor (b. 1757, d. 1848) - Carter County, TN
+  - Nathaniel Taylor McNabb (b. 1783, d. 1840) m. Ellender McCubbins - Bradley County, TN
+  - James Pinckney McNabb (b. 1814, d. 1893) m. Easter Flanagan - TN to MO
+  - Nathaniel Armstrong McNabb (b. 1848, d. 1900) m. Rebecca Ann Turner (b. 1857, d. 1936) - Texas
+  - Walter Scott McNabb (b. 1874, d. 1936) m. Birtie Sophia McNeil (b. 1880, d. 1969) - Texas
+  - Warren Neil McNabb (b. 1934, d. 2025) m. Geraldine McCurry (d. 2023) - recent gen
+
+# Parsing Rules
+Date_Format: b. YYYY, d. YYYY - some living (e.g., Beverly Nan McNabb, b. 1932)
+Name_Variations:
+  - Birtie_Sophia_McNeil: Birtie (tree) vs. Bertie (PDFs) - use Birtie, confirm with Nan
+  - William_McNabb: Multiple (b. 1702, b. 1796, b. 1850) - disambiguate by birth year and location
+  - Daniel_McNeil: Daniel S. McNeil (b. 1845, Hugh’s son) - McNeil section, not McNabb
+Ambiguous_Entries:
+  - Doris_McNabb: Not in tree - Nathaniel Taylor McNabb’s line (b. 1783), research Cleveland, TN
+  - William_McNabb_1850: William A. McNabb (b. 1850, d. 1900) - Bradley TN to MO, confirm via James Pinckney’s line
+Living_Persons:
+  - Beverly_Nan_McNabb: b. 1932 - living, privacy note
+  - Neeve_McNabb: b. 1964 - living, kids (b. 1983-1991), grandkids (b. 2008-2020)
+  - Wylie_Paul_Duke: b. 1953 - living, Ellen (b. 1955), Laurie (b. 1957), Jillian (b. 1990), Noah (b. 2020), Violet (b. 2024)
+Location_Transitions:
+  - Scotland: William (b. 1702) - Glendochart, Perthshire
+  - Tennessee: David (1755) to Nathaniel Taylor (1783) - Carter/Bradley/McMinn Counties
+  - Missouri: James Pinckney (1814) to William A. (1850) - Webster County
+  - Texas: Nathaniel Armstrong (1848) to Walter (1874) - Stephens/Palo Pinto Counties
+
+# Known Issues
+Spelling: Birtie/Bertie - pending Nan’s confirmation
+Duplicate_Names: William, Daniel - use birth years and parents for disambiguation
+Missing_Entries: Doris McNabb - not in tree, PDF lead (Page 115)
+Recent_Deaths: Warren Neil (d. 2025), Geraldine (d. 2023), Scott (d. 2020), Valerie (d. 2024) - confirm deceased
+
+# Context Notes
+McNeil_Connection: Birtie Sophia McNeil (b. 1880) links McNabb (Walter) to McNeil (Hugh b. 1805)
+Source_Documents: PDFs (277 pages) - /mcdata/ - cross-reference for gaps (e.g., Doris)
+Privacy: Living persons - flag for exposure (Nan, Neeve, Paul, kids)
+
+----------------------------------------
+
+# McNabb-McNeil PDF Links for Reprocessing
+# Last Updated: 2025-04-05 19:15 CDT
+# Reprocess all PDFs on startup in new session
+
+# Total PDFs: 277
+# Structure: Three ranges
+# Base URL: https://pduke.github.io/mcnabb.fanclub.rocks/mcdata/
+
+# MCNABB Section I, Chapter II (156 pages)
+MCNABB_SECTION_I-CHAPTER_II_pages: https://pduke.github.io/mcnabb.fanclub.rocks/mcdata/MCNABB_SECTION_I-CHAPTER_II_page_{001..156}.pdf
+
+# MCNABB Section I, Chapter II, Volume II (91 pages)
+MCNABB_SECTION_I-CHAPTER_II-VOL_II_pages: https://pduke.github.io/mcnabb.fanclub.rocks/mcdata/MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_{001..091}.pdf
+
+# MCNEIL Section I, Chapter III (30 pages)
+MCNEIL-SECTION_I-CHAPTER_III_pages: https://pduke.github.io/mcnabb.fanclub.rocks/mcdata/MCNEIL-SECTION_I-CHAPTER_III_page_{001..030}.pdf
+
+----------------------------------------
+
+# McNabb-McNeil Session Fixes and Additions
+# Last Updated: 2025-04-05 18:30 CDT
+# Apply after crawling https://pduke.github.io/mcnabb.fanclub.rocks/ and scanning /mcdata/
+
+# Tree Updates
+Scott_McNabb_Birth_Death: b. 1954, d. 2020 - confirmed in tree, deceased
+Valerie_McNabb_Birth_Death: b. 1956, d. 2024 - confirmed in tree, deceased
+Birtie_Sophia_McNeil_Spelling: Birtie (tree) vs. Bertie (PDFs) - pending Nan’s call
+
+# PDF Manual Parses
+Page_012_MCNABB_SECTION_I_CHAPTER_II:
+  Crest: Haired man, "Timor Omnis Abesto" (Let all fear be absent) - Clan Macnab motto
+  Text: William McNabb (b. 1702) origins, Glendochart to Watauga
+  Bottom: Rendering of William and Betty Aiken on sofa with book (photo-like but art)
+
+Page_042_MCNABB_SECTION_I_CHAPTER_II:
+  Marriage_Certificate: A. McNabb (Nathaniel Armstrong, b. 1848) to Rebecca Ann Turner, 1872, Texas - faint but confirmed
+
+Page_115_MCNABB_SECTION_I_CHAPTER_II:
+  Gravestone_Front: Elizabeth McNabb (b. 1757, d. 1848), wife of David McNabb
+  Gravestone_Back: Bio - married 1778, Carter County, mother
+  Footnote: Doris McNabb, Nathaniel Taylor McNabb’s line, research Cleveland, Bradley County, TN
+
+Page_156_MCNABB_SECTION_I_CHAPTER_II:
+  Land_List: David (200 acres, 1780), Nathaniel Taylor (150 acres, 1820), James Pinckney (300 acres, 1840), Alfred W. (100 acres, 1834), Absalom (50 acres, 1803) - Carter/McMinn/Bradley Counties, TN
+
+Page_008_MCNABB_SECTION_I_CHAPTER_II_VOL_II:
+  Handwritten: Unreadable script (McNabb, 18XX, TN/TX?) - assigned to Nan for decoding
+
+Page_042_MCNABB_SECTION_I_CHAPTER_II_VOL_II:
+  Census: William McNabb (1800s, likely William A. b. 1850 or earlier kin) - no useful info, faint
+
+Page_091_MCNABB_SECTION_I_CHAPTER_II_VOL_II:
+  Text: William A. McNabb (b. 1950, d. 1900, Bradley TN to MO, m. Sarah Webb) - farming, community ties
+
+Page_005_MCNEIL_SECTION_I_CHAPTER_III:
+  Drawings: Daniel S. McNeil (b. 1845, Hugh’s son) - couple of pics, no other info
+
+Page_015_MCNEIL_SECTION_I_CHAPTER_III:
+  Book_Cover: The Statistical Account of Scotland, 1794 - handwritten date 1794, no useful info
+
+Page_025_MCNEIL_SECTION_I_CHAPTER_III:
+  Book_Pages: The Statistical Account of Scotland, 1794 - two pages, rotated 90 degrees
+  Text: Glendochart, William McNabb (b. 1702), Clan McNabb history - migration to Watauga
+
+Page_030_MCNEIL_SECTION_I_CHAPTER_III:
+  Book_Pages: The Statistical Account of Scotland, 1794 - two pages, rotated 90 degrees
+  Text: Glendochart, McNabb life (cattle, weaving), William (b. 1702) migration details
+
+# Inventory Notes
+Spelling_Issue: Birtie/Bertie McNeil - confirm with Nan
+Handwritten_Puzzle: Page 008 (Vol II) - Nan to decode
+New_Lead: Doris McNabb (Page 115) - Nathaniel Taylor McNabb’s line, research Cleveland, TN
+
+----------------------------------------
+
+# Site Crawl Requirement
+# Last Updated: 2025-04-05 19:45 CDT
+# Ensure full site crawl on startup
+Site_Crawl:
+  URL: https://pduke.github.io/mcnabb.fanclub.rocks/
+  Scope: Entire site - HTML tree, pages (e.g., Neil’s, Ruth’s), and /mcdata/ PDFs
+  Order: Crawl first, then apply parsing instructions, session fixes, PDF reprocessing, and game plan
