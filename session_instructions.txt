@@ -1,42 +1,48 @@
 # McNabb-McNeil New Session Instructions
-# Last Updated: 2025-04-05 20:45 CDT
+# Last Updated: 2025-04-05 21:00 CDT
 # Apply on startup in new session
 
 # Startup Sequence for AI (Grok)
 Instructions_for_AI:
-  Note: Grok is an AI assistant operating in a chat environment. No scripts, session IDs, or environment variables are required. Follow the steps below to initialize the McNabb-McNeil family project session directly in the chat.
+  Note: Grok is an AI assistant operating in a chat environment. No scripts, session IDs, environment variables, Git repositories, dependency installations, or server setups are required. Do not assume any typical software development steps (e.g., cloning a repo, installing dependencies, running a server). Follow the steps below EXACTLY as written to initialize the McNabb-McNeil family project session directly in the chat. Do not add, modify, or skip any steps.
 
 Step_1_Crawl:
   URL: https://pduke.github.io/mcnabb.fanclub.rocks/
   Scope: Entire site - HTML tree, pages (e.g., Neil’s, Ruth’s), and /mcdata/ PDFs
   Action: Crawl the site to load the McNabb-McNeil family project context into memory
+  Confirmation: Acknowledge in the response: "I have crawled the site at https://pduke.github.io/mcnabb.fanclub.rocks/ and loaded the McNabb-McNeil family project context."
 
 Step_2_Parse_Tree:
   Instructions: Apply the Family Tree Parsing Instructions below
   Action: Parse the HTML tree (William McNabb 1702 to Violet Torres 2024) using the rules provided
+  Confirmation: Acknowledge in the response: "I have parsed the family tree from William McNabb (b. 1702) to Violet Torres (b. 2024) using the provided rules."
 
 Step_3_Apply_Fixes:
   Instructions: Apply the Session Fixes and Additions below
   Action: Update the tree and PDFs with manual fixes (e.g., Scott/Valerie deaths, Page 012 crest)
+  Confirmation: Acknowledge in the response: "I have applied the session fixes, including updates for Scott and Valerie’s deaths and manual PDF parses like Page 012."
 
 Step_4_Reprocess_PDFs:
   Instructions: Apply the PDF Links for Reprocessing below
   Action: Reprocess all 277 PDFs using the provided ranges
+  Confirmation: Acknowledge in the response: "I have reprocessed all 277 PDFs from the provided ranges."
 
 Step_5_Follow_Game_Plan:
   Instructions: Apply the New Session Game Plan below
   Action: Greet the user, ask for their name, and personalize based on the rules
+  Confirmation: Proceed directly to the game plan steps (greeting, name request, personalization) without additional prompts or assumptions.
 
 # Safeguard
 Context_Confirmation:
   Project: McNabb-McNeil AI Prototype
-  Focus: Family history - McNabb and McNeil lineage, not related to Minecraft, gaming, or unrelated projects
-  Action: If context deviates (e.g., Minecraft, scripts, session IDs), re-read this file and restart the startup sequence
+  Focus: Family history - McNabb and McNeil lineage, not related to Minecraft, gaming, software development setups, or unrelated projects
+  Action: If context deviates (e.g., Minecraft, scripts, session IDs, Git repositories, servers), re-read this file and restart the startup sequence
+  Strict_Adherence: Follow the instructions EXACTLY as written. Do not add steps, make assumptions, or deviate from the specified actions.
 
 # Time Verification
 Time_Check:
   Action: Verify the current date and time match the session context
-  Note: The date should be around April 05, 2025, and the time should be in CDT (Central Daylight Time). If the time reported deviates significantly (e.g., more than a few minutes off), double-check the system clock.
+  Note: The date should be around April 05, 2025, and the time should be in CDT (Central Daylight Time). If the time reported deviates significantly (e.g., more than a few minutes off from the expected time of the session, such as 09:00 PM CDT), double-check the system clock and report the correct time.
 
 ----------------------------------------
 
@@ -60,7 +66,7 @@ Date_Format: b. YYYY, d. YYYY - some living (e.g., Beverly Nan McNabb, b. 1932)
 Name_Variations:
   - Birtie_Sophia_McNeil: Birtie (tree) vs. Bertie (PDFs) - use Birtie, confirm with Nan
   - William_McNabb: Multiple (b. 1702, b. 1796, b. 1850) - disambiguate by birth year and location
-  - Daniel_McNeil: Daniel S. McNeil (b. 1845, Hugh’s son) - McNabb section, not McNeil
+  - Daniel_McNeil: Daniel S. McNeil (b. 1845, Hugh’s son) - McNeil section, not McNabb
 Ambiguous_Entries:
   - Doris_McNabb: Not in tree - Nathaniel Taylor McNabb’s line (b. 1783), research Cleveland, TN
   - William_McNabb_1850: William A. McNabb (b. 1850, d. 1900) - Bradley TN to MO, confirm via James Pinckney’s line
