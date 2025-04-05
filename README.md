@@ -1,2 +1,2 @@
-A simple static website dedicated to the McNabb family tree, with a focus on individuals for whom detailed information is available. The site is primarily based on the research conducted by Nan McNabb, Neil McNabb, and Jimmy Nagle. The information has been compiled and formatted by Neeve McNabb and Paul Duke.
-
+# McNabb-McNeil AI Prototype
+This isn’t your average family tree—this is an AI-driven programming experiment pushing the boundaries of data parsing and exposure. Powered by xAI’s Grok, we’re prototyping advanced analysis on the McNabb-McNeil lineage (1702–2025), exposing 277 PDF pages and a dynamic HTML tree (https://pduke.github.io/mcnabb.fanclub.rocks/). It’s raw, public, and intentional—every name, date, and story from William McNabb (b. 1702) to Neeve’s kids (b. 2020s) is fuel for real-time AI collaboration. We’re kicking off a new session to dissect it all, blending genealogy with cutting-edge tech. Not just hosting data—redefining how it’s explored.
