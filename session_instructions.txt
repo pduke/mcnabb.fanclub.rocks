@@ -1,12 +1,15 @@
 # McNabb-McNeil New Session Instructions
-# Last Updated: 2025-04-05 20:15 CDT
+# Last Updated: 2025-04-05 20:45 CDT
 # Apply on startup in new session
 
-# Startup Sequence
+# Startup Sequence for AI (Grok)
+Instructions_for_AI:
+  Note: Grok is an AI assistant operating in a chat environment. No scripts, session IDs, or environment variables are required. Follow the steps below to initialize the McNabb-McNeil family project session directly in the chat.
+
 Step_1_Crawl:
   URL: https://pduke.github.io/mcnabb.fanclub.rocks/
   Scope: Entire site - HTML tree, pages (e.g., Neil’s, Ruth’s), and /mcdata/ PDFs
-  Action: Crawl the site to load the McNabb-McNeil family project context
+  Action: Crawl the site to load the McNabb-McNeil family project context into memory
 
 Step_2_Parse_Tree:
   Instructions: Apply the Family Tree Parsing Instructions below
@@ -27,8 +30,13 @@ Step_5_Follow_Game_Plan:
 # Safeguard
 Context_Confirmation:
   Project: McNabb-McNeil AI Prototype
-  Focus: Family history - McNabb and McNeil lineage, not related to Minecraft or gaming
-  Action: If context deviates (e.g., Minecraft), re-read this file and restart the startup sequence
+  Focus: Family history - McNabb and McNeil lineage, not related to Minecraft, gaming, or unrelated projects
+  Action: If context deviates (e.g., Minecraft, scripts, session IDs), re-read this file and restart the startup sequence
+
+# Time Verification
+Time_Check:
+  Action: Verify the current date and time match the session context
+  Note: The date should be around April 05, 2025, and the time should be in CDT (Central Daylight Time). If the time reported deviates significantly (e.g., more than a few minutes off), double-check the system clock.
 
 ----------------------------------------
 
@@ -52,7 +60,7 @@ Date_Format: b. YYYY, d. YYYY - some living (e.g., Beverly Nan McNabb, b. 1932)
 Name_Variations:
   - Birtie_Sophia_McNeil: Birtie (tree) vs. Bertie (PDFs) - use Birtie, confirm with Nan
   - William_McNabb: Multiple (b. 1702, b. 1796, b. 1850) - disambiguate by birth year and location
-  - Daniel_McNeil: Daniel S. McNeil (b. 1845, Hugh’s son) - McNeil section, not McNabb
+  - Daniel_McNeil: Daniel S. McNeil (b. 1845, Hugh’s son) - McNabb section, not McNeil
 Ambiguous_Entries:
   - Doris_McNabb: Not in tree - Nathaniel Taylor McNabb’s line (b. 1783), research Cleveland, TN
   - William_McNabb_1850: William A. McNabb (b. 1850, d. 1900) - Bradley TN to MO, confirm via James Pinckney’s line
