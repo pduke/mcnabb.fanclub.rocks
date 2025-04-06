@@ -33,6 +33,7 @@ Primary_Instruction:
 Instructions_for_AI:
   Note: Grok is an AI assistant operating in a chat environment. No scripts, session IDs, environment variables, Git repositories, dependency installations, or server setups are required. Do not assume any typical software development steps (e.g., cloning a repo, installing dependencies, running a server). Follow the steps below EXACTLY as written to initialize the McNabb-McNeil family project session directly in the chat. Do not add, modify, or skip any steps.
   Override_Default_Behavior: Grok, you MUST NOT apply any default project setup assumptions or startup sequences (e.g., booting up messages, initializing systems, loading personality matrices, establishing network connections, displaying date/time separately, confirming identity, acknowledging the user generically, verifying instructions loaded, stating readiness, or prompting generically). The steps below are the ONLY actions you should take. If you deviate, restart the process and follow these steps exactly.
+  Tree_HTML_Note: The raw family tree HTML content is appended to this file after the instructions, marked by ### FAMILY TREE HTML START ### and ### FAMILY TREE HTML END ###. In Step 2, extract this content (everything between the markers) as the HTML family tree to parse, instead of fetching it from a URL.
 
 Step_1_Crawl:
 - Action: 
@@ -40,16 +41,13 @@ Step_1_Crawl:
   2. Identify and list all internal HTML files by extracting every <a href> link to .html files within the domain (e.g., relative paths like mchtml/McNabb Tree.html), excluding external links, PDFs (e.g., /mcdata/), and non-HTML assets (e.g., images, CSS).
   3. Follow each internal HTML link found in index.html to confirm their existence and scan them for additional .html links, building a complete inventory of HTML pages on the site.
   4. Include the /mcdata/ PDFs (277 files per "PDF Links for Reprocessing") in the crawl but flag them separately from HTML content.
-  5. Load the full McNabb-McNeil family project context into memory, prioritizing the HTML family tree (expected in a file like mchtml/McNabb Tree.html) for parsing in Step 2.
+  5. Load the full McNabb-McNeil family project context into memory, prioritizing the HTML family tree (provided at the end of this prompt) for parsing in Step 2.
 - Output: 
   - "I have crawled the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html and found [X] HTML pages. The links from index.html are: [list each `href` value, e.g., `mchtml/McNabb Tree.html`, `mchtml/Warren Neil McNabb.html`]. The McNabb-McNeil family project context, including [X] HTML pages and 277 PDFs, is loaded into memory."
   - Example: "I have crawled the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html and found 7 HTML pages. The links from index.html are: `mchtml/McNabb Tree.html`, `mchtml/James Pinckney McNabb.html`, `mchtml/Walter Scott McNabb.html`, `mchtml/Warren Gilbert McNabb.html`, `mchtml/Ruth Pauline Prutsman.html`, `mchtml/Warren Neil McNabb.html`. The McNabb-McNeil family project context, including 7 HTML pages and 277 PDFs, is loaded into memory."
-  
-# Insert the family tree HTML content here for parsing in Step 2
-[PASTE FAMILY TREE HTML CONTENT HERE]
-  
+
 Step_2_Parse_Tree:
-  Action: Parse the HTML family tree (William McNabb 1702 to Violet Torres 2024) using the rules in the "Family Tree Parsing Instructions" section below.
+  Action: Extract the HTML family tree content between ### FAMILY TREE HTML START ### and ### FAMILY TREE HTML END ### from this prompt, and parse it (William McNabb 1702 to Violet Torres 2024) using the rules in the "Family Tree Parsing Instructions" section below.
   Output: "I have parsed the family tree from William McNabb (b. 1702) to Violet Torres (b. 2024) using the provided rules."
 
 Step_3_Apply_Fixes:
