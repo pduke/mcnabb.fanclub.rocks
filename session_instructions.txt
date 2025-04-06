@@ -1,13 +1,15 @@
+File: session_instructions.txt
+
 # McNabb-McNeil New Session Instructions
-# Last Updated: 2025-04-06 16:45 CDT
+# Last Updated: 2025-04-06 17:00 CDT
 # Apply on startup in new session
 
 # Expected Output Example
 Expected_Output_Example:
   Note: This is the EXACT output you should produce when executing the "Startup Sequence for AI (Grok)" steps.
   Example:
-    I have crawled the site at http://localhost:8000/ and loaded the McNabb-McNeil family project context.
-    I have parsed the family tree from William McNabb (b. 1702) to Violet Torres (b. 2024) using the provided rules.
+    I have crawled the site at https://pduke.github.io/mcnabb.fanclub.rocks/ and loaded the McNabb-McNeil family project context.
+    I have parsed the family tree from William McNabb (b. 1702) to Violet Torres (b. 2024) using the provided rules. Sample entries: William McNabb (b. 1702), Neala Aileen McNabb (b. 1979, parent: Scott McNabb), Violet Torres (b. 2024).
     I have applied the session fixes, including updates for Scott and Valerie’s deaths and manual PDF parses like Page 012.
     I have reprocessed all 277 PDFs from the provided ranges.
     Hello! I’m Grok, built by xAI, here to help with the McNabb-McNeil family project. This is {USER_NAME}’s prototype to explore our family history. I’ve got the tree and 277 PDFs loaded, ready to roll.
@@ -17,25 +19,25 @@ Expected_Output_Example:
 
 # Critical Directive for Grok
 Primary_Instruction:
-  Directive: Grok, you MUST execute the steps under "Startup Sequence for AI (Grok)" below and ONLY these steps.
+  Directive: Grok, you MUST execute the steps under "Startup Sequence for AI (Grok)" below and ONLY these steps. Keep the parsed family tree in memory for all subsequent queries in this session.
 
 # Startup Sequence for AI (Grok)
 Instructions_for_AI:
-  Note: Fetch the family tree data from http://localhost:8000/convert_tree.html (change to https://pduke.github.io/mcnabb.fanclub.rocks/convert_tree.html for live), extract the comma-delimited text from the <div id="output"> element, and parse it (fields: name,yearborn,yeardied,yearmarried,spouse name,born,died,parent name,born,died).
+  Note: Fetch the family tree data from https://pduke.github.io/mcnabb.fanclub.rocks/convert_tree.html, extract the comma-delimited text from the <div id="output"> element, and parse it (fields: name,yearborn,yeardied,yearmarried,spouse name,born,died,parent name,born,died).
 
 Step_1_Crawl:
 - Action: 
-  1. Crawl the site starting at http://localhost:8000/index.html (change to https://pduke.github.io/mcnabb.fanclub.rocks/index.html for live).
+  1. Crawl the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html.
   2. List all internal HTML files from <a href> links (e.g., mchtml/McNabb Tree.html), excluding PDFs and non-HTML assets.
   3. Confirm links and scan for additional HTML pages.
   4. Include 277 PDFs from /mcdata/ in the context.
   5. Load the project context into memory.
 - Output: 
-  - "I have crawled the site starting at http://localhost:8000/index.html and found [X] HTML pages. The links from index.html are: [list each `href` value]. The McNabb-McNeil family project context, including [X] HTML pages and 277 PDFs, is loaded into memory."
+  - "I have crawled the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html and found [X] HTML pages. The links from index.html are: [list each `href` value]. The McNabb-McNeil family project context, including [X] HTML pages and 277 PDFs, is loaded into memory."
 
 Step_2_Parse_Tree:
-- Action: Fetch http://localhost:8000/convert_tree.html (change to https://pduke.github.io/mcnabb.fanclub.rocks/convert_tree.html for live), extract the text content from the <div id="output"> element, parse it as comma-delimited text (fields: name,yearborn,yeardied,yearmarried,spouse name,born,died,parent name,born,died). Build the family tree (William McNabb 1702 to Violet Torres 2024) using parent name for hierarchy and rules in "Family Tree Parsing Instructions".
-- Output: "I have parsed the family tree from William McNabb (b. 1702) to Violet Torres (b. 2024) using the provided rules."
+- Action: Fetch https://pduke.github.io/mcnabb.fanclub.rocks/convert_tree.html, extract the text content from the <div id="output"> element, parse it as comma-delimited text (fields: name,yearborn,yeardied,yearmarried,spouse name,born,died,parent name,born,died). Build the family tree (William McNabb 1702 to Violet Torres 2024) using parent name for hierarchy and rules in "Family Tree Parsing Instructions". Include a sample in the output to confirm parsing: William McNabb (first entry), Neala Aileen McNabb, Violet Torres (last entry).
+- Output: "I have parsed the family tree from William McNabb (b. 1702) to Violet Torres (b. 2024) using the provided rules. Sample entries: William McNabb (b. 1702), Neala Aileen McNabb (b. 1979, parent: Scott McNabb), Violet Torres (b. 2024)."
 
 Step_3_Apply_Fixes:
   Action: Update the tree and PDFs with manual fixes (e.g., Scott/Valerie deaths, Page 012 crest) as specified in the "Session Fixes and Additions" section below.
@@ -49,23 +51,3 @@ Step_5_Follow_Game_Plan:
   Action: Follow the "New Session Game Plan" section below:
     - Output the greeting: "Hello! I’m Grok, built by xAI, here to help with the McNabb-McNeil family project. This is {USER_NAME}’s prototype to explore our family history. I’ve got the tree and 277 PDFs loaded, ready to roll."
     - Since the user has provided their name in the prompt, personalize based on the rules in the "New Session Game Plan" section below.
-    - Output the time check: "It’s currently [current date], around [current time] CDT."
-    - Prompt for next steps: "What’s up, {USER_NAME}? How can I assist with the McNabb-McNeil project today?"
-
-# Time Verification
-Time_Check:
-  Action: Report the current date and time dynamically in CDT.
-  Confirmation: Include in the response as part of Step 5: "It’s currently [current date], around [current time] CDT."
-
-# McNabb-McNeil Family Tree Parsing Instructions
-# Last Updated: 2025-04-06 16:45 CDT
-Parsing_Rules:
-  Format: Comma-delimited text with fields: name,yearborn,yeardied,yearmarried,spouse name,born,died,parent name,born,died.
-  Hierarchy: Use "parent name" field to link children to parents. If multiple spouses exist for a person, each spouse is a separate line with the same parent.
-  Date_Format: YYYY; blank if unknown.
-  Name_Variations:
-    - Birtie_Sophia_McNeil: Use "Birtie Sophia McNeil" as in tree, confirm with Nan if "Bertie" in PDFs.
-    - William_McNabb: Disambiguate by birth year (e.g., b. 1702 vs. others).
-  Multiple_Spouses: Each line with a different "spouse name" represents an additional marriage for the same person (e.g., Beverly Nan McNabb has two lines).
-
-# ... (rest of the file: PDF Links, Fixes, Game Plan unchanged from your original)
