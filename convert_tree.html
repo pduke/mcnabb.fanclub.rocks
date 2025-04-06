@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Converted on 2025-04-06 20:30 CDT -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>McNabb Family Tree Converter</title>
@@ -115,14 +116,13 @@
                         parentStack.push({ name, born: yearBorn, died: yearDied });
                         const childItems = childrenUl.querySelectorAll(':scope > li');
                         childItems.forEach(child => processItem(child, currentLevel + 1));
-                        parentStack.pop(); // Pop after processing all children
+                        parentStack.pop();
                     }
                 }
 
-                // Process all top-level items
                 listItems.forEach(item => processItem(item, 0));
 
-                // Output as tab-delimited
+                // Output as tab-delimited, no timestamp in output
                 const output = "name\tyearborn\tyeardied\tyearmarried\tspouse name\tborn\tdied\tparent name\tborn\tdied\n" +
                     people.map(p => `${p.name}\t${p.yearBorn}\t${p.yearDied}\t${p.yearMarried}\t${p.spouseName}\t${p.spouseBorn}\t${p.spouseDied}\t${p.parentName}\t${p.parentBorn}\t${p.parentDied}`).join('\n');
                 document.getElementById('output').textContent = output;
