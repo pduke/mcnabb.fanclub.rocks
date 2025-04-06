@@ -101,4 +101,47 @@
                         parentBorn: parent.born,
                         parentDied: parent.died
                     });
-                    debugLog.push(`Added: ${name}, Born: ${yearBorn}, Died: ${yearDied}, Married: ${yearMarried}, Spouse: ${spouses[0]?.name ||
+                    debugLog.push(`Added: ${name}, Born: ${yearBorn}, Died: ${yearDied}, Married: ${yearMarried}, Spouse: ${spouses[0]?.name || ''}, Parent: ${parent.name}`);
+
+                    if (spouses.length > 1) {
+                        spouses.slice(1).forEach(spouse => {
+                            people.push({
+                                name,
+                                yearBorn,
+                                yearDied,
+                                yearMarried: spouse.married || '',
+                                spouseName: spouse.name,
+                                spouseBorn: spouse.born || '',
+                                spouseDied: spouse.died || '',
+                                parentName: parent.name,
+                                parentBorn: parent.born,
+                                parentDied: parent.died
+                            });
+                            debugLog.push(`Added extra spouse for ${name}: ${spouse.name}, Married: ${spouse.married}`);
+                        });
+                    }
+
+                    const childrenUl = item.querySelector('ul');
+                    if (childrenUl) {
+                        parentStack.push({ name, born: yearBorn, died: yearDied });
+                    } else if (item.nextElementSibling && !item.nextElementSibling.querySelector('ul')) {
+                    } else if (parentStack.length) {
+                        parentStack.pop();
+                    }
+                });
+
+                // Output as tab-delimited
+                const output = "name\tyearborn\tyeardied\tyearmarried\tspouse name\tborn\tdied\tparent name\tborn\tdied\n" +
+                    people.map(p => `${p.name}\t${p.yearBorn}\t${p.yearDied}\t${p.yearMarried}\t${p.spouseName}\t${p.spouseBorn}\t${p.spouseDied}\t${p.parentName}\t${p.parentBorn}\t${p.parentDied}`).join('\n');
+                document.getElementById('output').textContent = output;
+
+                document.getElementById('debug').textContent = "Debug Log:\n" + debugLog.join('\n');
+            } catch (err) {
+                document.getElementById('output').textContent = `Error: ${err.message}`;
+            }
+        }
+
+        convertTree();
+    </script>
+</body>
+</html>
