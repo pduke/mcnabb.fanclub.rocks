@@ -32,27 +32,21 @@
     <script>
         async function convertTree() {
             try {
-                // Fetch the HTML tree (local path for testing)
-                const url = './mchtml/McNabb%20Tree.html'; // Change to https://pduke.github.io/mcnabb.fanclub.rocks/mchtml/McNabb%20Tree.html for live
+                const url = 'https://pduke.github.io/mcnabb.fanclub.rocks/mchtml/McNabb%20Tree.html?' + new Date().getTime();
                 const response = await fetch(url, { cache: 'no-store' });
                 if (!response.ok) throw new Error(`Failed to fetch tree: ${response.status}`);
                 const htmlText = await response.text();
 
-                // Parse HTML into DOM
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(htmlText, 'text/html');
                 const listItems = doc.querySelectorAll('.tree li');
 
                 if (!listItems.length) throw new Error('No <li> entries found in HTML');
 
-                // Arrays for output and debug
                 const people = [];
                 const debugLog = [];
-
-                // Stack to track parents
                 const parentStack = [];
 
-                // Process each <li>
                 Array.from(listItems).forEach(item => {
                     let text;
                     const summary = item.querySelector('summary');
@@ -66,7 +60,6 @@
                     const heartIndex = text.indexOf('♥');
                     const personText = heartIndex > -1 ? text.substring(0, heartIndex).trim() : text;
 
-                    // Extract person details
                     let name = personText.split(' b.')[0].trim();
                     const bornMatch = personText.match(/b\.(\d{4})/);
                     const diedMatch = personText.match(/d\.(\d{4})/);
@@ -75,7 +68,6 @@
                     const yearDied = diedMatch ? diedMatch[1] : '';
                     let yearMarried = marriedMatch ? marriedMatch[1] : '';
 
-                    // Extract spouse(s) after ♥
                     let spouses = [];
                     if (heartIndex > -1) {
                         const spouseText = text.substring(heartIndex + 1).trim();
@@ -95,10 +87,8 @@
                         if (!yearMarried && spouses[0]?.married) yearMarried = spouses[0].married;
                     }
 
-                    // Get parent from stack
                     const parent = parentStack.length ? parentStack[parentStack.length - 1] : { name: '', born: '', died: '' };
 
-                    // Add person with first spouse (if any)
                     people.push({
                         name,
                         yearBorn,
@@ -111,52 +101,4 @@
                         parentBorn: parent.born,
                         parentDied: parent.died
                     });
-                    debugLog.push(`Added: ${name}, Born: ${yearBorn}, Died: ${yearDied}, Married: ${yearMarried}, Spouse: ${spouses[0]?.name || ''}, Parent: ${parent.name}`);
-
-                    // Add additional spouses
-                    if (spouses.length > 1) {
-                        spouses.slice(1).forEach(spouse => {
-                            people.push({
-                                name,
-                                yearBorn,
-                                yearDied,
-                                yearMarried: spouse.married || '',
-                                spouseName: spouse.name,
-                                spouseBorn: spouse.born || '',
-                                spouseDied: spouse.died || '',
-                                parentName: parent.name,
-                                parentBorn: parent.born,
-                                parentDied: parent.died
-                            });
-                            debugLog.push(`Added extra spouse for ${name}: ${spouse.name}, Married: ${spouse.married}`);
-                        });
-                    }
-
-                    // Update parent stack
-                    const childrenUl = item.querySelector('ul');
-                    if (childrenUl) {
-                        parentStack.push({ name, born: yearBorn, died: yearDied });
-                    } else if (item.nextElementSibling && !item.nextElementSibling.querySelector('ul')) {
-                        // Stay at current level
-                    } else if (parentStack.length) {
-                        parentStack.pop(); // Move up when no more siblings
-                    }
-                });
-
-                // Format and display the result
-                const output = "name,yearborn,yeardied,yearmarried,spouse name,born,died,parent name,born,died\n" +
-                    people.map(p => `${p.name},${p.yearBorn},${p.yearDied},${p.yearMarried},${p.spouseName},${p.spouseBorn},${p.spouseDied},${p.parentName},${p.parentBorn},${p.parentDied}`).join('\n');
-                document.getElementById('output').textContent = output;
-
-                // Display debug log
-                document.getElementById('debug').textContent = "Debug Log:\n" + debugLog.join('\n');
-            } catch (err) {
-                document.getElementById('output').textContent = `Error: ${err.message}`;
-            }
-        }
-
-        // Run on page load
-        convertTree();
-    </script>
-</body>
-</html>
+                    debugLog.push(`Added: ${name}, Born: ${yearBorn}, Died: ${yearDied}, Married: ${yearMarried}, Spouse: ${spouses[0]?.name ||
