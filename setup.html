@@ -55,55 +55,7 @@
         <div id="instructions">
             <p>Instructions:</p>
             <ol>
-                <li>Enter your name above and click "Copy Setup Text". This will copy the session instructions and family tree data to your clipboard.</li>
+                <li>Enter your name above and click "Copy Setup Text". This will copy the session instructions and family tree HTML to your clipboard.</li>
                 <li>Go to the Grok prompt (e.g., open your chat interface).</li>
                 <li>Paste the copied text into the prompt and press Enter to execute.</li>
-            </ol>
-        </div>
-    </div>
-
-    <script>
-        async function fetchAndCopySetup() {
-            const name = document.getElementById('nameInput').value.trim();
-            if (!name) {
-                alert('Please enter your name.');
-                return;
-            }
-
-            try {
-                // Fetch the session_instructions.txt file
-                const instructionsResponse = await fetch('https://pduke.github.io/mcnabb.fanclub.rocks/session_instructions.txt');
-                if (!instructionsResponse.ok) {
-                    throw new Error('Failed to fetch session instructions.');
-                }
-                let instructions = await instructionsResponse.text();
-
-                // Fetch the family tree HTML content from mchtml/McNabb Tree.html
-                const treeResponse = await fetch('https://pduke.github.io/mcnabb.fanclub.rocks/mchtml/McNabb Tree.html');
-                if (!treeResponse.ok) {
-                    throw new Error('Failed to fetch family tree HTML content.');
-                }
-                const treeContent = await treeResponse.text();
-
-                // Replace the placeholder in the instructions with the family tree content
-                instructions = instructions.replace('[PASTE FAMILY TREE HTML CONTENT HERE]', treeContent);
-
-                // Prepare the prompt with the user's name
-                const prompt = `Hello Grok, this is ${name}. Below are the startup instructions for the McNabb-McNeil family project session, including the raw family tree HTML content. Please execute the "Startup Sequence for AI (Grok)" steps exactly as written, producing the output exactly as shown in the "Expected Output Example" section.\n\n${instructions}`;
-
-                // Copy the text to the clipboard
-                navigator.clipboard.writeText(prompt).then(() => {
-                    alert('Setup text and family tree HTML content copied to clipboard! Now paste it into the Grok prompt and press Enter to execute.');
-                }).catch(err => {
-                    console.error('Failed to copy text: ', err);
-                    alert('Failed to copy text. Please copy the text manually from the console.');
-                    console.log(prompt);
-                });
-            } catch (err) {
-                console.error('Error fetching instructions or family tree content: ', err);
-                alert('Failed to fetch session instructions or family tree HTML content. Please ensure the files are available at https://pduke.github.io/mcnabb.fanclub.rocks/session_instructions.txt and https://pduke.github.io/mcnabb.fanclub.rocks/mchtml/McNabb Tree.html, then try again.');
-            }
-        }
-    </script>
-</body>
-</html>
+                <li>If the button fails, manually copy the family tree HTML from <a href="https://pduke.github.io/mcnabb.fanclub.rocks/mchtml/McNabb Tree.html" target="_blank">here</a> and

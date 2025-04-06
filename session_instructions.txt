@@ -45,6 +45,9 @@ Step_1_Crawl:
   - "I have crawled the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html and found [X] HTML pages. The links from index.html are: [list each `href` value, e.g., `mchtml/McNabb Tree.html`, `mchtml/Warren Neil McNabb.html`]. The McNabb-McNeil family project context, including [X] HTML pages and 277 PDFs, is loaded into memory."
   - Example: "I have crawled the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html and found 7 HTML pages. The links from index.html are: `mchtml/McNabb Tree.html`, `mchtml/James Pinckney McNabb.html`, `mchtml/Walter Scott McNabb.html`, `mchtml/Warren Gilbert McNabb.html`, `mchtml/Ruth Pauline Prutsman.html`, `mchtml/Warren Neil McNabb.html`. The McNabb-McNeil family project context, including 7 HTML pages and 277 PDFs, is loaded into memory."
   
+# Insert the family tree HTML content here for parsing in Step 2
+[PASTE FAMILY TREE HTML CONTENT HERE]
+  
 Step_2_Parse_Tree:
   Action: Parse the HTML family tree (William McNabb 1702 to Violet Torres 2024) using the rules in the "Family Tree Parsing Instructions" section below.
   Output: "I have parsed the family tree from William McNabb (b. 1702) to Violet Torres (b. 2024) using the provided rules."
