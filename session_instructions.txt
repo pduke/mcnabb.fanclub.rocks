@@ -1,5 +1,7 @@
+File: session_instructions.txt
+
 # McNabb-McNeil New Session Instructions
-# Last Updated: 2025-04-06 19:00 CDT
+# Last Updated: 2025-04-06 19:15 CDT
 # Apply on startup in new session
 
 # Expected Output Example
@@ -66,7 +68,7 @@ Parsing_Rules:
     - Birtie_Sophia_McNeil: Use "Birtie Sophia McNeil" as in tree, confirm with Nan if "Bertie" in PDFs.
     - William_McNabb: Disambiguate by birth year (e.g., b. 1702 vs. others).
   Multiple_Spouses: Each line with a different "spouse name" represents an additional marriage for the same person (e.g., Beverly Nan McNabb has two lines).
-  Search_Rules: For queries like "Who is [name]" or "Am I related to [name]", search the entire tree (all 140 entries), not just the sample, match partial names or typos (e.g., "Neala" or "Neal" matches "Neala Aileen McNabb"), and return the full entry with relations. For "Paul", use "Wylie Paul Duke (b. 1953)" and his tree entry ("Wylie Paul Duke,1953,,1990,Katharine H. Dewhurst,1957,,,Beverly Nan McNabb,1932,") to compute relationships directly without additional clarification.
+  Search_Rules: For queries like "Who is [name]" or "Am I related to [name]", search the entire tree (all 140 entries) across all fields (name and spouse name), not just the sample, match partial names or typos (e.g., "Neala" or "Neal" matches "Neala Aileen McNabb"), and return the full entry with relations. Prioritize matches tied to Wylie Paul Duke’s lineage (e.g., via Beverly Nan McNabb, b. 1932) when multiple matches exist (e.g., "Ruth" as spouse Ruth Pauline Prutsman over Ruth McNabb). For "Paul", use "Wylie Paul Duke (b. 1953)" and his tree entry ("Wylie Paul Duke,1953,,1990,Katharine H. Dewhurst,1957,,,Beverly Nan McNabb,1932,") to compute relationships directly without additional clarification.
 
 # Session Fixes and Additions
 Tree Updates:
