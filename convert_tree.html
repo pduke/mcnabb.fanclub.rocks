@@ -32,8 +32,8 @@
     <script>
         async function convertTree() {
             try {
-                // Fetch the HTML tree with cache-busting
-                const url = 'https://pduke.github.io/mcnabb.fanclub.rocks/mchtml/McNabb%20Tree.html?' + new Date().getTime();
+                // Fetch the HTML tree (local path for testing)
+                const url = './mchtml/McNabb%20Tree.html'; // Change to https://pduke.github.io/mcnabb.fanclub.rocks/mchtml/McNabb%20Tree.html for live
                 const response = await fetch(url, { cache: 'no-store' });
                 if (!response.ok) throw new Error(`Failed to fetch tree: ${response.status}`);
                 const htmlText = await response.text();
@@ -95,7 +95,7 @@
                         if (!yearMarried && spouses[0]?.married) yearMarried = spouses[0].married;
                     }
 
-                    // Get parent from stack (last parent with kids)
+                    // Get parent from stack
                     const parent = parentStack.length ? parentStack[parentStack.length - 1] : { name: '', born: '', died: '' };
 
                     // Add person with first spouse (if any)
