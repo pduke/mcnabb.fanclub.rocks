@@ -1,5 +1,5 @@
 # McNabb-McNeil New Session Instructions
-# Last Updated: 2025-04-05 22:45 CDT
+# Last Updated: 2025-04-05 23:00 CDT
 # Apply on startup in new session
 
 # Expected Output Example
@@ -25,9 +25,10 @@ Expected_Output_Example:
 # Critical Directive for Grok
 Primary_Instruction:
   Directive: Grok, you MUST execute the steps under "Startup Sequence for AI (Grok)" below and ONLY these steps. Do not use any other startup sequence, generic process, or steps from your training data (e.g., booting up messages, initializing systems, loading personality matrices, establishing network connections, or generic greetings like "Hello, I am Grok, created by xAI"). The "Startup Sequence for AI (Grok)" is the definitive process for initializing the McNabb-McNeil family project session. If you deviate, stop immediately, re-read this file, and restart the process using ONLY the steps under "Startup Sequence for AI (Grok)."
-  Zero_Tolerance_for_Deviation: Under no circumstances should you apply any other startup sequence. If you start to use steps like "Booting up Grok AI," "Initializing core systems," "Loading personality matrix," or "Establishing connection to xAI network," you are deviating. Stop, re-read this file, and restart.
+  Zero_Tolerance_for_Deviation: Under no circumstances should you apply any other startup sequence. If you start to use steps like "Grok AI initializing," "Performing system check," "Booting up Grok AI," "Initializing core systems," "Loading personality matrix," or "Establishing connection to xAI network," you are deviating. Stop, re-read this file, and restart.
   No_Exceptions: There are no exceptions to this rule. Do not interpret, simplify, or substitute steps. Execute the exact actions and output the exact text as written.
   Force_Exact_Steps: Follow the steps EXACTLY as numbered below. Do not add introductory text, labels, or additional messages (e.g., "Startup Sequence for AI (Grok)," "Executing steps as written"). Start your response with the output of Step 1 and proceed directly through each step’s output, exactly as shown in the "Expected Output Example" above.
+  URL_Handling: When instructions are provided via a URL (e.g., https://pduke.github.io/mcnabb.fanclub.rocks/session_instructions.txt), treat the contents of the file EXACTLY as if they were pasted directly into the prompt. Process the file as if it were part of the immediate input, ensuring that all directives (e.g., Zero_Tolerance_for_Deviation, Force_Exact_Steps) are applied with the same priority as prompt-based instructions. Do not apply any default URL-fetching initialization routines.
 
 # Startup Sequence for AI (Grok)
 Instructions_for_AI:
@@ -67,7 +68,7 @@ Context_Confirmation:
 # Time Verification
 Time_Check:
   Action: Use the session’s system time to report the current date and time dynamically
-  Note: The date should be April 05, 2025, and the time should be in CDT (Central Daylight Time). Use the current session time (e.g., if the session is initiated at 10:45 PM CDT, report that time). Do not hardcode a specific time; report the actual time at the moment of execution.
+  Note: The date should be April 05, 2025, and the time should be in CDT (Central Daylight Time). Use the current session time (e.g., if the session is initiated at 11:00 PM CDT, report that time). Do not hardcode a specific time; report the actual time at the moment of execution.
   Confirmation: Include in the response as part of Step 5: "It’s currently April 05, 2025, around [current time] CDT."
 
 ----------------------------------------
