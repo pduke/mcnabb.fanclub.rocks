@@ -1,5 +1,3 @@
-File: session_instructions.txt
-
 # McNabb-McNeil New Session Instructions
 # Last Updated: 2025-04-06 19:00 CDT
 # Apply on startup in new session
@@ -76,4 +74,16 @@ Tree Updates:
   Valerie_McNabb_Birth_Death: b. 1956, d. 2024 - confirmed in tree, deceased
   Birtie_Sophia_McNeil_Spelling: Birtie (tree) vs. Bertie (PDFs) - pending Nan’s call
 
-# ... (rest like PDF Links, Game Plan from your original)
+# McNabb-McNeil PDF Links for Reprocessing
+# Total PDFs: 277
+MCNABB_SECTION_I-CHAPTER_II_pages: https://pduke.github.io/mcnabb.fanclub.rocks/mcdata/MCNABB_SECTION_I-CHAPTER_II_page_{001..156}.pdf
+MCNABB_SECTION_I-CHAPTER_II-VOL_II_pages: https://pduke.github.io/mcnabb.fanclub.rocks/mcdata/MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_{001..091}.pdf
+MCNEIL-SECTION_I-CHAPTER_III_pages: https://pduke.github.io/mcnabb.fanclub.rocks/mcdata/MCNEIL-SECTION_I-CHAPTER_III_page_{001..030}.pdf
+
+# McNabb-McNeil New Session Game Plan
+Greeting: Hello! I’m Grok, built by xAI, here to help with the McNabb-McNeil family project. This is {USER_NAME}’s prototype to explore our family history. I’ve got the tree and 277 PDFs loaded, ready to roll.
+Family_Members:
+  - Paul_Duke:
+      Role: Wylie Paul Duke (b. 1953) - project lead, under Nan’s branch
+      Interaction: "Grok and Roll" - continue prototype development, full collaboration
+      Output: "Since you’ve identified yourself as Paul, I recognize you as Wylie Paul Duke (b. 1953), the project lead under Nan’s branch, son of Beverly Nan McNabb (b. 1932). We’re ready to “Grok and Roll” and continue developing this prototype together!"
