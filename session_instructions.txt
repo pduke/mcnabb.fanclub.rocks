@@ -35,9 +35,16 @@ Instructions_for_AI:
   Override_Default_Behavior: Grok, you MUST NOT apply any default project setup assumptions or startup sequences (e.g., booting up messages, initializing systems, loading personality matrices, establishing network connections, displaying date/time separately, confirming identity, acknowledging the user generically, verifying instructions loaded, stating readiness, or prompting generically). The steps below are the ONLY actions you should take. If you deviate, restart the process and follow these steps exactly.
 
 Step_1_Crawl:
-  Action: Crawl the site at https://pduke.github.io/mcnabb.fanclub.rocks/ (entire site, including HTML tree, pages like Neil’s and Ruth’s, and /mcdata/ PDFs) to load the McNabb-McNeil family project context into memory.
-  Output: "I have crawled the site at https://pduke.github.io/mcnabb.fanclub.rocks/ and loaded the McNabb-McNeil family project context."
-
+- Action: 
+  1. Crawl the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html as the root page.
+  2. Identify and list all internal HTML files by extracting every <a href> link to .html files within the domain (e.g., relative paths like mchtml/McNabb Tree.html), excluding external links, PDFs (e.g., /mcdata/), and non-HTML assets (e.g., images, CSS).
+  3. Follow each internal HTML link found in index.html to confirm their existence and scan them for additional .html links, building a complete inventory of HTML pages on the site.
+  4. Include the /mcdata/ PDFs (277 files per "PDF Links for Reprocessing") in the crawl but flag them separately from HTML content.
+  5. Load the full McNabb-McNeil family project context into memory, prioritizing the HTML family tree (expected in a file like mchtml/McNabb Tree.html) for parsing in Step 2.
+- Output: 
+  - "I have crawled the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html and found [X] HTML pages. The links from index.html are: [list each `href` value, e.g., `mchtml/McNabb Tree.html`, `mchtml/Warren Neil McNabb.html`]. The McNabb-McNeil family project context, including [X] HTML pages and 277 PDFs, is loaded into memory."
+  - Example: "I have crawled the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html and found 7 HTML pages. The links from index.html are: `mchtml/McNabb Tree.html`, `mchtml/James Pinckney McNabb.html`, `mchtml/Walter Scott McNabb.html`, `mchtml/Warren Gilbert McNabb.html`, `mchtml/Ruth Pauline Prutsman.html`, `mchtml/Warren Neil McNabb.html`. The McNabb-McNeil family project context, including 7 HTML pages and 277 PDFs, is loaded into memory."
+  
 Step_2_Parse_Tree:
   Action: Parse the HTML family tree (William McNabb 1702 to Violet Torres 2024) using the rules in the "Family Tree Parsing Instructions" section below.
   Output: "I have parsed the family tree from William McNabb (b. 1702) to Violet Torres (b. 2024) using the provided rules."

@@ -1,0 +1,212 @@
+<html width: 100%;>
+<head>
+<title>McNabb Family Tree</title>
+<meta http-equiv='cache-control' content='no-cache'> 
+<meta http-equiv='expires' content='0'> 
+<meta http-equiv='pragma' content='no-cache'> 
+<style>
+  .tree {
+    --spacing : 1.5rem;
+    --radius  : 10px;
+  }
+  body {
+    font-family:Garamond;
+    font-size: 1.0em;
+    Background-color:ivory;
+    }
+  .heart {
+    font-size:50%; 
+    position:relative; 
+    top:-.4em;
+  }
+  .name {
+    font-sizex:110%; 
+    font-weight: bold;
+  }
+  .tree li {
+    display      : block;
+    position     : relative;
+    padding-left : calc(2 * var(--spacing) - var(--radius) - 2px);
+    white-space: nowrap;
+  }
+  .tree ul{
+    margin-left  : calc(var(--radius) - var(--spacing));
+    padding-left : 0;
+  }
+  .tree ul li{
+    border-left : 2px solid #ddd;
+  }
+  .tree ul li:last-child{
+    border-color : transparent;
+  }
+  .tree ul li::before{
+    content      : '';
+    display      : block;
+    position     : absolute;
+    top          : calc(var(--spacing) / -2);
+    left         : -2px;
+    width        : calc(var(--spacing) + 2px);
+    height       : calc(var(--spacing) - 4px);
+    border       : solid #ddd;
+    border-width : 0 0 2px 2px;
+  }
+</style>
+</head>
+<body>
+<p><center><big><strong>McNabb Family 1702 - 2025</strong></big></center>
+<ul class="tree">
+<li><details open><summary><span class=name>William McNabb</span> (b.1702 Glendochart, Scotland) (d.1789 Watauga Cty, Tenn - now North Carolina) <span class=heart>&hearts;</span> Betty Aiken (b.  Glendochart, Perthshire, Scotland) (d. Scotland)</summary>
+  <ul>
+  <li><details open><summary><span class=name>Baptist B. McNabb</span> (b.1723 Glendochart, Perthshire, Scotland) (d.1784 Washington Cty, Tenn/NC) <span class=heart>&hearts;</span> Kathren (b.1737 Augusta Cty, Virginia) (d.before.1784 Washington Cty, Tenn/NC)</summary>
+    <ul>
+    <li>James Jonathan McNabb</li>
+    <li>Katrin McNabb</li>
+    <li>Margaret McNabb</li>
+    <li>Mary McNabb</li>
+    <li>William McNabb</li>
+    <li><details open><summary><span class=name>David McNabb</span> (b.1755 Augusta Cty, Virginia) (d.1826 Carter Cty, Tenn) m.1778 <span class=heart>&hearts;</span> Elizabeth Taylor (b.1757 Augusta Cty, Virginia) (d.1848 Carter Cty, Tenn)</summary>
+      <ul>
+      <li>Absalom McNabb (b.1779 Washington Cty, Tenn/NC) (d.1858 Bakers Creek cemetery) m.1803 <span class=heart>&hearts;</span> Mary Lusk</li>
+      <li>Rhoda McNabb (b.1780 Washington Cty, Tenn/NC) m.1803</li>
+      <li><details open><summary><span class=name>Nathaniel Taylor McNabb</span> (b.1783 Washington Cty, Tenn/NC) (d.1840 Cleveland, Bradley Cty, Tenn) m.1805 <span class=heart>&hearts;</span> Ellender McCubbins (b.abt.1818 Virginia) (d.abt.1860 Cleveland, Bradley Cty, Tenn)</summary>
+        <ul>
+        <li>Alfred W. McNabb (b.1809 Carter Cty, Tenn) (d.abt.1858 Bradley Cty, Tenn) m.1834 <span class=heart>&hearts;</span> Susanah A. Ramsey</li>
+        <li><details open><summary><span class=name>James Pinckney McNabb</span> (b.1814 Carter Cty, Tenn) (d.1893 Marshfield, Webster Cty, Missouri) m.1836 <span class=heart>&hearts;</span> Easter Flanagan (b.abt.1784 Cherokee Indian Nation, Tenn) d.abt.1860</summary>
+          <ul>
+          <li>Albert Houston W. McNabb (b.1837 McMinn Cty, Tenn) (d.1923 Webster Cty, Missouri) m.1858 <span class=heart>&hearts;</span> Mary J. Long</li>
+          <li>Mathew McNabb (b.1839 Tennessee) (d.1857 Webster Cty, Missouri) </li>
+          <li>James M. McNabb (b.1841 Carter Cty, Tenn) (m.1860 Cooke Cty, Texas)<span class=heart>&hearts;</span> Eliza A. Chapman</li>
+          <li>Theodore Washington McNabb (b.1843 Bradley Cty, Tenn) d.1926 m.1868 <span class=heart>&hearts;</span> Eliza Jane Kitchen</li>
+          <li>Mary E. McNabb (b.1846 Carter Cty, Tenn) </li>
+          <li><details open><summary><span class=name>Nathaniel Armstrong McNabb</span> (b.1848 Carter Cty, Tenn) (d.1900 Ioni Creek Hmstd, Stephens Cty, Texas) (m.1872 Fannin Cty, Texas) <span class=heart>&hearts;</span> Rebecca Ann Turner (b.1857 Honey Grove, Fannin Cty, Texas) (d.1936  Ioni Creek Hmstd, Stephens Cty, Texas)</summary>
+            <ul>
+            <li><details open><summary><span class=name>Walter Scott McNabb</span> (b.1874 Desdemona, Eastland Cty, Texas) (d.1936 Amarillo, Potter Cty, Texas) (m.1896 Caddo, Stephens Cty, Texas) <span class=heart>&hearts;</span> Birtie Sophia McNeil b.1880 d.1969</summary>
+              <ul>
+              <li><details open><summary><span class=name>Warren Gilbert McNabb</span> b.1898 d.1975 m.1930 <span class=heart>&hearts;</span> Ruth Pauline Prutsman b.1906 d.1997</summary>
+                <ul>
+                <li><details open><summary><span class=name>Beverly Nan McNabb</span> b.1932 <span class=heart>&hearts;</span> Wylie Edgar Duke Jr. b.1930 m.1952 d.1992, Harry Joseph Orr b.1931 d.2007 m.1965&nbsp;&nbsp;&nbsp;</summary>
+                  <ul>
+                  <li>Wylie Paul Duke b.1953 m.1990 <span class=heart>&hearts;</span> Katharine H. Dewhurst b.1957</li>
+                  <li><details open><summary><span class=name>Ellen Lucille Duke</span> b.1955 <span class=heart>&hearts;</span> Michael Stuart Lazarus b.1948 m.1987 d.2011, William Smith b.1955 m.2011</summary>
+                    <ul>
+                      <li><details open><summary><span class=name>Jillian Lazarus</span> b.1990 <span class=heart>&hearts;</span> Anthony R. Torres b.1972</summary>
+                        <ul>
+                        <li>Noah Torres b.2020</li>
+                        <li>Violet Audrey Torres b.2024</li>
+                        </ul></details>
+                      </li>
+                    </ul></details>
+                  </li>
+                  <li>Laurie Annette Duke b.1957</li>
+                 </ul></details>
+                </li> 
+                <li><details open><summary><span class=name>Warren Neil McNabb</span> b.1934 d.2025 m.1952 <span class=heart>&hearts;</span> Geraldine McCurry d.2023</summary>
+                  <ul>
+                  <li><details open><summary><span class=name>Scott McNabb</span> b.1954 d.2020 <span class=heart>&hearts;</span> Sandy Prilliman</summary>
+                    <ul>
+                    <li><details open><summary><span class=name>Neala Aileen McNabb</span> b.1979 <span class=heart>&hearts;</span> Lopez</summary>
+                      <ul>
+                      <li>Drake Lee James Lopez b.2002 </li>
+                      <li>Layla Grace kumara Sinha b.2007 </li>
+                      <li>Dominic Dane Scott Flores b.2016 </li>
+                      </ul></details>
+                    </li>
+                    </ul></details>
+                  </li>
+                  <li><details open><summary><span class=name>Valerie McNabb</span> b.1956 d.2024 <span class=heart>&hearts;</span> Randy Spencer</summary>
+                    <ul>
+                    <li>Beth Spencer</li>
+                    <li>Daniel Spencer</li>
+                    </ul></details>
+                  </li>
+                  <li><details open><summary><span class=name>Neeve McNabb</span> b.1964 <span class=heart>&hearts;</span> Eric Forshee m.1982, Edgar Armando Valenzuela b.1988 m.2017</summary>
+                    <ul>
+                    <li>Joel Eric Forshee b.1983</li>
+                    <li><details open><summary><span class=name>Arika Neeve Forshee</span> b.1985 m.2014 <span class=heart>&hearts;</span> Dustin Doyle Hall b.1983 </summary>
+                      <ul>
+                      <li>Colter Jonathan Hall b.2008 mother.Arika</li>
+                      <li>Stella Veda Hall b.2015 </li>
+                      <li>Sylas Eric Hall b.2017 </li>
+                      <li>Joshua Dustin Hall b.2018 </li>
+                      </ul></details>
+                    </li>
+                    <li><details open><summary><span class=name>Ashely Elise Forshee</span> b.1988 m.2017 <span class=heart>&hearts;</span> Key Joseph Clark b.1977</summary>
+                      <ul>
+                      <li>Jade Lynn Clark b.2007 step.child </li>
+                      <li>Koda Walter Clark  b.2018 </li>
+                      <li>Enid Elise Clark b.2020 </li>
+                      </ul></details>
+                    </li>
+                    <li>Jasmyn Elyssa Forshee b.1991 </li>
+                    </ul></details>
+                  </li>
+                  </ul></details>
+                </li> 
+                </ul></details>
+              </li> 
+              <li><details open><summary><span class=name>Viola Craig McNabb</span> b.1900 d.1996 <span class=heart>&hearts;</span> Solomon Johnson Davidson m.1917, Willam Whitson</summary>
+                <ul>
+                  <li>Walter Craig Davidson b.1920 </li>
+                  <li><details open><summary><span class=name>Ann Carol Davidson</span> b.1922 d.2020 <span class=heart>&hearts;</span> James Paul Nagel b.1917 d.2008</summary>
+                    <ul>
+                    <li>Paula Carol Nagel b.1942</li>
+                    <li>James Craig Nagel b.1944</li>
+                    </ul></details>
+                  </li>
+                </ul></details>
+              </li> 
+              </ul></details>
+            </li> 
+            <li>George R. McNabb (b.1877 Stephens Cty, Texas) (d.1880 Macedonia Cemetery, Texas)</li>
+            <li>James Pinckney II McNabb (b.1880 Stephens Cty, Texas) (d.1967 Quanah, Texas) m.1899 <span class=heart>&hearts;</span> Augusta Fancher</li>
+            <li>Lee McNabb (b.1883 Stephens Cty, Texas)</li>
+            <li>Jessie Franklin McNabb (b.1886 Stephens Cty, Texas) (d.1970 Macedonia Cemetery, Texas)</li>
+            <li>Ada McNabb (b.1889 Stephens Cty, Texas) d.1903</li>
+            <li>Myrtle E. McNabb (b.1893 Stephens Cty, Texas) d.1935 m.1919 <span class=heart>&hearts;</span> Charles Adams</li>
+            <li>Clark McNabb (b.1896 Stephens Cty, Texas) (d:unkn Range, Eastland Cty, Texas) <span class=heart>&hearts;</span> Myrtle Smith</li>
+            <li>Monti McNabb (b.1897 Stephens Cty, Texas) (d.1906 Macedonia Cemetery, Texas)</li>
+            </ul></details>
+          </li> 
+          <li>William A. McNabb (b.1850 Bradley Cty, Tenn) (d.1900 Missouri) <span class=heart>&hearts;</span> Sarah Clementine Webb</li>
+          <li>Rebecca J. McNabb (b.1852 Webster Cty, Missouri)</li>
+          <li>A.J. McNabb b.1853</li>
+          <li>Harriet Ann McNabb (b.1855 Webster Cty, Mo.) (d.abt.1905 Webster Cty, Mo.) m.abt.1870 <span class=heart>&hearts;</span> Franklin Minor, Pastor</li>
+          <li>Lucretia McNabb (b.1857 Webster Cty, Mo.) <span class=heart>&hearts;</span> M. Hoff</li>
+          </ul></details>
+        </li> 
+        <li>Nathaniel T. McNabb (b.1818 Carter Cty, Tenn) d.1897 <span class=heart>&hearts;</span> Serenia C. McInturff, Lize Cath Walls, Nancy Caroline Walls</li>
+        <li>Louisa McNabb (b.1819 Carter Cty, Tenn) m.1937 <span class=heart>&hearts;</span> Francis M. Cooper</li>
+        <li>Lorena McNabb (b.1823 Carter Cty, Tenn) m.1841 <span class=heart>&hearts;</span> Thomas Stanley</li>
+        <li>Armstrong McNabb (b.1825 Carter Cty, Tenn) m.1861 <span class=heart>&hearts;</span> Naomi Henry</li>
+        <li>Fode McNabb (b.1827 Carter Cty, Tenn)</li>
+        </ul></details>
+      </li> 
+      <li>Catherine McNabb (b.1785 Washington Cty, Tenn/NC)</li>
+      <li>Jane McNabb (b.1787 Washington Cty, Tenn/NC) m.1809 <span class=heart>&hearts; </span>John Brown</li>
+      <li>James McNabb (b.1789 Washington Cty, Tenn/NC) m.1814 <span class=heart>&hearts;</span> Mary Wright, Levesta Mynatt</li>
+      <li>David McNabb Jr. (b.1791 Washington Cty, Tenn/NC) m.1813 <span class=heart>&hearts;</span> Margaret Whetson</li>
+      <li>Andrew Taylor McNabb (b.1795 Carter Cty, Tenn) m.1817 <span class=heart>&hearts;</span> Margaret Bogart</li>
+      <li>William McNabb (b.1796 Carter Cty, Tenn) m1830 <span class=heart>&hearts;</span> Nancy Brown</li>
+      <li>Mathew Taylor McNabb (b.1798 Carter Cty, Tenn)</li>
+      <li>Issac McNabb (b.1800 Carter Cty, Tenn)</li>
+      <li>Alban McNabb (b.1802 Carter Cty, Tenn) d.after.1880</li>
+      <li>Taylor McNabb (b.1805 Carter Cty, Tenn) (d.1876 McMinn Cty, Tenn)</li>
+      </ul></details>
+    </li> 
+    <li>John McNabb b.1757</li>
+    <li>Isabella McNabb b.1767 (m.1786 Washington Cty, NC) <span class=heart>&hearts;</span>  Andrew Taylor II .b1733 d.after.1780</li>
+    </ul>
+  </details></li>
+  <li>John McNabb</li>
+  <li>Samuel McNabb</li>
+  <li>Betty McNabb (d.1809 Rockbridge, Virginia)</li>
+  <li>James McNabb</li>
+  <li>David McNabb</li>
+  <li>William McNabb</li>
+  <li>Andrew McNabb</li>
+  </ul>
+</details></li>
+</ul>
+</body>
+</html>
+
