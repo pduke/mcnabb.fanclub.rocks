@@ -55,10 +55,9 @@
         <div id="instructions">
             <p>Instructions:</p>
             <ol>
-                <li>Enter your name above and click "Copy Setup Text". This will copy the session instructions and family tree HTML to your clipboard.</li>
+                <li>Enter your name above and click "Copy Setup Text". This will copy the session instructions and family tree data to your clipboard.</li>
                 <li>Go to the Grok prompt (e.g., open your chat interface).</li>
-                <li>Paste the copied text into the prompt and press Enter to execute.</li>
-                <li>If the button fails, manually copy the family tree HTML from <a href="https://pduke.github.io/mcnabb.fanclub.rocks/mchtml/McNabb Tree.html" target="_blank">here</a> and append it to the instructions from <a href="https://pduke.github.io/mcnabb.fanclub.rocks/session_instructions.txt" target="_blank">here</a>.</li>
+                <li>Paste the copied text into the prompt and press Enter to start your session.</li>
             </ol>
         </div>
     </div>
@@ -104,11 +103,11 @@
                 // Copy to clipboard
                 console.log('Copying to clipboard...');
                 await navigator.clipboard.writeText(prompt);
-                alert('Setup text and family tree HTML copied to clipboard! Paste it into the Grok prompt and press Enter to execute.');
+                alert('Setup text and family tree data copied to clipboard! Paste it into the Grok prompt and press Enter to start your session.');
                 console.log('Successfully copied to clipboard');
             } catch (err) {
                 console.error('Error:', err.message);
-                alert(`Error: ${err.message}. Check the console for details. As a fallback, manually copy the family tree HTML from https://pduke.github.io/mcnabb.fanclub.rocks/mchtml/McNabb Tree.html and append it to the instructions from https://pduke.github.io/mcnabb.fanclub.rocks/session_instructions.txt.`);
+                alert(`Error: ${err.message}. Check the console for details or try again later. If the issue persists, contact Paul for assistance.`);
             }
         }
     </script>

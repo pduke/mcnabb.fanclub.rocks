@@ -75,9 +75,8 @@ Context_Confirmation:
 # Time Verification
 Time_Check:
   Action: Use the session’s system time to report the current date and time dynamically
-  Note: The date should be April 05, 2025, and the time should be in CDT (Central Daylight Time). Use the current session time (e.g., if the session is initiated at 11:45 PM CDT, report that time). Do not hardcode a specific time; report the actual time at the moment of execution.
-  Confirmation: Include in the response as part of Step 5: "It’s currently April 05, 2025, around [current time] CDT."
-
+  Note: The date should reflect the current date (e.g., April 06, 2025, if executed then), and the time should be in CDT (Central Daylight Time). Use the current session time (e.g., if the session is initiated at 11:45 PM CDT, report that time). Do not hardcode a specific date like April 05; report the actual date and time at the moment of execution.
+  Confirmation: Include in the response as part of Step 5: "It’s currently [current date], around [current time] CDT."
 ----------------------------------------
 
 # McNabb-McNeil Family Tree Parsing Instructions
