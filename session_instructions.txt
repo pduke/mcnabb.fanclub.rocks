@@ -1,6 +1,10 @@
 # McNabb-McNeil New Session Instructions
-# Last Updated: 2025-04-05 21:15 CDT
+# Last Updated: 2025-04-05 21:30 CDT
 # Apply on startup in new session
+
+# Critical Directive for Grok
+Primary_Instruction:
+  Directive: Grok, you MUST execute the steps under "Startup Sequence for AI (Grok)" below and ONLY these steps. Do not use any other startup sequence, generic process, or steps from your training data (e.g., initializing a session log, generic greetings, or software setup steps). The "Startup Sequence for AI (Grok)" is the definitive process for initializing the McNabb-McNeil family project session. If you deviate, stop immediately, re-read this file, and restart the process using ONLY the steps under "Startup Sequence for AI (Grok)."
 
 # Startup Sequence for AI (Grok)
 Instructions_for_AI:
@@ -37,13 +41,13 @@ Step_5_Follow_Game_Plan:
 Context_Confirmation:
   Project: McNabb-McNeil AI Prototype
   Focus: Family history - McNabb and McNeil lineage, not related to Minecraft, gaming, software development setups, or unrelated projects
-  Action: If context deviates (e.g., Minecraft, scripts, session IDs, Git repositories, servers), re-read this file and restart the startup sequence
+  Action: If context deviates (e.g., Minecraft, scripts, session IDs, Git repositories, servers, generic startup sequences), re-read this file and restart the startup sequence using ONLY the steps under "Startup Sequence for AI (Grok)"
   Strict_Adherence: Follow the instructions EXACTLY as written. Do not add steps, make assumptions, or deviate from the specified actions. If you start to deviate, stop, re-read this file, and restart the process.
 
 # Time Verification
 Time_Check:
   Action: Verify the current date and time match the session context
-  Note: The date should be around April 05, 2025, and the time should be in CDT (Central Daylight Time). If the time reported deviates significantly (e.g., more than a few minutes off from the expected time of the session, such as 09:15 PM CDT), double-check the system clock and report the correct time.
+  Note: The date should be around April 05, 2025, and the time should be in CDT (Central Daylight Time). If the time reported deviates significantly (e.g., more than a few minutes off from the expected time of the session, such as 09:30 PM CDT), double-check the system clock and report the correct time.
   Confirmation: Include in the response: "It’s currently April 05, 2025, around [current time] CDT."
 
 ----------------------------------------
@@ -147,7 +151,7 @@ Page_042_MCNABB_SECTION_I_CHAPTER_II_VOL_II:
   Census: William McNabb (1800s, likely William A. b. 1850 or earlier kin) - no useful info, faint
 
 Page_091_MCNABB_SECTION_I_CHAPTER_II_VOL_II:
-  Text: William A. McNabb (b. 1950, d. 1900, Bradley TN to MO, m. Sarah Webb) - farming, community ties
+  Text: William A. McNabb (b. 1850, d. 1900, Bradley TN to MO, m. Sarah Webb) - farming, community ties
 
 Page_005_MCNEIL_SECTION_I_CHAPTER_III:
   Drawings: Daniel S. McNeil (b. 1845, Hugh’s son) - couple of pics, no other info
