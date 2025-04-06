@@ -1,138 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Converted on 2025-04-06 20:30 CDT -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>McNabb Family Tree Converter</title>
+    <title>McNabb-McNeil Family Project Setup</title>
     <style>
         body {
-            font-family: monospace;
-            margin: 20px;
-            background-color: #f0f0f0;
-            white-space: pre-wrap;
-            font-size: 14px;
-        }
-        h2 {
-            text-align: center;
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #instructions {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #333;
+            text-align: left;
         }
     </style>
 </head>
 <body>
-    <h2>McNabb Family Tree Converted Output</h2>
-    <div id="output">Converting tree, please wait...</div>
+    <div class="container">
+        <h2>McNabb-McNeil Family Project Setup</h2>
+        <label for="nameInput">Enter Your Name:</label>
+        <input type="text" id="nameInput" placeholder="e.g., Paul" required>
+        <br>
+        <button onclick="fetchAndCopySetup()">Copy Setup Text</button>
+        <div id="instructions">
+            <p>Instructions:</p>
+            <ol>
+                <li>Enter your name and click "Copy Setup Text" to copy the session data.</li>
+                <li>Go to the Grok prompt in your chat interface.</li>
+                <li>Paste the copied text into the prompt and press Enter to start.</li>
+            </ol>
+        </div>
+    </div>
 
     <script>
-        async function convertTree() {
+        async function fetchAndCopySetup() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (!name) {
+                alert('Please enter your name.');
+                return;
+            }
             try {
-                const url = 'https://pduke.github.io/mcnabb.fanclub.rocks/mchtml/McNabb%20Tree.html?' + new Date().getTime();
-                const response = await fetch(url, { cache: 'no-store' });
-                if (!response.ok) throw new Error(`Failed to fetch tree: ${response.status}`);
-                const htmlText = await response.text();
-
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(htmlText, 'text/html');
-                const listItems = doc.querySelectorAll('.tree li');
-
-                if (!listItems.length) throw new Error('No <li> entries found in HTML');
-
-                const people = [];
-                const parentStack = [];
-
-                function processItem(item, currentLevel) {
-                    let text;
-                    const summary = item.querySelector('summary');
-                    if (summary) {
-                        text = summary.textContent.trim().replace(/\s+/g, ' ');
-                    } else {
-                        text = item.textContent.trim().replace(/\s+/g, ' ');
-                    }
-
-                    const heartIndex = text.indexOf('♥');
-                    const personText = heartIndex > -1 ? text.substring(0, heartIndex).trim() : text;
-
-                    let name = personText.split(' b.')[0].trim();
-                    const bornMatch = personText.match(/b\.(\d{4})/);
-                    const diedMatch = personText.match(/d\.(\d{4})/);
-                    const marriedMatch = personText.match(/m\.(\d{4})/);
-                    const yearBorn = bornMatch ? bornMatch[1] : '';
-                    const yearDied = diedMatch ? diedMatch[1] : '';
-                    let yearMarried = marriedMatch ? marriedMatch[1] : '';
-
-                    let spouses = [];
-                    if (heartIndex > -1) {
-                        const spouseText = text.substring(heartIndex + 1).trim();
-                        const spouseEntries = spouseText.split(/,\s*(?=[A-Za-z]+\s+b\.)/);
-                        spouses = spouseEntries.map(spouse => {
-                            const sName = spouse.split(' b.')[0].trim();
-                            const sBornMatch = spouse.match(/b\.(\d{4})/);
-                            const sDiedMatch = spouse.match(/d\.(\d{4})/);
-                            const sMarriedMatch = spouse.match(/m\.(\d{4})/);
-                            return {
-                                name: sName,
-                                born: sBornMatch ? sBornMatch[1] : '',
-                                died: sDiedMatch ? sDiedMatch[1] : '',
-                                married: sMarriedMatch ? sMarriedMatch[1] : ''
-                            };
-                        });
-                        if (!yearMarried && spouses[0]?.married) yearMarried = spouses[0].married;
-                    }
-
-                    const parent = parentStack.length > 0 ? parentStack[parentStack.length - 1] : { name: '', born: '', died: '' };
-
-                    people.push({
-                        name,
-                        yearBorn,
-                        yearDied,
-                        yearMarried: spouses[0]?.married || yearMarried || '',
-                        spouseName: spouses[0]?.name || '',
-                        spouseBorn: spouses[0]?.born || '',
-                        spouseDied: spouses[0]?.died || '',
-                        parentName: parent.name,
-                        parentBorn: parent.born,
-                        parentDied: parent.died
-                    });
-
-                    if (spouses.length > 1) {
-                        spouses.slice(1).forEach(spouse => {
-                            people.push({
-                                name,
-                                yearBorn,
-                                yearDied,
-                                yearMarried: spouse.married || '',
-                                spouseName: spouse.name,
-                                spouseBorn: spouse.born || '',
-                                spouseDied: spouse.died || '',
-                                parentName: parent.name,
-                                parentBorn: parent.born,
-                                parentDied: parent.died
-                            });
-                        });
-                    }
-
-                    const childrenUl = item.querySelector('ul');
-                    if (childrenUl) {
-                        parentStack.push({ name, born: yearBorn, died: yearDied });
-                        const childItems = childrenUl.querySelectorAll(':scope > li');
-                        childItems.forEach(child => processItem(child, currentLevel + 1));
-                        parentStack.pop();
-                    }
-                }
-
-                listItems.forEach(item => processItem(item, 0));
-
-                // Output as tab-delimited, no timestamp in output
-                const output = "name\tyearborn\tyeardied\tyearmarried\tspouse name\tborn\tdied\tparent name\tborn\tdied\n" +
-                    people.map(p => `${p.name}\t${p.yearBorn}\t${p.yearDied}\t${p.yearMarried}\t${p.spouseName}\t${p.spouseBorn}\t${p.spouseDied}\t${p.parentName}\t${p.parentBorn}\t${p.parentDied}`).join('\n');
-                document.getElementById('output').textContent = output;
-
+                // Fetch session_instructions.txt (local path for testing)
+                const response = await fetch('https://pduke.github.io/mcnabb.fanclub.rocks/session_instructions.txt');
+                if (!response.ok) throw new Error(`Failed to fetch: ${response.status}`);
+                const instructions = await response.text();
+                const prompt = `Hello Grok, this is ${name}. Below are the startup instructions for the McNabb-McNeil family project session. Please execute the "Startup Sequence for AI (Grok)" steps exactly as written.\n\n${instructions}`;
+                await navigator.clipboard.writeText(prompt);
+                alert('Session data copied! Paste it into the Grok prompt to start.');
             } catch (err) {
-                document.getElementById('output').textContent = `Error: ${err.message}`;
+                alert(`Error: ${err.message}. Try again or contact Paul.`);
             }
         }
-
-        convertTree();
     </script>
 </body>
 </html>
