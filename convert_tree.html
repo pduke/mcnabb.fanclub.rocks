@@ -16,18 +16,11 @@
             text-align: center;
             font-family: Arial, sans-serif;
         }
-        #debug {
-            color: #666;
-            margin-top: 20px;
-            border-top: 1px solid #ccc;
-            padding-top: 10px;
-        }
     </style>
 </head>
 <body>
     <h2>McNabb Family Tree Converted Output</h2>
     <div id="output">Converting tree, please wait...</div>
-    <div id="debug">Debug log will appear here...</div>
 
     <script>
         async function convertTree() {
@@ -44,7 +37,6 @@
                 if (!listItems.length) throw new Error('No <li> entries found in HTML');
 
                 const people = [];
-                const debugLog = [];
                 const parentStack = [];
 
                 Array.from(listItems).forEach(item => {
@@ -55,7 +47,6 @@
                     } else {
                         text = item.textContent.trim().replace(/\s+/g, ' ');
                     }
-                    debugLog.push(`Processing: ${text}`);
 
                     const heartIndex = text.indexOf('♥');
                     const personText = heartIndex > -1 ? text.substring(0, heartIndex).trim() : text;
@@ -101,7 +92,6 @@
                         parentBorn: parent.born,
                         parentDied: parent.died
                     });
-                    debugLog.push(`Added: ${name}, Born: ${yearBorn}, Died: ${yearDied}, Married: ${yearMarried}, Spouse: ${spouses[0]?.name || ''}, Parent: ${parent.name}`);
 
                     if (spouses.length > 1) {
                         spouses.slice(1).forEach(spouse => {
@@ -117,7 +107,6 @@
                                 parentBorn: parent.born,
                                 parentDied: parent.died
                             });
-                            debugLog.push(`Added extra spouse for ${name}: ${spouse.name}, Married: ${spouse.married}`);
                         });
                     }
 
@@ -130,12 +119,11 @@
                     }
                 });
 
-                // Output as tab-delimited
+                // Output as tab-delimited, no debug log
                 const output = "name\tyearborn\tyeardied\tyearmarried\tspouse name\tborn\tdied\tparent name\tborn\tdied\n" +
                     people.map(p => `${p.name}\t${p.yearBorn}\t${p.yearDied}\t${p.yearMarried}\t${p.spouseName}\t${p.spouseBorn}\t${p.spouseDied}\t${p.parentName}\t${p.parentBorn}\t${p.parentDied}`).join('\n');
                 document.getElementById('output').textContent = output;
 
-                document.getElementById('debug').textContent = "Debug Log:\n" + debugLog.join('\n');
             } catch (err) {
                 document.getElementById('output').textContent = `Error: ${err.message}`;
             }
