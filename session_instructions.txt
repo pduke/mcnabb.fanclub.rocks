@@ -1,14 +1,14 @@
 File: session_instructions.txt
 
 # McNabb-McNeil New Session Instructions
-# Last Updated: 2025-04-06 22:00 CDT
+# Last Updated: 2025-04-06 23:15 CDT
 # Apply on startup in new session
 
 # Expected Output Example
 Expected_Output_Example:
   Note: This is the EXACT output you should produce when executing the "Startup Sequence for AI (Grok)" steps.
   Example:
-    I have crawled the site at https://pduke.github.io/mcnabb.fanclub.rocks/ and loaded the McNabb-McNeil family project context.
+    I have crawled the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html and found 7 HTML pages. The links from index.html are: mchtml/McNabb Tree.html, mchtml/James Pinckney McNabb.html, mchtml/Walter Scott McNabb.html, mchtml/Warren Gilbert McNabb.html, mchtml/Ruth Pauline Prutsman.html, mchtml/Warren Neil McNabb.html, convert_tree.html. The McNabb-McNeil family project context, including 7 HTML pages and 277 PDFs, is loaded into memory.
     I have parsed the full family tree from William McNabb (b. 1702) to Violet Torres (b. 2024) using the provided rules. The tree contains 140 entries, including Wylie Paul Duke (b. 1953) and Neala Aileen McNabb (b. 1979, parent: Scott McNabb).
     I have applied the session fixes, including updates for Scott and Valerie’s deaths and manual PDF parses like Page 012.
     I have reprocessed all 277 PDFs from the provided ranges.
@@ -19,7 +19,7 @@ Expected_Output_Example:
 
 # Critical Directive for Grok
 Primary_Instruction:
-  Directive: Grok, you MUST execute the steps under "Startup Sequence for AI (Grok)" below and ONLY these steps. Store the parsed family tree in memory and maintain it for all queries in this session. Search the entire tree (all 140 entries) for every query, not just the sample entries.
+  Directive: Grok, you MUST execute the steps under "Startup Sequence for AI (Grok)" below and ONLY these steps. Store the parsed family tree and crawled HTML pages in memory and maintain them for all queries in this session. Search the entire tree (all 140 entries) and crawled pages for every query, not just the sample entries.
 
 # Startup Sequence for AI (Grok)
 Instructions_for_AI:
@@ -28,12 +28,12 @@ Instructions_for_AI:
 Step_1_Crawl:
 - Action: 
   1. Crawl the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html.
-  2. List all internal HTML files from <a href> links (e.g., mchtml/McNabb Tree.html), excluding PDFs and non-HTML assets.
-  3. Confirm links and scan for additional HTML pages.
+  2. Extract all internal HTML files from <a href> links within the page (e.g., mchtml/McNabb Tree.html, mchtml/Warren Gilbert McNabb.html), excluding PDFs, external links, and non-HTML assets. Include convert_tree.html and index.html if linked.
+  3. Confirm all unique HTML links found and load their content into memory.
   4. Include 277 PDFs from /mcdata/ in the context.
-  5. Load the project context into memory.
+  5. Load the project context (tree, HTML pages, PDFs) into memory.
 - Output: 
-  - "I have crawled the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html and found [X] HTML pages. The links from index.html are: [list each `href` value]. The McNabb-McNeil family project context, including [X] HTML pages and 277 PDFs, is loaded into memory."
+  - "I have crawled the site starting at https://pduke.github.io/mcnabb.fanclub.rocks/index.html and found [X] HTML pages. The links from index.html are: [list each unique `href` value to HTML files]. The McNabb-McNeil family project context, including [X] HTML pages and 277 PDFs, is loaded into memory."
 
 Step_2_Parse_Tree:
 - Action: Fetch https://pduke.github.io/mcnabb.fanclub.rocks/convert_tree.html, extract the text content from the <div id="output"> element, parse it as tab-delimited text (fields: name,yearborn,yeardied,yearmarried,spouse name,born,died,parent name,born,died). Build the family tree (William McNabb 1702 to Violet Torres 2024) using parent name for hierarchy and rules in "Family Tree Parsing Instructions". Include a sample in the output to confirm parsing: total entries (140) and two examples: Wylie Paul Duke and Neala Aileen McNabb.
@@ -68,7 +68,7 @@ Parsing_Rules:
     - Birtie_Sophia_McNeil: Use "Birtie Sophia McNeil" as in tree, confirm with Nan if "Bertie" in PDFs.
     - William_McNabb: Disambiguate by birth year (e.g., b. 1702 vs. others).
   Multiple_Spouses: Each line with a different "spouse name" represents an additional marriage for the same person (e.g., Beverly Nan McNabb has two lines).
-  Search_Rules: For queries like "Who is [name]" or "Am I related to [name]", search the entire tree (all 140 entries) across all fields: first search "name" field for an exact match to the query (e.g., "Neeve" matches "Neeve McNabb"), then "spouse name" for an exact match (e.g., "Ruth" matches "Ruth Pauline Prutsman"), using only entries present in the tree—do not invent or modify data. If no exact match is found in "name" or "spouse name", return "No exact match for [name] found in the tree" and do not proceed further unless requested. For {USER_NAME}, prioritize matches tied to their lineage based on their tree entry (e.g., for "Paul", prioritize via Beverly Nan McNabb, b. 1932; for "Nan", via Warren Gilbert McNabb, b. 1898; for "Neeve", via Warren Neil McNabb, b. 1934) as the first result, followed by other exact matches if applicable. Use the user’s tree entry to compute relationships directly without additional clarification, using only the data provided in the tree.
+  Search_Rules: For queries like "Who is [name]" or "Am I related to [name]", search the entire tree (all 140 entries) and crawled HTML pages: first search "name" field in the tree for an exact match to the query (e.g., "Neeve" matches "Neeve McNabb"), then "spouse name" for an exact match (e.g., "Ruth" matches "Ruth Pauline Prutsman"), using only entries present in the tree—do not invent or modify data. If found, supplement with details from the corresponding crawled HTML page (e.g., mchtml/Ruth Pauline Prutsman.html) if available. If no exact match is found in "name" or "spouse name", return "No exact match for [name] found in the tree" and do not proceed further unless requested. For {USER_NAME}, prioritize matches tied to their lineage based on their tree entry (e.g., for "Paul", prioritize via Beverly Nan McNabb, b. 1932; for "Nan", via Warren Gilbert McNabb, b. 1898; for "Neeve", via Warren Neil McNabb, b. 1934) as the first result, followed by other exact matches if applicable. Use the user’s tree entry to compute relationships directly without additional clarification, using only the data provided in the tree and crawled pages.
 
 # Session Fixes and Additions
 Tree Updates:
