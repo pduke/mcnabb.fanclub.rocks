@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Converted on 2025-04-07 01:00 CDT -->
+    <!-- Converted on 2025-04-07 23:55 CDT -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>McNabb Family Tree Converter</title>
@@ -37,10 +37,9 @@
 
                 if (!listItems.length) throw new Error('No <li> entries found in HTML');
 
-                const peopleMap = new Map(); // Dedupe by name + yearborn
-                const parentStack = [];
+                const peopleMap = new Map(); // Dedupe by name + dob
 
-                function processItem(item, currentLevel) {
+                function processItem(item) {
                     let text;
                     const summary = item.querySelector('summary');
                     if (summary) {
@@ -51,92 +50,96 @@
 
                     const heartIndex = text.indexOf('♥');
                     const personText = heartIndex > -1 ? text.substring(0, heartIndex).trim() : text;
+                    let name = personText.replace(/\s*\((?:b|d|m):?(?:abt\s|circa\s|before\.)?[^)]+\)/g, '').replace(/\s*[bdm]\.\s*(?:abt\s|circa\s|before\.)?\d{4}/g, '').replace(/♥.*/g, '').replace(/,\s*/g, ' ').trim();
 
-                    let name = personText.split(/ b\.\(?/)[0].trim();
-                    const bornMatch = personText.match(/b\.\(([^)]+)\)/) || personText.match(/b\.(\d{4})/);
-                    const diedMatch = personText.match(/d\.\(([^)]+)\)/) || personText.match(/d\.(\d{4})/);
-                    const marriedMatch = personText.match(/m\.\(([^)]+)\)/) || personText.match(/m\.(\d{4})/);
-                    const yearBorn = bornMatch ? (bornMatch[1].includes(' ') ? bornMatch[1] : bornMatch[1]) : '';
-                    const yearDied = diedMatch ? (diedMatch[1].includes(' ') ? diedMatch[1] : diedMatch[1]) : '';
-                    let yearMarried = marriedMatch ? (marriedMatch[1].includes(' ') ? marriedMatch[1] : marriedMatch[1]) : '';
+                    const bornMatch = personText.match(/\((b\.(?:abt\s|circa\s)?[^)]+)\)/) || personText.match(/b\.(abt\s|circa\s)?(\d{4})/);
+                    const diedMatch = personText.match(/\((d[:\.](?:abt\s|circa\s|before\.)?[^)]+)\)/) || personText.match(/d\.(abt\s|circa\s)?(\d{4})/);
+                    const dobYearMatch = bornMatch ? (bornMatch[1] ? bornMatch[1].match(/(?:abt\s|circa\s)?(\d{4})/) : (bornMatch[2] ? [null, bornMatch[2]] : null)) : null;
+                    const dodYearMatch = diedMatch ? (diedMatch[1] ? diedMatch[1].match(/(?:abt\s|circa\s|before\.)?(\d{4})/) : (diedMatch[2] ? [null, diedMatch[2]] : null)) : null;
+                    const dobYear = dobYearMatch ? dobYearMatch[1] : '';
+                    const dodYear = dodYearMatch ? dodYearMatch[1] : '';
 
-                    const key = `${name}\t${yearBorn}`; // Unique identifier
+                    if (!name) console.log(`Failed to parse name: ${text}`);
+                    if (dobYear && !/^\d{4}$/.test(dobYear)) console.log(`Invalid dob: ${dobYear} from ${text}`);
+                    if (dodYear && !/^\d{4}$/.test(dodYear)) console.log(`Invalid dod: ${dodYear} from ${text}`);
+
+                    const key = `${name}\t${dobYear}`;
 
                     let spouses = [];
                     if (heartIndex > -1) {
                         const spouseText = text.substring(heartIndex + 1).trim();
-                        const spouseEntries = spouseText.split(/,\s*(?=[A-Za-z]+\s+(?:b\.|d\.))/);
+                        const spouseEntries = spouseText.split(/,\s*(?=[A-Za-z][^♥]*)/); // Simpler split on comma + name
+                        if (spouseEntries.length > 1) console.log(`Split spouses: ${spouseText} -> ${spouseEntries}`);
                         spouses = spouseEntries.map(spouse => {
-                            const diedMatch = spouse.match(/d\.\(([^)]+)\)/) || spouse.match(/d\.(\d{4})/);
-                            const bornMatch = spouse.match(/b\.\(([^)]+)\)/) || spouse.match(/b\.(\d{4})/);
-                            const marriedMatch = spouse.match(/m\.\(([^)]+)\)/) || spouse.match(/m\.(\d{4})/);
-                            const sDied = diedMatch ? (diedMatch[1].includes(' ') ? diedMatch[1] : diedMatch[1]) : '';
-                            const sBorn = bornMatch ? (bornMatch[1].includes(' ') ? bornMatch[1] : bornMatch[1]) : '';
-                            const sMarried = marriedMatch ? (marriedMatch[1].includes(' ') ? marriedMatch[1] : marriedMatch[1]) : '';
-                            let sName = spouse;
-                            if (diedMatch) sName = sName.replace(/d\.\([^)]+\)|d\.\d{4}/, '').trim();
-                            if (bornMatch) sName = sName.replace(/b\.\([^)]+\)|b\.\d{4}/, '').trim();
-                            if (marriedMatch) sName = sName.replace(/m\.\([^)]+\)|m\.\d{4}/, '').trim();
-                            sName = sName.trim();
+                            const diedMatch = spouse.match(/\((d[:\.](?:abt\s|circa\s|before\.)?[^)]+)\)/) || spouse.match(/d\.(abt\s|circa\s)?(\d{4})/);
+                            const bornMatch = spouse.match(/\((b\.(?:abt\s|circa\s)?[^)]+)\)/) || spouse.match(/b\.(abt\s|circa\s)?(\d{4})/);
+                            const sDiedYearMatch = diedMatch ? (diedMatch[1] ? diedMatch[1].match(/(?:abt\s|circa\s|before\.)?(\d{4})/) : (diedMatch[2] ? [null, diedMatch[2]] : null)) : null;
+                            const sBornYearMatch = bornMatch ? (bornMatch[1] ? bornMatch[1].match(/(?:abt\s|circa\s)?(\d{4})/) : (bornMatch[2] ? [null, bornMatch[2]] : null)) : null;
+                            const sDiedYear = sDiedYearMatch ? sDiedYearMatch[1] : '';
+                            const sBornYear = sBornYearMatch ? sBornYearMatch[1] : '';
+                            let sName = spouse.replace(/\s*\((?:b|d|m):?(?:abt\s|circa\s|before\.)?[^)]+\)/g, '').replace(/\s*[bdm]\.\s*(?:abt\s|circa\s|before\.)?\d{4}/g, '').replace(/,\s*/g, ' ').trim();
                             return {
                                 name: sName,
-                                born: sBorn,
-                                died: sDied,
-                                married: sMarried
+                                born: sBornYear,
+                                died: sDiedYear
                             };
                         });
-                        if (!yearMarried && spouses[0]?.married) yearMarried = spouses[0].married;
+                        if (spouses.length === 0) console.log(`Failed to parse spouse: ${text}`);
                     }
-
-                    const parent = parentStack.length > 0 ? parentStack[parentStack.length - 1] : { name: '', born: '', died: '' };
 
                     if (!peopleMap.has(key)) {
                         peopleMap.set(key, {
                             name,
-                            yearBorn,
-                            yearDied,
-                            yearMarried: spouses[0]?.married || yearMarried || '',
-                            spouseName: spouses[0]?.name || '',
-                            spouseBorn: spouses[0]?.born || '',
-                            spouseDied: spouses[0]?.died || '',
-                            parentName: parent.name,
-                            parentBorn: parent.born,
-                            parentDied: parent.died
+                            dob: dobYear,
+                            dod: dodYear,
+                            spousename: spouses.length > 0 ? spouses[spouses.length - 1].name : '',
+                            spousedob: spouses.length > 0 ? spouses[spouses.length - 1].born : '',
+                            spousedod: spouses.length > 0 ? spouses[spouses.length - 1].died : '',
+                            source: text
                         });
                     } else if (spouses.length > 0) {
-                        // Merge additional spouse if it’s a new marriage
                         const existing = peopleMap.get(key);
-                        if (!existing.spouseName || existing.yearMarried !== spouses[0]?.married) {
-                            peopleMap.set(`${key}\t${spouses[0]?.married || yearMarried}`, {
-                                name,
-                                yearBorn,
-                                yearDied,
-                                yearMarried: spouses[0]?.married || yearMarried || '',
-                                spouseName: spouses[0]?.name || '',
-                                spouseBorn: spouses[0]?.born || '',
-                                spouseDied: spouses[0]?.died || '',
-                                parentName: parent.name,
-                                parentBorn: parent.born,
-                                parentDied: parent.died
-                            });
+                        if (!existing.spousename && spouses.length > 0) {
+                            existing.spousename = spouses[spouses.length - 1].name;
+                            existing.spousedob = spouses[spouses.length - 1].born;
+                            existing.spousedod = spouses[spouses.length - 1].died;
                         }
                     }
 
                     const childrenUl = item.querySelector('ul');
                     if (childrenUl) {
-                        parentStack.push({ name, born: yearBorn, died: yearDied });
                         const childItems = childrenUl.querySelectorAll(':scope > li');
-                        childItems.forEach(child => processItem(child, currentLevel + 1));
-                        parentStack.pop();
+                        childItems.forEach(child => {
+                            const childText = child.querySelector('summary') ? child.querySelector('summary').textContent.trim().replace(/\s+/g, ' ') : child.textContent.trim().replace(/\s+/g, ' ');
+                            const childName = childText.replace(/\s*\((?:b|d|m):?(?:abt\s|circa\s|before\.)?[^)]+\)/g, '').replace(/\s*[bdm]\.\s*(?:abt\s|circa\s|before\.)?\d{4}/g, '').replace(/♥.*/g, '').replace(/,\s*/g, ' ').trim();
+                            const childBornMatch = childText.match(/\((b\.(?:abt\s|circa\s)?[^)]+)\)/) || childText.match(/b\.(abt\s|circa\s)?(\d{4})/);
+                            const childDiedMatch = childText.match(/\((d[:\.](?:abt\s|circa\s|before\.)?[^)]+)\)/) || childText.match(/d\.(abt\s|circa\s)?(\d{4})/);
+                            const childDobYearMatch = childBornMatch ? (childBornMatch[1] ? childBornMatch[1].match(/(?:abt\s|circa\s)?(\d{4})/) : (childBornMatch[2] ? [null, childBornMatch[2]] : null)) : null;
+                            const childDodYearMatch = childDiedMatch ? (childDiedMatch[1] ? childDiedMatch[1].match(/(?:abt\s|circa\s|before\.)?(\d{4})/) : (childDiedMatch[2] ? [null, childDiedMatch[2]] : null)) : null;
+                            const childDobYear = childDobYearMatch ? childDobYearMatch[1] : '';
+                            const childDodYear = childDodYearMatch ? childDodYearMatch[1] : '';
+                            const childKey = `${childName}\t${childDobYear}`;
+                            if (!peopleMap.has(childKey)) {
+                                peopleMap.set(childKey, {
+                                    name: childName,
+                                    dob: childDobYear,
+                                    dod: childDodYear,
+                                    spousename: '',
+                                    spousedob: '',
+                                    spousedod: '',
+                                    source: childText
+                                });
+                            }
+                        });
                     }
                 }
 
-                listItems.forEach(item => processItem(item, 0));
+                listItems.forEach(item => processItem(item));
 
                 const people = Array.from(peopleMap.values());
-                const output = "name\tyearborn\tyeardied\tyearmarried\tspouse name\tborn\tdied\tparent name\tborn\tdied\n" +
-                    people.map(p => `${p.name}\t${p.yearBorn}\t${p.yearDied}\t${p.yearMarried}\t${p.spouseName}\t${p.spouseBorn}\t${p.spouseDied}\t${p.parentName}\t${p.parentBorn}\t${p.parentDied}`).join('\n');
-                document.getElementById('output').textContent = output;
+                const output = "name\tdob\tdod\tspousename\tspousedob\tspousedod\tsource\n" +
+                    people.map(p => `${p.name}\t${p.dob}\t${p.dod}\t${p.spousename}\t${p.spousedob}\t${p.spousedod}\t${p.source}`).join('\n');
+                document.getElementById('output').textContent = `Processed ${listItems.length} items, ${peopleMap.size} unique entries\n\n` + output;
 
             } catch (err) {
                 document.getElementById('output').textContent = `Error: ${err.message}`;
