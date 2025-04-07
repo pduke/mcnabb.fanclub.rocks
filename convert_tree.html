@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Converted on 2025-04-07 00:15 CDT -->
+    <!-- Converted on 2025-04-07 01:00 CDT -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>McNabb Family Tree Converter</title>
@@ -37,7 +37,7 @@
 
                 if (!listItems.length) throw new Error('No <li> entries found in HTML');
 
-                const people = [];
+                const peopleMap = new Map(); // Dedupe by name + yearborn
                 const parentStack = [];
 
                 function processItem(item, currentLevel) {
@@ -59,6 +59,8 @@
                     const yearBorn = bornMatch ? (bornMatch[1].includes(' ') ? bornMatch[1] : bornMatch[1]) : '';
                     const yearDied = diedMatch ? (diedMatch[1].includes(' ') ? diedMatch[1] : diedMatch[1]) : '';
                     let yearMarried = marriedMatch ? (marriedMatch[1].includes(' ') ? marriedMatch[1] : marriedMatch[1]) : '';
+
+                    const key = `${name}\t${yearBorn}`; // Unique identifier
 
                     let spouses = [];
                     if (heartIndex > -1) {
@@ -88,34 +90,36 @@
 
                     const parent = parentStack.length > 0 ? parentStack[parentStack.length - 1] : { name: '', born: '', died: '' };
 
-                    people.push({
-                        name,
-                        yearBorn,
-                        yearDied,
-                        yearMarried: spouses[0]?.married || yearMarried || '',
-                        spouseName: spouses[0]?.name || '',
-                        spouseBorn: spouses[0]?.born || '',
-                        spouseDied: spouses[0]?.died || '',
-                        parentName: parent.name,
-                        parentBorn: parent.born,
-                        parentDied: parent.died
-                    });
-
-                    if (spouses.length > 1) {
-                        spouses.slice(1).forEach(spouse => {
-                            people.push({
+                    if (!peopleMap.has(key)) {
+                        peopleMap.set(key, {
+                            name,
+                            yearBorn,
+                            yearDied,
+                            yearMarried: spouses[0]?.married || yearMarried || '',
+                            spouseName: spouses[0]?.name || '',
+                            spouseBorn: spouses[0]?.born || '',
+                            spouseDied: spouses[0]?.died || '',
+                            parentName: parent.name,
+                            parentBorn: parent.born,
+                            parentDied: parent.died
+                        });
+                    } else if (spouses.length > 0) {
+                        // Merge additional spouse if it’s a new marriage
+                        const existing = peopleMap.get(key);
+                        if (!existing.spouseName || existing.yearMarried !== spouses[0]?.married) {
+                            peopleMap.set(`${key}\t${spouses[0]?.married || yearMarried}`, {
                                 name,
                                 yearBorn,
                                 yearDied,
-                                yearMarried: spouse.married || '',
-                                spouseName: spouse.name,
-                                spouseBorn: spouse.born || '',
-                                spouseDied: spouse.died || '',
+                                yearMarried: spouses[0]?.married || yearMarried || '',
+                                spouseName: spouses[0]?.name || '',
+                                spouseBorn: spouses[0]?.born || '',
+                                spouseDied: spouses[0]?.died || '',
                                 parentName: parent.name,
                                 parentBorn: parent.born,
                                 parentDied: parent.died
                             });
-                        });
+                        }
                     }
 
                     const childrenUl = item.querySelector('ul');
@@ -129,6 +133,7 @@
 
                 listItems.forEach(item => processItem(item, 0));
 
+                const people = Array.from(peopleMap.values());
                 const output = "name\tyearborn\tyeardied\tyearmarried\tspouse name\tborn\tdied\tparent name\tborn\tdied\n" +
                     people.map(p => `${p.name}\t${p.yearBorn}\t${p.yearDied}\t${p.yearMarried}\t${p.spouseName}\t${p.spouseBorn}\t${p.spouseDied}\t${p.parentName}\t${p.parentBorn}\t${p.parentDied}`).join('\n');
                 document.getElementById('output').textContent = output;
