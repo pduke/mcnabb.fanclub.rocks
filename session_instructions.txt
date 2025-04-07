@@ -1,7 +1,7 @@
 File: session_instructions.txt
 
 # McNabb-McNeil New Session Instructions
-# Last Updated: 2025-04-06 23:15 CDT
+# Last Updated: 2025-04-07 00:15 CDT
 # Apply on startup in new session
 
 # Expected Output Example
@@ -61,14 +61,14 @@ Time_Check:
 
 # McNabb-McNeil Family Tree Parsing Instructions
 Parsing_Rules:
-  Format: Tab-delimited text with fields: name\tyearborn\tyeardied\tyearmarried\tspouse name\tborn\tdied\tparent name\tborn\tdied.
-  Hierarchy: Use "parent name" field to link children to parents. If multiple spouses exist for a person, each spouse is a separate line with the same parent. For queries involving a person (e.g., "Who is [name]"), use the full tree entry; if found in "spouse name", use the corresponding "born" and "died" fields (6 and 7) for their birth and death years (e.g., Ruth Pauline Prutsman’s dates from "Warren Gilbert McNabb\t1898\t1975\t1930\tRuth Pauline Prutsman\t1906\t1997\tWalter Scott McNabb\t1874\t1936").
-  Date_Format: YYYY; blank if unknown.
+  Format: Tab-delimited text with fields: name\tyearborn\tyeardied\tyearmarried\tspouse name\tborn\tdied\tparent name\tborn\tdied. Fields "yearborn", "yeardied", "born", and "died" may contain full parenthetical data like "(b.1702 Albuquerque, NM)" or "(d.2023 Knoxville, TN)" indicating year and location, or just a year (e.g., "1934") if no location is specified.
+  Hierarchy: Use "parent name" field to link children to parents. If multiple spouses exist for a person, each spouse is a separate line with the same parent. For queries involving a person (e.g., "Who is [name]"), use the full tree entry; if found in "spouse name", use the corresponding "born" and "died" fields (6 and 7) for their birth and death details, including location if present (e.g., "born in 1906 in [location]" from "Ruth Pauline Prutsman\t1906\t1997").
+  Date_Format: YYYY with optional "(b/d.[year] [location])"; blank if unknown.
   Name_Variations:
     - Birtie_Sophia_McNeil: Use "Birtie Sophia McNeil" as in tree, confirm with Nan if "Bertie" in PDFs.
     - William_McNabb: Disambiguate by birth year (e.g., b. 1702 vs. others).
   Multiple_Spouses: Each line with a different "spouse name" represents an additional marriage for the same person (e.g., Beverly Nan McNabb has two lines).
-  Search_Rules: For queries like "Who is [name]" or "Am I related to [name]", search the entire tree (all 140 entries) and crawled HTML pages: first search "name" field in the tree for an exact match to the query (e.g., "Neeve" matches "Neeve McNabb"), then "spouse name" for an exact match (e.g., "Ruth" matches "Ruth Pauline Prutsman"), using only entries present in the tree—do not invent or modify data. If found, supplement with details from the corresponding crawled HTML page (e.g., mchtml/Ruth Pauline Prutsman.html) if available. If no exact match is found in "name" or "spouse name", return "No exact match for [name] found in the tree" and do not proceed further unless requested. For {USER_NAME}, prioritize matches tied to their lineage based on their tree entry (e.g., for "Paul", prioritize via Beverly Nan McNabb, b. 1932; for "Nan", via Warren Gilbert McNabb, b. 1898; for "Neeve", via Warren Neil McNabb, b. 1934) as the first result, followed by other exact matches if applicable. Use the user’s tree entry to compute relationships directly without additional clarification, using only the data provided in the tree and crawled pages.
+  Search_Rules: For queries like "Who is [name]" or "Am I related to [name]", search the entire tree (all 140 entries) and crawled HTML pages: first search "name" field in the tree for an exact match to the query (e.g., "Neeve" matches "Neeve McNabb"), then "spouse name" for an exact match (e.g., "Ruth" matches "Ruth Pauline Prutsman"), using only entries present in the tree—do not invent or modify data. If found, include full birth/death details from "yearborn", "yeardied", "born", or "died" fields (e.g., "(b.1906 [location])" as "born in 1906 in [location]"), and supplement with details from the corresponding crawled HTML page (e.g., mchtml/Ruth Pauline Prutsman.html) if available. If no exact match is found in "name" or "spouse name", return "No exact match for [name] found in the tree" and do not proceed further unless requested. For {USER_NAME}, prioritize matches tied to their lineage based on their tree entry (e.g., for "Paul", prioritize via Beverly Nan McNabb, b. 1932; for "Nan", via Warren Gilbert McNabb, b. 1898; for "Neeve", via Warren Neil McNabb, b. 1934) as the first result, followed by other exact matches if applicable. Use the user’s tree entry to compute relationships directly without additional clarification, using only the data provided in the tree and crawled pages.
 
 # Session Fixes and Additions
 Tree Updates:

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Converted on 2025-04-06 20:30 CDT -->
+    <!-- Converted on 2025-04-07 00:15 CDT -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>McNabb Family Tree Converter</title>
@@ -52,28 +52,35 @@
                     const heartIndex = text.indexOf('♥');
                     const personText = heartIndex > -1 ? text.substring(0, heartIndex).trim() : text;
 
-                    let name = personText.split(' b.')[0].trim();
-                    const bornMatch = personText.match(/b\.(\d{4})/);
-                    const diedMatch = personText.match(/d\.(\d{4})/);
-                    const marriedMatch = personText.match(/m\.(\d{4})/);
-                    const yearBorn = bornMatch ? bornMatch[1] : '';
-                    const yearDied = diedMatch ? diedMatch[1] : '';
-                    let yearMarried = marriedMatch ? marriedMatch[1] : '';
+                    let name = personText.split(/ b\.\(?/)[0].trim();
+                    const bornMatch = personText.match(/b\.\(([^)]+)\)/) || personText.match(/b\.(\d{4})/);
+                    const diedMatch = personText.match(/d\.\(([^)]+)\)/) || personText.match(/d\.(\d{4})/);
+                    const marriedMatch = personText.match(/m\.\(([^)]+)\)/) || personText.match(/m\.(\d{4})/);
+                    const yearBorn = bornMatch ? (bornMatch[1].includes(' ') ? bornMatch[1] : bornMatch[1]) : '';
+                    const yearDied = diedMatch ? (diedMatch[1].includes(' ') ? diedMatch[1] : diedMatch[1]) : '';
+                    let yearMarried = marriedMatch ? (marriedMatch[1].includes(' ') ? marriedMatch[1] : marriedMatch[1]) : '';
 
                     let spouses = [];
                     if (heartIndex > -1) {
                         const spouseText = text.substring(heartIndex + 1).trim();
-                        const spouseEntries = spouseText.split(/,\s*(?=[A-Za-z]+\s+b\.)/);
+                        const spouseEntries = spouseText.split(/,\s*(?=[A-Za-z]+\s+(?:b\.|d\.))/);
                         spouses = spouseEntries.map(spouse => {
-                            const sName = spouse.split(' b.')[0].trim();
-                            const sBornMatch = spouse.match(/b\.(\d{4})/);
-                            const sDiedMatch = spouse.match(/d\.(\d{4})/);
-                            const sMarriedMatch = spouse.match(/m\.(\d{4})/);
+                            const diedMatch = spouse.match(/d\.\(([^)]+)\)/) || spouse.match(/d\.(\d{4})/);
+                            const bornMatch = spouse.match(/b\.\(([^)]+)\)/) || spouse.match(/b\.(\d{4})/);
+                            const marriedMatch = spouse.match(/m\.\(([^)]+)\)/) || spouse.match(/m\.(\d{4})/);
+                            const sDied = diedMatch ? (diedMatch[1].includes(' ') ? diedMatch[1] : diedMatch[1]) : '';
+                            const sBorn = bornMatch ? (bornMatch[1].includes(' ') ? bornMatch[1] : bornMatch[1]) : '';
+                            const sMarried = marriedMatch ? (marriedMatch[1].includes(' ') ? marriedMatch[1] : marriedMatch[1]) : '';
+                            let sName = spouse;
+                            if (diedMatch) sName = sName.replace(/d\.\([^)]+\)|d\.\d{4}/, '').trim();
+                            if (bornMatch) sName = sName.replace(/b\.\([^)]+\)|b\.\d{4}/, '').trim();
+                            if (marriedMatch) sName = sName.replace(/m\.\([^)]+\)|m\.\d{4}/, '').trim();
+                            sName = sName.trim();
                             return {
                                 name: sName,
-                                born: sBornMatch ? sBornMatch[1] : '',
-                                died: sDiedMatch ? sDiedMatch[1] : '',
-                                married: sMarriedMatch ? sMarriedMatch[1] : ''
+                                born: sBorn,
+                                died: sDied,
+                                married: sMarried
                             };
                         });
                         if (!yearMarried && spouses[0]?.married) yearMarried = spouses[0].married;
@@ -122,7 +129,6 @@
 
                 listItems.forEach(item => processItem(item, 0));
 
-                // Output as tab-delimited, no timestamp in output
                 const output = "name\tyearborn\tyeardied\tyearmarried\tspouse name\tborn\tdied\tparent name\tborn\tdied\n" +
                     people.map(p => `${p.name}\t${p.yearBorn}\t${p.yearDied}\t${p.yearMarried}\t${p.spouseName}\t${p.spouseBorn}\t${p.spouseDied}\t${p.parentName}\t${p.parentBorn}\t${p.parentDied}`).join('\n');
                 document.getElementById('output').textContent = output;
