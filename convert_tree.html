@@ -1,28 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Converted on 2025-04-08 03:30 CDT -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>McNabb Family Tree Converter</title>
-    <style>
-        body {
-            font-family: monospace;
-            margin: 20px;
-            background-color: #f0f0f0;
-            white-space: pre-wrap;
-            font-size: 14px;
-        }
-        h2 {
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-    </style>
 </head>
 <body>
-    <h2>McNabb Family Tree Raw Output</h2>
-    <pre id="output">Fetching and converting tree, please wait...</pre>
-
     <script>
         async function convertTree() {
             try {
@@ -31,13 +13,48 @@
                 if (!response.ok) throw new Error(`Failed to fetch tree: ${response.status}`);
                 const htmlText = await response.text();
 
-                // Swap < and > to { and }
-                const converted = htmlText.replace(/</g, '{').replace(/>/g, '}');
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+                const tree = doc.querySelector('.tree');
+                if (!tree) throw new Error('No .tree element found');
 
-                // Output the raw string
-                document.getElementById('output').textContent = converted;
+                let output = '';
+                const allLis = tree.querySelectorAll('li');
+                allLis.forEach(li => {
+                    const summary = li.querySelector('summary') || li;
+                    const nameSpan = summary.querySelector('.name');
+                    const dobSpan = summary.querySelector('.dob');
+                    const dodSpan = summary.querySelector('.dod');
+                    const spouseSpans = summary.querySelectorAll('.spouse-name');
+                    const marriedSpans = summary.querySelectorAll('.d-married');
+                    const parentSpan = summary.querySelector('.parent-name');
+
+                    const name = nameSpan ? nameSpan.textContent.trim() : '';
+                    if (name) {
+                        const fields = [name];
+                        if (dobSpan) fields.push(`b.${dobSpan.textContent.match(/b\.(\d{4})/)?.[1] || ''}`);
+                        if (dodSpan) fields.push(`d.${dodSpan.textContent.match(/d\.(\d{4})/)?.[1] || ''}`);
+
+                        const spouses = [];
+                        spouseSpans.forEach((spouseSpan, index) => {
+                            const spouseName = spouseSpan.textContent.trim();
+                            const married = marriedSpans[index] ? marriedSpans[index].textContent.match(/m\.(\d{4})/)?.[1] || '' : '';
+                            const spouseDob = spouseSpan.nextElementSibling?.className === 'spouse-dob' ? spouseSpan.nextElementSibling.textContent.match(/b\.(\d{4})/)?.[1] || '' : '';
+                            const spouseDod = spouseSpan.nextElementSibling?.nextElementSibling?.className === 'spouse-dod' ? spouseSpan.nextElementSibling.nextElementSibling.textContent.match(/d\.(\d{4})/)?.[1] || '' : '';
+                            spouses.push(`${spouseName}${married ? `(m.${married}` : ''}${spouseDob ? `,b.${spouseDob}` : ''}${spouseDod ? `,d.${spouseDod}` : ''}${married ? ')' : ''}`);
+                        });
+                        if (spouses.length) fields.push(`sp:${spouses.join(';')}`);
+                        if (parentSpan) fields.push(`par:${parentSpan.textContent.trim()}`);
+
+                        output += fields.join('|') + '\n';
+                    }
+                });
+
+                document.write(output.trim());
+                document.close();
             } catch (err) {
-                document.getElementById('output').textContent = `Error: ${err.message}`;
+                document.write(`Error: ${err.message}`);
+                document.close();
             }
         }
 
