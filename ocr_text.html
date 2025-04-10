@@ -356,22 +356,6 @@
             "MCNEIL-SECTION_I-CHAPTER_III_page_019.txt",
             "MCNEIL-SECTION_I-CHAPTER_III_page_020.txt",
             "MCNEIL-SECTION_I-CHAPTER_III_page_021.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_076.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_077.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_078.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_079.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_080.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_081.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_082.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_083.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_084.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_085.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_086.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_087.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_088.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_089.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_090.txt",
-            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_091.txt",
             "MCNEIL-SECTION_I-CHAPTER_III_page_022.txt",
             "MCNEIL-SECTION_I-CHAPTER_III_page_023.txt",
             "MCNEIL-SECTION_I-CHAPTER_III_page_024.txt",
@@ -465,13 +449,16 @@
             updateCopySize();
         }
 
-        // Update copy buffer size
+        // Update copy buffer size (match copyExpanded format)
         function updateCopySize() {
             const expandedSections = document.querySelectorAll('.section[open]');
             let totalChars = 0;
             expandedSections.forEach(section => {
+                const fileName = section.querySelector('summary').textContent.split('[')[0].trim();
                 const text = section.querySelector('pre').textContent;
-                totalChars += text.length;
+                // Match the format used in copyExpanded
+                const sectionText = `===== ${fileName} =====\n${text}\n--------------------\n`;
+                totalChars += sectionText.length;
             });
             const sizeDisplay = document.getElementById('copy-size');
             sizeDisplay.textContent = `Buffer: ${totalChars} chars`;
