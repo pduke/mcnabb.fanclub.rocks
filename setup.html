@@ -53,11 +53,12 @@
         <br>
         <button onclick="fetchAndCopySetup()">Copy Setup Text</button>
         <div id="instructions">
-            <p>Instructions:</p>
+            <p>Instructions for Starting a New Grok Session:</p>
             <ol>
-                <li>Enter your name and click "Copy Setup Text" to copy the session data.</li>
-                <li>Go to the Grok prompt in your chat interface.</li>
-                <li>Paste the copied text into the prompt and press Enter to start.</li>
+                <li>Enter your name above (e.g., Paul) and click "Copy Setup Text" to copy the session data, including the 76-entry McNabb-McNeil family tree.</li>
+                <li>Open your Grok chat interface on a PC/laptop.</li>
+                <li>Paste the copied text into the Grok prompt and press Enter. This will initialize the session with the family tree, using *only* the provided data—no external sources.</li>
+                <li>Grok will confirm loading 76 entries and greet you based on your name. You can then query the tree (e.g., “List the children of Walter Scott McNabb”). All answers will come strictly from the pasted tree data.</li>
             </ol>
         </div>
     </div>
@@ -73,7 +74,10 @@
                 // Fetch session_instructions.txt
                 const instructionsResponse = await fetch('https://pduke.github.io/mcnabb.fanclub.rocks/session_instructions.txt');
                 if (!instructionsResponse.ok) throw new Error(`Failed to fetch instructions: ${instructionsResponse.status}`);
-                const instructions = await instructionsResponse.text();
+                let instructions = await instructionsResponse.text();
+
+                // Replace {name} placeholder in instructions
+                instructions = instructions.replace(/{name}/g, name);
 
                 // Fetch compressed_tree.txt
                 const treeResponse = await fetch('https://pduke.github.io/mcnabb.fanclub.rocks/compressed_tree.txt');
@@ -81,15 +85,12 @@
                 const treeData = await treeResponse.text();
                 if (!treeData.trim()) throw new Error('Compressed tree data is empty.');
 
-                // Append the plain tree data to the prompt
-                const treeText = `\n\nCompressed Tree Data:\n${treeData.trim()}`;
-
-                // Combine everything into the prompt
-                const prompt = `Hello Grok, this is ${name}. Below are the startup instructions for the McNabb-McNeil family project session. Please execute the "Startup Sequence for AI (Grok)" steps exactly as written.\n\n${instructions}${treeText}`;
+                // Combine instructions and tree data into the prompt
+                const prompt = `Hello Grok, this is ${name}. Below are the startup instructions for the McNabb-McNeil family project session. Please execute the "Startup Sequence for AI (Grok)" steps exactly as written.\n\n${instructions}\n\nCompressed Tree Data:\n${treeData.trim()}`;
                 await navigator.clipboard.writeText(prompt);
-                alert('Session data with tree copied! Paste it into the Grok prompt to start.');
+                alert('Session data with tree copied! Paste it into the Grok prompt to start a session using only the provided data.');
             } catch (err) {
-                alert(`Error: ${err.message}. Try again or contact Paul.`);
+                alert(`Error: ${err.message}. Try again or contact Paul.');
             }
         }
     </script>
