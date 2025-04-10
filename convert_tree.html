@@ -21,6 +21,20 @@
                 const tree = doc.querySelector('.tree');
                 if (!tree) throw new Error('No .tree element found');
 
+                // Substitution list for compression
+                const subs = {
+                    "McNabb": "M#",
+                    "par:": "p#",
+                    "sp:": "s#",
+                    "William ": "W#",
+                    "b.": "b#",
+                    "d.": "d#",
+                    "and ": "&",
+                    "David ": "D#",
+                    "James ": "J#",
+                    "Nathaniel ": "N#"
+                };
+
                 let output = '';
                 const allLis = tree.querySelectorAll('li');
                 allLis.forEach(li => {
@@ -34,20 +48,33 @@
 
                     const name = nameSpan ? nameSpan.textContent.trim() : '';
                     if (name) {
-                        const fields = [name];
-                        if (dobSpan) fields.push(`b.${dobSpan.textContent.match(/b\.(\d{4})/)?.[1] || ''}`);
-                        if (dodSpan) fields.push(`d.${dodSpan.textContent.match(/d\.(\d{4})/)?.[1] || ''}`);
+                        let compressedName = name;
+                        for (const [full, short] of Object.entries(subs)) {
+                            compressedName = compressedName.replace(full, short);
+                        }
+                        const fields = [compressedName];
+                        if (dobSpan) fields.push(`b#${dobSpan.textContent.match(/b\.(\d{4})/)?.[1] || ''}`);
+                        if (dodSpan) fields.push(`d#${dodSpan.textContent.match(/d\.(\d{4})/)?.[1] || ''}`);
 
                         const spouses = [];
                         spouseSpans.forEach((spouseSpan, index) => {
-                            const spouseName = spouseSpan.textContent.trim();
+                            let spouseName = spouseSpan.textContent.trim();
+                            for (const [full, short] of Object.entries(subs)) {
+                                spouseName = spouseName.replace(full, short);
+                            }
                             const married = marriedSpans[index] ? marriedSpans[index].textContent.match(/m\.(\d{4})/)?.[1] || '' : '';
                             const spouseDob = spouseSpan.nextElementSibling?.className === 'spouse-dob' ? spouseSpan.nextElementSibling.textContent.match(/b\.(\d{4})/)?.[1] || '' : '';
                             const spouseDod = spouseSpan.nextElementSibling?.nextElementSibling?.className === 'spouse-dod' ? spouseSpan.nextElementSibling.nextElementSibling.textContent.match(/d\.(\d{4})/)?.[1] || '' : '';
-                            spouses.push(`${spouseName}${married ? `(m.${married}` : ''}${spouseDob ? `,b.${spouseDob}` : ''}${spouseDod ? `,d.${spouseDod}` : ''}${married ? ')' : ''}`);
+                            spouses.push(`${spouseName}${married ? `(m.${married}` : ''}${spouseDob ? `,b#${spouseDob}` : ''}${spouseDod ? `,d#${spouseDod}` : ''}${married ? ')' : ''}`);
                         });
-                        if (spouses.length) fields.push(`sp:${spouses.join(';')}`);
-                        if (parentSpan) fields.push(`par:${parentSpan.textContent.trim()}`);
+                        if (spouses.length) fields.push(`s#${spouses.join(';')}`);
+                        if (parentSpan) {
+                            let parents = parentSpan.textContent.trim();
+                            for (const [full, short] of Object.entries(subs)) {
+                                parents = parents.replace(full, short);
+                            }
+                            fields.push(`p#${parents}`);
+                        }
 
                         output += fields.join('|') + '\n';
                     }
