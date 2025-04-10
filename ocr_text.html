@@ -356,6 +356,22 @@
             "MCNEIL-SECTION_I-CHAPTER_III_page_019.txt",
             "MCNEIL-SECTION_I-CHAPTER_III_page_020.txt",
             "MCNEIL-SECTION_I-CHAPTER_III_page_021.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_076.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_077.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_078.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_079.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_080.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_081.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_082.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_083.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_084.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_085.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_086.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_087.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_088.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_089.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_090.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_091.txt",
             "MCNEIL-SECTION_I-CHAPTER_III_page_022.txt",
             "MCNEIL-SECTION_I-CHAPTER_III_page_023.txt",
             "MCNEIL-SECTION_I-CHAPTER_III_page_024.txt",
@@ -369,7 +385,7 @@
 
         // Load all text files dynamically
         const contentDiv = document.getElementById('text-content');
-        files.forEach(file => {
+        const fetchPromises = files.map(file => {
             const pdfFile = file.replace('.txt', '.pdf');
             const section = document.createElement('details');
             section.className = 'section';
@@ -382,7 +398,10 @@
             `;
             contentDiv.appendChild(section);
 
-            fetch(`mcdata/${file}`)
+            // Add event listener for expand/collapse
+            section.addEventListener('toggle', updateCopySize);
+
+            return fetch(`mcdata/${file}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -399,6 +418,11 @@
                     pre.textContent = 'Error loading text: ' + error.message;
                     console.error(`Failed to fetch mcdata/${file}:`, error);
                 });
+        });
+
+        // Wait for all fetches to complete, then update copy size
+        Promise.all(fetchPromises).then(() => {
+            updateCopySize();
         });
 
         // Toggle all sections (expand/collapse)
