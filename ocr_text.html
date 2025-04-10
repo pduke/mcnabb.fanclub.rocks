@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>McNabb-McNeil OCR Text</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .section {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .section summary {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+        }
+        .section pre {
+            white-space: pre-wrap;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .section a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .section a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>McNabb-McNeil OCR Text</h1>
+    <input type="text" id="search-bar" placeholder="Search all text..." onkeyup="searchText()">
+    <div id="text-content"></div>
+
+    <script>
+        // List of all .txt files (generated dynamically)
+        const files = [
+            "MCNABB_SECTION_I-CHAPTER_II_page_001.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_002.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_003.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_004.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_005.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_006.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_007.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_008.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_009.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_010.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_011.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_012.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_013.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_014.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_015.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_016.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_017.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_018.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_019.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_020.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_021.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_022.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_023.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_024.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_025.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_026.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_027.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_028.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_029.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_030.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_031.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_032.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_033.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_034.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_035.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_036.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_037.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_038.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_039.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_040.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_041.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_042.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_043.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_044.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_045.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_046.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_047.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_048.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_049.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_050.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_051.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_052.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_053.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_054.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_055.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_056.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_057.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_058.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_059.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_060.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_061.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_062.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_063.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_064.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_065.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_066.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_067.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_068.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_069.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_070.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_071.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_072.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_073.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_074.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_075.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_076.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_077.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_078.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_079.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_080.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_081.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_082.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_083.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_084.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_085.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_086.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_087.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_088.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_089.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_090.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_091.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_092.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_093.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_094.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_095.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_096.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_097.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_098.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_099.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_100.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_101.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_102.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_103.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_104.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_105.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_106.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_107.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_108.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_109.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_110.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_111.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_112.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_113.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_114.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_115.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_116.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_117.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_118.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_119.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_120.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_121.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_122.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_123.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_124.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_125.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_126.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_127.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_128.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_129.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_130.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_131.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_132.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_133.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_134.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_135.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_136.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_137.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_138.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_139.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_140.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_141.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_142.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_143.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_144.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_145.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_146.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_147.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_148.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_149.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_150.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_151.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_152.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_153.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_154.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_155.txt",
+            "MCNABB_SECTION_I-CHAPTER_II_page_156.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_001.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_002.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_003.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_004.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_005.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_006.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_007.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_008.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_009.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_010.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_011.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_012.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_013.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_014.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_015.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_016.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_017.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_018.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_019.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_020.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_021.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_022.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_023.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_024.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_025.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_026.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_027.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_028.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_029.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_030.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_031.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_032.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_033.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_034.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_035.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_036.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_037.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_038.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_039.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_040.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_041.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_042.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_043.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_044.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_045.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_046.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_047.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_048.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_049.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_050.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_051.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_052.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_053.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_054.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_055.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_056.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_057.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_058.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_059.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_060.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_061.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_062.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_063.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_064.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_065.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_066.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_067.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_068.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_069.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_070.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_071.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_072.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_073.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_074.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_075.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_076.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_077.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_078.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_079.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_080.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_081.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_082.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_083.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_084.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_085.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_086.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_087.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_088.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_089.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_090.txt",
+            "MCNABB_SECTION_I-CHAPTER_II-VOL_II_page_091.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_001.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_002.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_003.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_004.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_005.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_006.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_007.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_008.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_009.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_010.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_011.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_012.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_013.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_014.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_015.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_016.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_017.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_018.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_019.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_020.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_021.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_022.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_023.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_024.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_025.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_026.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_027.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_028.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_029.txt",
+            "MCNEIL-SECTION_I-CHAPTER_III_page_030.txt"
+        ];
+
+        // Load all text files dynamically
+        const contentDiv = document.getElementById('text-content');
+        files.forEach(file => {
+            const pdfFile = file.replace('.txt', '.pdf');
+            const section = document.createElement('details');
+            section.className = 'section';
+            section.innerHTML = `
+                <summary>
+                    ${file} 
+                    <a href="mcdata/${pdfFile}" target="_blank">[View PDF]</a>
+                </summary>
+                <pre>Loading...</pre>
+            `;
+            contentDiv.appendChild(section);
+
+            fetch(`mcdata/${file}`)
+                .then(response => response.text())
+                .then(text => {
+                    const pre = section.querySelector('pre');
+                    pre.textContent = text || 'No text available.';
+                })
+                .catch(error => {
+                    const pre = section.querySelector('pre');
+                    pre.textContent = 'Error loading text: ' + error;
+                });
+        });
+
+        // Search functionality
+        function searchText() {
+            const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const text = section.querySelector('pre').textContent.toLowerCase();
+                const summary = section.querySelector('summary').textContent.toLowerCase();
+                if (text.includes(searchTerm) || summary.includes(searchTerm)) {
+                    section.style.display = 'block';
+                    section.open = true; // Expand matching sections
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
