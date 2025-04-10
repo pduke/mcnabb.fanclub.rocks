@@ -17,11 +17,32 @@
         #search-bar {
             width: 100%;
             max-width: 600px;
-            margin: 20px auto;
+            margin: 10px auto;
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
+        }
+        .controls {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .controls button {
+            padding: 8px 16px;
+            margin: 0 5px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .controls button:hover {
+            background-color: #005bb5;
+        }
+        .controls span {
+            font-size: 14px;
+            color: #555;
         }
         .section {
             margin-bottom: 20px;
@@ -48,11 +69,20 @@
         .section a:hover {
             text-decoration: underline;
         }
+        .highlight {
+            background-color: yellow;
+        }
     </style>
 </head>
 <body>
     <h1>McNabb-McNeil OCR Text</h1>
     <input type="text" id="search-bar" placeholder="Search all text..." onkeyup="searchText()">
+    <div class="controls">
+        <button onclick="toggleAll(true)">Expand All</button>
+        <button onclick="toggleAll(false)">Collapse All</button>
+        <button onclick="copyExpanded()">Copy Expanded</button>
+        <span id="copy-size">Buffer: 0 chars</span>
+    </div>
     <div id="text-content"></div>
 
     <script>
@@ -353,31 +383,104 @@
             contentDiv.appendChild(section);
 
             fetch(`mcdata/${file}`)
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.text();
+                })
                 .then(text => {
                     const pre = section.querySelector('pre');
                     pre.textContent = text || 'No text available.';
+                    pre.dataset.originalText = text; // Store original text for search highlighting
                 })
                 .catch(error => {
                     const pre = section.querySelector('pre');
-                    pre.textContent = 'Error loading text: ' + error;
+                    pre.textContent = 'Error loading text: ' + error.message;
+                    console.error(`Failed to fetch mcdata/${file}:`, error);
                 });
         });
 
-        // Search functionality
+        // Toggle all sections (expand/collapse)
+        function toggleAll(expand) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.open = expand;
+                section.style.display = 'block'; // Ensure all are visible
+            });
+            updateCopySize();
+        }
+
+        // Search functionality with highlighting
         function searchText() {
             const searchTerm = document.getElementById('search-bar').value.toLowerCase();
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => {
-                const text = section.querySelector('pre').textContent.toLowerCase();
+                const pre = section.querySelector('pre');
+                const originalText = pre.dataset.originalText || pre.textContent;
+                const text = originalText.toLowerCase();
                 const summary = section.querySelector('summary').textContent.toLowerCase();
+
+                // Show/hide sections based on search
                 if (text.includes(searchTerm) || summary.includes(searchTerm)) {
                     section.style.display = 'block';
                     section.open = true; // Expand matching sections
+
+                    // Highlight search term
+                    if (searchTerm) {
+                        const regex = new RegExp(`(${searchTerm})`, 'gi');
+                        pre.innerHTML = originalText.replace(regex, '<span class="highlight">$1</span>');
+                    } else {
+                        pre.textContent = originalText; // Reset if no search term
+                    }
                 } else {
                     section.style.display = 'none';
+                    pre.textContent = originalText; // Reset highlighting
                 }
             });
+            updateCopySize();
+        }
+
+        // Update copy buffer size
+        function updateCopySize() {
+            const expandedSections = document.querySelectorAll('.section[open]');
+            let totalChars = 0;
+            expandedSections.forEach(section => {
+                const text = section.querySelector('pre').textContent;
+                totalChars += text.length;
+            });
+            const sizeDisplay = document.getElementById('copy-size');
+            sizeDisplay.textContent = `Buffer: ${totalChars} chars`;
+            if (totalChars > 500000) {
+                sizeDisplay.style.color = 'red';
+                sizeDisplay.title = 'Warning: Large buffer may not copy fully on some systems.';
+            } else {
+                sizeDisplay.style.color = '#555';
+                sizeDisplay.title = '';
+            }
+        }
+
+        // Copy expanded sections to clipboard
+        function copyExpanded() {
+            const expandedSections = document.querySelectorAll('.section[open]');
+            let combinedText = '';
+            expandedSections.forEach(section => {
+                const fileName = section.querySelector('summary').textContent.split('[')[0].trim();
+                const text = section.querySelector('pre').textContent;
+                combinedText += `===== ${fileName} =====\n${text}\n--------------------\n`;
+            });
+
+            if (combinedText) {
+                navigator.clipboard.writeText(combinedText)
+                    .then(() => {
+                        alert('Copied ' + combinedText.length + ' characters to clipboard!');
+                    })
+                    .catch(err => {
+                        alert('Failed to copy: ' + err);
+                    });
+            } else {
+                alert('No expanded sections to copy!');
+            }
         }
     </script>
 </body>
