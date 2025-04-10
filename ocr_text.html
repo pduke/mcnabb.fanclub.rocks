@@ -443,6 +443,7 @@
                     }
                 } else {
                     section.style.display = 'none';
+                    section.open = false; // Collapse non-matching sections
                     pre.textContent = originalText; // Reset highlighting
                 }
             });
