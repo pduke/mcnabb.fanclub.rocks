@@ -65,32 +65,33 @@
 
     <script>
         async function fetchAndCopySetup() {
+            console.log("Button clicked"); // Debug: Check if function runs
             const name = document.getElementById('nameInput').value.trim();
             if (!name) {
                 alert('Please enter your name.');
                 return;
             }
             try {
-                // Fetch session_instructions.txt
+                console.log("Fetching instructions..."); // Debug: Fetch start
                 const instructionsResponse = await fetch('https://pduke.github.io/mcnabb.fanclub.rocks/session_instructions.txt');
                 if (!instructionsResponse.ok) throw new Error(`Failed to fetch instructions: ${instructionsResponse.status}`);
                 let instructions = await instructionsResponse.text();
-
-                // Replace {name} placeholder in instructions
                 instructions = instructions.replace(/{name}/g, name);
+                console.log("Instructions fetched:", instructions.substring(0, 50)); // Debug: First 50 chars
 
-                // Fetch compressed_tree.txt
+                console.log("Fetching tree data..."); // Debug: Fetch start
                 const treeResponse = await fetch('https://pduke.github.io/mcnabb.fanclub.rocks/compressed_tree.txt');
                 if (!treeResponse.ok) throw new Error(`Failed to fetch tree data: ${treeResponse.status}`);
                 const treeData = await treeResponse.text();
                 if (!treeData.trim()) throw new Error('Compressed tree data is empty.');
+                console.log("Tree data fetched:", treeData.substring(0, 50)); // Debug: First 50 chars
 
-                // Combine instructions and tree data into the prompt
                 const prompt = `Hello Grok, this is ${name}. Below are the startup instructions for the McNabb-McNeil family project session. Please execute the "Startup Sequence for AI (Grok)" steps exactly as written.\n\n${instructions}\n\nCompressed Tree Data:\n${treeData.trim()}`;
                 await navigator.clipboard.writeText(prompt);
                 alert('Session data with tree copied! Paste it into the Grok prompt to start a session using only the provided data.');
             } catch (err) {
-                alert(`Error: ${err.message}. Try again or contact Paul.');
+                console.error("Error:", err.message); // Debug: Log error
+                alert(`Error: ${err.message}. Try again or contact Paul.`);
             }
         }
     </script>
