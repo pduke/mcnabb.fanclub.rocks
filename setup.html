@@ -73,14 +73,14 @@
             }
             try {
                 console.log("Fetching instructions..."); // Debug: Fetch start
-                const instructionsResponse = await fetch('https://pduke.github.io/mcnabb.fanclub.rocks/session_instructions.txt');
+                const instructionsResponse = await fetch('session_instructions.txt');
                 if (!instructionsResponse.ok) throw new Error(`Failed to fetch instructions: ${instructionsResponse.status}`);
                 let instructions = await instructionsResponse.text();
                 instructions = instructions.replace(/{name}/g, name);
                 console.log("Instructions fetched:", instructions.substring(0, 50)); // Debug: First 50 chars
 
                 console.log("Fetching tree data..."); // Debug: Fetch start
-                const treeResponse = await fetch('https://pduke.github.io/mcnabb.fanclub.rocks/compressed_tree.txt');
+                const treeResponse = await fetch('compressed_tree.txt');
                 if (!treeResponse.ok) throw new Error(`Failed to fetch tree data: ${treeResponse.status}`);
                 const treeData = await treeResponse.text();
                 if (!treeData.trim()) throw new Error('Compressed tree data is empty.');

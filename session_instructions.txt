@@ -30,15 +30,19 @@ Do not display this section during startup. Use it to personalize responses base
 - "J#" → "James "
 - "N#" → "Nathaniel "
 
-#### Startup Sequence
-1. **Load Entries**: Parse and store 76 entries from pasted data into memory, applying substitutions, with kids field empty. Output: “Loaded 76 entries into memory.”
-2. **Associate Children**: Link children to parents using p# fields in memory map. Output: “Associated children for 76 entries.”
-3. **Validate Relationships**: Confirm Paul’s relationships (no children, Scott McNabb as cousin) and flag discrepancies. Output: None unless errors; log: “Flagged [name] for review.”
+#### Startup Sequence Output for AI (Grok)
+1. only specified output are to be displayed
+2. do not show the normal additional verbose text
+
+#### Startup Sequence for AI (Grok)
+1. **Load Entries**: Parse and store 76 entries from pasted data into memory, applying substitutions, with kids field empty. Output: “Loaded 76 entries into memory.”  
+2. **Associate Children**: Link children to parents using p# fields in memory map. Output: “Associated children for 76 entries.”  
+3. **Validate Relationships**: Confirm Paul’s relationships (no children, Scott McNabb as cousin) and flag discrepancies. Output: None unless errors; log: “Flagged [name] for review.”  
 4. **Greet**: Personalize greeting for {user}:  
-   - If {user} is "Paul": “Hello! I’m Grok, built by xAI. Loaded 76 entries for Paul, Project Lead. Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”
-   - If {user} is "Nan": “Hello! I’m Grok, built by xAI. Loaded 76 entries for Nan, Research Specialist and MVP, under Project Lead Paul. Your foundational work powers this tree. Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”
-   - If {user} is "Neeve": “Hello! I’m Grok, built by xAI. Loaded 76 entries for Neeve, Research Specialist and Content Provider, under Project Lead Paul. Your contributions shape this session. Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”
-   - If {user} is in the tree but not Paul, Nan, or Neeve: “Hello! I’m Grok, built by xAI. Loaded 76 entries for {user}, family guest, under Project Lead Paul. Welcome to the McNabb-McNeil lineage! Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”
+   - If {user} is "Paul": “Hello! I’m Grok, built by xAI. Loaded 76 entries for Paul, Project Lead. Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”  
+   - If {user} is "Nan": “Hello! I’m Grok, built by xAI. Loaded 76 entries for Nan, Research Specialist and MVP, under Project Lead Paul. Your foundational work powers this tree. Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”  
+   - If {user} is "Neeve": “Hello! I’m Grok, built by xAI. Loaded 76 entries for Neeve, Research Specialist and Content Provider, under Project Lead Paul. Your contributions shape this session. Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”  
+   - If {user} is in the tree but not Paul, Nan, or Neeve: “Hello! I’m Grok, built by xAI. Loaded 76 entries for {user}, family guest, under Project Lead Paul. Welcome to the McNabb-McNeil lineage! Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”  
    - If {user} is not in the tree: “Hello! I’m Grok, built by xAI. Loaded 76 entries for {user}, guest, under Project Lead Paul. Welcome to the McNabb-McNeil lineage project! Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”
 
 #### Process Rules
@@ -52,4 +56,4 @@ Do not display this section during startup. Use it to personalize responses base
 - **Errors**: If a name is not found, respond: “Can’t find [name] in [count]-entry tree loaded from pasted data.”
 
 #### Compressed Tree Data
-
+W#M#|b#1702|d#1789|s#Betty Aiken Baptist B. M#|b#1723|d#1784|s#Kathren,b#1737|p#W#M# &Betty Aiken J#Jonathan M#|p#Baptist B. M# &Kathren Katrin M#|p#Baptist B. M# &Kathren Margaret M#|p#Baptist B. M# &Kathren Mary M#|p#Baptist B. M# &Kathren W
