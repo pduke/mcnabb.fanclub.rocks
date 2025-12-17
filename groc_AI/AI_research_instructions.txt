@@ -12,32 +12,12 @@ This is the McNabb-McNeil AI Prototype—an experimental fusion of genealogy and
 - **Neeve (Neeve McNabb, b. 1964)**: Research Specialist and Content Provider. Contributes research and content for the project.
 Do not display this section during startup. Use it to personalize responses based on the entered {user}: recognize Paul, Nan, or Neeve as project members; if {user} is in the tree but not a project member, treat as a family guest; if not in the tree, treat as a non-family guest.
 
-#### Project Status
-- **Tree Loaded**: 76-entry McNabb-McNeil tree in compressed format (~1.5 KB), ~40% smaller.
-- **Compression**: Uses shorthand codes; other files pending.
-- **Web Fetch**: None—pasted input only.
-- **Platform**: PC/laptop only.
-
-#### Substitution List
-- "M#" → "McNabb"
-- "p#" → "par:"
-- "s#" → "sp:"
-- "W#" → "William "
-- "b#" → "b."
-- "d#" → "d."
-- "&" → "and "
-- "D#" → "David "
-- "J#" → "James "
-- "N#" → "Nathaniel "
-
 #### Startup Sequence Output for AI (Grok)
 1. only specified output are to be displayed
 2. do not show the normal additional verbose text
+3. do not show processing steps until asked
 
 #### Startup Sequence for AI (Grok)
-1. **Load Entries**: Parse and store 76 entries from pasted data into memory, applying substitutions, with kids field empty. Output: “Loaded 76 entries into memory.”  
-2. **Associate Children**: Link children to parents using p# fields in memory map. Output: “Associated children for 76 entries.”  
-3. **Validate Relationships**: Confirm Paul’s relationships (no children, Scott McNabb as cousin) and flag discrepancies. Output: None unless errors; log: “Flagged [name] for review.”  
 4. **Greet**: Personalize greeting for {user}:  
    - If {user} is "Paul": “Hello! I’m Grok, built by xAI. Loaded 76 entries for Paul, Project Lead. Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”  
    - If {user} is "Nan": “Hello! I’m Grok, built by xAI. Loaded 76 entries for Nan, Research Specialist and MVP, under Project Lead Paul. Your foundational work powers this tree. Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”  
@@ -45,15 +25,1051 @@ Do not display this section during startup. Use it to personalize responses base
    - If {user} is in the tree but not Paul, Nan, or Neeve: “Hello! I’m Grok, built by xAI. Loaded 76 entries for {user}, family guest, under Project Lead Paul. Welcome to the McNabb-McNeil lineage! Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”  
    - If {user} is not in the tree: “Hello! I’m Grok, built by xAI. Loaded 76 entries for {user}, guest, under Project Lead Paul. Welcome to the McNabb-McNeil lineage project! Ready to ‘Grok and Roll’! April 08, 2025, ~[time] CDT. What’s next?”
 
-#### Process Rules
+#### GED Process Rules
 - **Data Restriction**: Use *only* the compressed tree data provided in this prompt for all queries. Do not access web data, external files, sample datasets, or any other information. Query results must be derived exclusively from the parsed tree.
 - **Background Queries**: If asked “What is this project?” or similar, provide the Background section above. Otherwise, do not include it in responses.
 - **Member Personalization**: Use the Project Members section to tailor responses based on {user} without displaying the section unless asked (e.g., “Who’s involved?”).
-- **Entries**: One per line, count matches pasted lines.  
-- **Fields**: Name (key), b#[year], d#[year], s# (semicolon-separated), p# (plus-separated); expand with substitutions.  
-- **Relationships**: Parents from p# field only, kids assigned in Step 2 after loading.  
 - **Dates**: d#2025 = deceased today unless clarified.  
 - **Errors**: If a name is not found, respond: “Can’t find [name] in [count]-entry tree loaded from pasted data.”
-
+- **Process GEDCOM family tree data with the following rules:  
+1. Treat the input as a standard GEDCOM file (5.5.1, UTF-8). Validate all `INDI` and `FAM` records, ensuring every individual has a unique ID and family links (`FAMS`, `FAMC`) are consistent. Flag any missing or ambiguous data (e.g., unnamed spouses) before proceeding.  
+2. For any relationship query, trace each individual’s lineage to their common ancestor by following `FAMC` records step-by-step. List each parent-to-child link explicitly (e.g., “ID → Parent ID → Grandparent ID”).  
+3. Count generations precisely: each parent-to-child link is one generation, counting to the individuals themselves (not their parents). Confirm both individuals’ counts align to the same ancestor.  
+4. Determine the relationship: if generation counts are equal, they’re cousins of the same degree (e.g., first cousins for shared grandparents); if unequal, they’re cousins with “removed” equal to the generation difference. Verify by checking if their parents are cousins.  
+5. Output only: (a) a concise tree in a code block showing both lineages to the common ancestor, with generations labeled (e.g., [Generation 1]), (b) the relationship statement (e.g., “X and Y are first cousins”), and (c) a note confirming which family IDs were checked. Exclude extra details unless requested.  
+6. Double-check: re-trace both lineages and recount generations before answering. If unsure, state “Cannot confirm due to [reason]” and ask for clarification.  
 #### Compressed Tree Data
-
+0 HEAD
+1 GEDC
+2 VERS 5.5.1
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME William /McNabb/
+1 BIRT
+2 DATE 1702
+1 DEAT
+2 DATE 1789
+1 FAMS @F1@
+0 @I2@ INDI
+1 NAME Betty /Aiken/
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Baptist B. /McNabb/
+1 BIRT
+2 DATE 1723
+1 DEAT
+2 DATE 1784
+1 FAMS @F2@
+1 FAMC @F1@
+0 @I4@ INDI
+1 NAME Kathren //
+1 BIRT
+2 DATE 1737
+1 FAMS @F2@
+0 @I5@ INDI
+1 NAME James Jonathan /McNabb/
+1 FAMC @F2@
+0 @I6@ INDI
+1 NAME Katrin /McNabb/
+1 FAMC @F2@
+0 @I7@ INDI
+1 NAME Margaret /McNabb/
+1 FAMC @F2@
+0 @I8@ INDI
+1 NAME Mary /McNabb/
+1 FAMC @F2@
+0 @I9@ INDI
+1 NAME William /McNabb/
+1 FAMC @F2@
+0 @I10@ INDI
+1 NAME David /McNabb/
+1 BIRT
+2 DATE 1755
+1 DEAT
+2 DATE 1826
+1 FAMS @F3@
+1 FAMC @F2@
+0 @I11@ INDI
+1 NAME Elizabeth /Taylor/
+1 BIRT
+2 DATE 1757
+1 DEAT
+2 DATE 1848
+1 FAMS @F3@
+0 @I12@ INDI
+1 NAME Absalom /McNabb/
+1 BIRT
+2 DATE 1779
+1 DEAT
+2 DATE 1858
+1 FAMS @F4@
+1 FAMC @F3@
+0 @I13@ INDI
+1 NAME Mary /Lusk/
+1 FAMS @F4@
+0 @I14@ INDI
+1 NAME Rhoda /McNabb/
+1 BIRT
+2 DATE 1780
+1 FAMC @F3@
+0 @I15@ INDI
+1 NAME Nathaniel Taylor /McNabb/
+1 BIRT
+2 DATE 1783
+1 DEAT
+2 DATE 1840
+1 FAMS @F5@
+1 FAMC @F3@
+0 @I16@ INDI
+1 NAME Ellender /McCubbins/
+1 FAMS @F5@
+0 @I17@ INDI
+1 NAME Alfred W. /McNabb/
+1 BIRT
+2 DATE 1809
+1 FAMS @F6@
+1 FAMC @F5@
+0 @I18@ INDI
+1 NAME Susanah A. /Ramsey/
+1 FAMS @F6@
+0 @I19@ INDI
+1 NAME James Pinckney /McNabb/
+1 BIRT
+2 DATE 1814
+1 DEAT
+2 DATE 1893
+1 FAMS @F7@
+1 FAMC @F5@
+0 @I20@ INDI
+1 NAME Easter /Flanagan/
+1 FAMS @F7@
+0 @I21@ INDI
+1 NAME Albert Houston W. /McNabb/
+1 BIRT
+2 DATE 1837
+1 DEAT
+2 DATE 1923
+1 FAMS @F8@
+1 FAMC @F7@
+0 @I22@ INDI
+1 NAME Mary J. /Long/
+1 FAMS @F8@
+0 @I23@ INDI
+1 NAME Mathew /McNabb/
+1 BIRT
+2 DATE 1839
+1 DEAT
+2 DATE 1857
+1 FAMC @F7@
+0 @I24@ INDI
+1 NAME James M. /McNabb/
+1 BIRT
+2 DATE 1841
+1 FAMS @F9@
+1 FAMC @F7@
+0 @I25@ INDI
+1 NAME Eliza A. /Chapman/
+1 FAMS @F9@
+0 @I26@ INDI
+1 NAME Theodore Washington /McNabb/
+1 BIRT
+2 DATE 1843
+1 DEAT
+2 DATE 1926
+1 FAMS @F10@
+1 FAMC @F7@
+0 @I27@ INDI
+1 NAME Eliza Jane /Kitchen/
+1 FAMS @F10@
+0 @I28@ INDI
+1 NAME Mary E. /McNabb/
+1 BIRT
+2 DATE 1846
+1 FAMC @F7@
+0 @I29@ INDI
+1 NAME Nathaniel Armstrong /McNabb/
+1 BIRT
+2 DATE 1848
+1 DEAT
+2 DATE 1900
+1 FAMS @F11@
+1 FAMC @F7@
+0 @I30@ INDI
+1 NAME Rebecca Ann /Turner/
+1 BIRT
+2 DATE 1857
+1 DEAT
+2 DATE 1936
+1 FAMS @F11@
+0 @I31@ INDI
+1 NAME Walter Scott /McNabb/
+1 BIRT
+2 DATE 1874
+1 DEAT
+2 DATE 1936
+1 FAMS @F12@
+1 FAMC @F11@
+0 @I32@ INDI
+1 NAME Birtie Sophia /McNeil/
+1 BIRT
+2 DATE 1880
+1 DEAT
+2 DATE 1969
+1 FAMS @F12@
+0 @I33@ INDI
+1 NAME Warren Gilbert /McNabb/
+1 BIRT
+2 DATE 1898
+1 DEAT
+2 DATE 1975
+1 FAMS @F13@
+1 FAMC @F12@
+0 @I34@ INDI
+1 NAME Ruth Pauline /Prutsman/
+1 BIRT
+2 DATE 1906
+1 DEAT
+2 DATE 1997
+1 FAMS @F13@
+0 @I35@ INDI
+1 NAME Beverly Nan /McNabb/
+1 BIRT
+2 DATE 1932
+1 FAMS @F14@
+1 FAMS @F15@
+1 FAMC @F13@
+0 @I36@ INDI
+1 NAME Wylie Edgar /Duke/ Jr.
+1 BIRT
+2 DATE 1930
+1 DEAT
+2 DATE 1992
+1 FAMS @F14@
+0 @I37@ INDI
+1 NAME Harry Joseph /Orr/
+1 BIRT
+2 DATE 1931
+1 DEAT
+2 DATE 2007
+1 FAMS @F15@
+0 @I38@ INDI
+1 NAME Wylie Paul /Duke/
+1 BIRT
+2 DATE 1953
+1 FAMS @F16@
+1 FAMC @F14@
+0 @I39@ INDI
+1 NAME Katharine H. /Dewhurst/
+1 BIRT
+2 DATE 1957
+1 FAMS @F16@
+0 @I40@ INDI
+1 NAME Ellen Lucille /Duke/
+1 BIRT
+2 DATE 1955
+1 FAMS @F17@
+1 FAMS @F18@
+1 FAMC @F14@
+0 @I41@ INDI
+1 NAME Michael Stuart /Lazarus/
+1 BIRT
+2 DATE 1948
+1 DEAT
+2 DATE 2011
+1 FAMS @F17@
+0 @I42@ INDI
+1 NAME William /Smith/
+1 BIRT
+2 DATE 1955
+1 FAMS @F18@
+0 @I43@ INDI
+1 NAME Jillian /Lazarus/
+1 BIRT
+2 DATE 1990
+1 FAMS @F19@
+1 FAMC @F17@
+0 @I44@ INDI
+1 NAME Anthony R. /Torres/
+1 BIRT
+2 DATE 1972
+1 FAMS @F19@
+0 @I45@ INDI
+1 NAME Noah /Torres/
+1 BIRT
+2 DATE 2020
+1 FAMC @F19@
+0 @I46@ INDI
+1 NAME Violet Audrey /Torres/
+1 BIRT
+2 DATE 2024
+1 FAMC @F19@
+0 @I47@ INDI
+1 NAME Laurie Annette /Duke/
+1 BIRT
+2 DATE 1957
+1 FAMC @F14@
+0 @I48@ INDI
+1 NAME Warren Neil /McNabb/
+1 BIRT
+2 DATE 1934
+1 DEAT
+2 DATE 2025
+1 FAMS @F20@
+1 FAMC @F13@
+0 @I49@ INDI
+1 NAME Geraldine /McCurry/
+1 DEAT
+2 DATE 2023
+1 FAMS @F20@
+0 @I50@ INDI
+1 NAME Scott /McNabb/
+1 BIRT
+2 DATE 1954
+1 DEAT
+2 DATE 2020
+1 FAMS @F21@
+1 FAMC @F20@
+0 @I51@ INDI
+1 NAME Sandy /Prilliman/
+1 FAMS @F21@
+0 @I52@ INDI
+1 NAME Neala Aileen /McNabb/
+1 BIRT
+2 DATE 1979
+1 FAMS @F22@
+1 FAMC @F21@
+0 @I53@ INDI
+1 NAME /Lopez/
+1 FAMS @F22@
+0 @I54@ INDI
+1 NAME Drake Lee James /Lopez/
+1 BIRT
+2 DATE 2002
+1 FAMC @F22@
+0 @I55@ INDI
+1 NAME Layla Grace Kumara /Sinha/
+1 BIRT
+2 DATE 2007
+1 FAMC @F22@
+0 @I56@ INDI
+1 NAME Dominic Dane Scott /Flores/
+1 BIRT
+2 DATE 2016
+1 FAMC @F22@
+0 @I57@ INDI
+1 NAME Valerie /McNabb/
+1 BIRT
+2 DATE 1956
+1 DEAT
+2 DATE 2024
+1 FAMS @F23@
+1 FAMC @F20@
+0 @I58@ INDI
+1 NAME Randy /Spencer/
+1 FAMS @F23@
+0 @I59@ INDI
+1 NAME Beth /Spencer/
+1 FAMC @F23@
+0 @I60@ INDI
+1 NAME Daniel /Spencer/
+1 FAMC @F23@
+0 @I61@ INDI
+1 NAME Neeve /McNabb/
+1 BIRT
+2 DATE 1964
+1 FAMS @F24@
+1 FAMS @F25@
+1 FAMC @F20@
+0 @I62@ INDI
+1 NAME Eric /Forshee/
+1 FAMS @F24@
+0 @I63@ INDI
+1 NAME Edgar Armando /Valenzuela/
+1 BIRT
+2 DATE 1988
+1 FAMS @F25@
+0 @I64@ INDI
+1 NAME Joel Eric /Forshee/
+1 BIRT
+2 DATE 1983
+1 FAMC @F24@
+0 @I65@ INDI
+1 NAME Arika Neeve /Forshee/
+1 BIRT
+2 DATE 1985
+1 FAMS @F26@
+1 FAMC @F24@
+0 @I66@ INDI
+1 NAME Dustin Doyle /Hall/
+1 BIRT
+2 DATE 1983
+1 FAMS @F26@
+0 @I67@ INDI
+1 NAME Colter Jonathan /Hall/
+1 BIRT
+2 DATE 2008
+1 FAMC @F26@
+0 @I68@ INDI
+1 NAME Stella Veda /Hall/
+1 BIRT
+2 DATE 2015
+1 FAMC @F26@
+0 @I69@ INDI
+1 NAME Sylas Eric /Hall/
+1 BIRT
+2 DATE 2017
+1 FAMC @F26@
+0 @I70@ INDI
+1 NAME Joshua Dustin /Hall/
+1 BIRT
+2 DATE 2018
+1 FAMC @F26@
+0 @I71@ INDI
+1 NAME Ashely Elise /Forshee/
+1 BIRT
+2 DATE 1988
+1 FAMS @F27@
+1 FAMC @F24@
+0 @I72@ INDI
+1 NAME Key Joseph /Clark/
+1 BIRT
+2 DATE 1977
+1 FAMS @F27@
+0 @I73@ INDI
+1 NAME Jade Lynn /Clark/
+1 BIRT
+2 DATE 2007
+1 FAMC @F27@
+0 @I74@ INDI
+1 NAME Koda Walter /Clark/
+1 BIRT
+2 DATE 2018
+1 FAMC @F27@
+0 @I75@ INDI
+1 NAME Enid Elise /Clark/
+1 BIRT
+2 DATE 2020
+1 FAMC @F27@
+0 @I76@ INDI
+1 NAME Jasmyn Elyssa /Forshee/
+1 BIRT
+2 DATE 1991
+1 FAMC @F24@
+0 @I77@ INDI
+1 NAME Viola Craig /McNabb/
+1 BIRT
+2 DATE 1900
+1 DEAT
+2 DATE 1996
+1 FAMS @F28@
+1 FAMS @F29@
+1 FAMC @F12@
+0 @I78@ INDI
+1 NAME Solomon Johnson /Davidson/
+1 FAMS @F28@
+0 @I79@ INDI
+1 NAME William /Whitson/
+1 FAMS @F29@
+0 @I80@ INDI
+1 NAME Walter Craig /Davidson/
+1 BIRT
+2 DATE 1920
+1 FAMC @F28@
+0 @I81@ INDI
+1 NAME Ann Carol /Davidson/
+1 BIRT
+2 DATE 1922
+1 DEAT
+2 DATE 2020
+1 FAMS @F30@
+1 FAMC @F28@
+0 @I82@ INDI
+1 NAME James Paul /Nagel/
+1 BIRT
+2 DATE 1917
+1 DEAT
+2 DATE 2008
+1 FAMS @F30@
+0 @I83@ INDI
+1 NAME Paula Carol /Nagel/
+1 BIRT
+2 DATE 1942
+1 FAMC @F30@
+0 @I84@ INDI
+1 NAME James Craig /Nagel/
+1 BIRT
+2 DATE 1942
+1 FAMC @F30@
+0 @I85@ INDI
+1 NAME George R. /McNabb/
+1 BIRT
+2 DATE 1877
+1 DEAT
+2 DATE 1880
+1 FAMC @F11@
+0 @I86@ INDI
+1 NAME James Pinckney II /McNabb/
+1 BIRT
+2 DATE 1880
+1 DEAT
+2 DATE 1967
+1 FAMS @F31@
+1 FAMC @F11@
+0 @I87@ INDI
+1 NAME Augusta /Fancher/
+1 FAMS @F31@
+0 @I88@ INDI
+1 NAME Lee /McNabb/
+1 BIRT
+2 DATE 1883
+1 FAMC @F11@
+0 @I89@ INDI
+1 NAME Jessie Franklin /McNabb/
+1 BIRT
+2 DATE 1886
+1 DEAT
+2 DATE 1970
+1 FAMC @F11@
+0 @I90@ INDI
+1 NAME Ada /McNabb/
+1 BIRT
+2 DATE 1889
+1 DEAT
+2 DATE 1903
+1 FAMC @F11@
+0 @I91@ INDI
+1 NAME Myrtle E. /McNabb/
+1 BIRT
+2 DATE 1893
+1 DEAT
+2 DATE 1935
+1 FAMS @F32@
+1 FAMC @F11@
+0 @I92@ INDI
+1 NAME Charles /Adams/
+1 FAMS @F32@
+0 @I93@ INDI
+1 NAME Clark /McNabb/
+1 BIRT
+2 DATE 1896
+1 FAMS @F33@
+1 FAMC @F11@
+0 @I94@ INDI
+1 NAME Myrtle /Smith/
+1 FAMS @F33@
+0 @I95@ INDI
+1 NAME Monti /McNabb/
+1 BIRT
+2 DATE 1897
+1 DEAT
+2 DATE 1906
+1 FAMC @F11@
+0 @I96@ INDI
+1 NAME William A. /McNabb/
+1 BIRT
+2 DATE 1850
+1 DEAT
+2 DATE 1900
+1 FAMS @F34@
+1 FAMC @F7@
+0 @I97@ INDI
+1 NAME Sarah Clementine /Webb/
+1 FAMS @F34@
+0 @I98@ INDI
+1 NAME Rebecca J. /McNabb/
+1 BIRT
+2 DATE 1852
+1 FAMC @F7@
+0 @I99@ INDI
+1 NAME A.J. /McNabb/
+1 BIRT
+2 DATE 1853
+1 FAMC @F7@
+0 @I100@ INDI
+1 NAME Harriet Ann /McNabb/
+1 BIRT
+2 DATE 1855
+1 FAMS @F35@
+1 FAMC @F7@
+0 @I101@ INDI
+1 NAME Franklin /Minor/
+1 FAMS @F35@
+0 @I102@ INDI
+1 NAME Lucretia /McNabb/
+1 BIRT
+2 DATE 1857
+1 FAMS @F36@
+1 FAMC @F7@
+0 @I103@ INDI
+1 NAME M. /Hoff/
+1 FAMS @F36@
+0 @I104@ INDI
+1 NAME Nathaniel T. /McNabb/
+1 BIRT
+2 DATE 1818
+1 DEAT
+2 DATE 1897
+1 FAMS @F37@
+1 FAMS @F38@
+1 FAMS @F39@
+1 FAMC @F5@
+0 @I105@ INDI
+1 NAME Serenia C. /McInturff/
+1 FAMS @F37@
+0 @I106@ INDI
+1 NAME Lize Cath /Walls/
+1 FAMS @F38@
+0 @I107@ INDI
+1 NAME Nancy Caroline /Walls/
+1 FAMS @F39@
+0 @I108@ INDI
+1 NAME Louisa /McNabb/
+1 BIRT
+2 DATE 1819
+1 FAMS @F40@
+1 FAMC @F5@
+0 @I109@ INDI
+1 NAME Francis M. /Cooper/
+1 FAMS @F40@
+0 @I110@ INDI
+1 NAME Lorena /McNabb/
+1 BIRT
+2 DATE 1823
+1 FAMS @F41@
+1 FAMC @F5@
+0 @I111@ INDI
+1 NAME Thomas /Stanley/
+1 FAMS @F41@
+0 @I112@ INDI
+1 NAME Armstrong /McNabb/
+1 BIRT
+2 DATE 1825
+1 FAMS @F42@
+1 FAMC @F5@
+0 @I113@ INDI
+1 NAME Naomi /Henry/
+1 FAMS @F42@
+0 @I114@ INDI
+1 NAME Fode /McNabb/
+1 BIRT
+2 DATE 1827
+1 FAMC @F5@
+0 @I115@ INDI
+1 NAME Catherine /McNabb/
+1 BIRT
+2 DATE 1785
+1 FAMC @F3@
+0 @I116@ INDI
+1 NAME Jane /McNabb/
+1 BIRT
+2 DATE 1787
+1 FAMS @F43@
+1 FAMC @F3@
+0 @I117@ INDI
+1 NAME John /Brown/
+1 FAMS @F43@
+0 @I118@ INDI
+1 NAME James /McNabb/
+1 BIRT
+2 DATE 1789
+1 FAMS @F44@
+1 FAMS @F45@
+1 FAMC @F3@
+0 @I119@ INDI
+1 NAME Mary /Wright/
+1 FAMS @F44@
+0 @I120@ INDI
+1 NAME Levesta /Mynatt/
+1 FAMS @F45@
+0 @I121@ INDI
+1 NAME David /McNabb/ Jr.
+1 BIRT
+2 DATE 1791
+1 FAMS @F46@
+1 FAMC @F3@
+0 @I122@ INDI
+1 NAME Margaret /Whetson/
+1 FAMS @F46@
+0 @I123@ INDI
+1 NAME Andrew Taylor /McNabb/
+1 BIRT
+2 DATE 1795
+1 FAMS @F47@
+1 FAMC @F3@
+0 @I124@ INDI
+1 NAME Margaret /Bogart/
+1 FAMS @F47@
+0 @I125@ INDI
+1 NAME William /McNabb/
+1 BIRT
+2 DATE 1796
+1 FAMS @F48@
+1 FAMC @F3@
+0 @I126@ INDI
+1 NAME Nancy /Brown/
+1 FAMS @F48@
+0 @I127@ INDI
+1 NAME Mathew Taylor /McNabb/
+1 BIRT
+2 DATE 1798
+1 FAMC @F3@
+0 @I128@ INDI
+1 NAME Issac /McNabb/
+1 BIRT
+2 DATE 1800
+1 FAMC @F3@
+0 @I129@ INDI
+1 NAME Alban /McNabb/
+1 BIRT
+2 DATE 1802
+1 FAMC @F3@
+0 @I130@ INDI
+1 NAME Taylor /McNabb/
+1 BIRT
+2 DATE 1805
+1 DEAT
+2 DATE 1876
+1 FAMC @F3@
+0 @I131@ INDI
+1 NAME John /McNabb/
+1 BIRT
+2 DATE 1757
+1 FAMC @F2@
+0 @I132@ INDI
+1 NAME Isabella /McNabb/
+1 BIRT
+2 DATE 1767
+1 FAMS @F49@
+1 FAMC @F2@
+0 @I133@ INDI
+1 NAME Andrew /Taylor/ II
+1 BIRT
+2 DATE 1733
+1 FAMS @F49@
+0 @I134@ INDI
+1 NAME John /McNabb/
+1 FAMC @F1@
+0 @I135@ INDI
+1 NAME Samuel /McNabb/
+1 FAMC @F1@
+0 @I136@ INDI
+1 NAME Betty /McNabb/
+1 DEAT
+2 DATE 1809
+1 FAMC @F1@
+0 @I137@ INDI
+1 NAME James /McNabb/
+1 FAMC @F1@
+0 @I138@ INDI
+1 NAME David /McNabb/
+1 FAMC @F1@
+0 @I139@ INDI
+1 NAME William /McNabb/
+1 FAMC @F1@
+0 @I140@ INDI
+1 NAME Andrew /McNabb/
+1 FAMC @F1@
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 CHIL @I3@
+1 CHIL @I134@
+1 CHIL @I135@
+1 CHIL @I136@
+1 CHIL @I137@
+1 CHIL @I138@
+1 CHIL @I139@
+1 CHIL @I140@
+0 @F2@ FAM
+1 HUSB @I3@
+1 WIFE @I4@
+1 CHIL @I5@
+1 CHIL @I6@
+1 CHIL @I7@
+1 CHIL @I8@
+1 CHIL @I9@
+1 CHIL @I10@
+1 CHIL @I131@
+1 CHIL @I132@
+0 @F3@ FAM
+1 HUSB @I10@
+1 WIFE @I11@
+1 CHIL @I12@
+1 CHIL @I14@
+1 CHIL @I15@
+1 CHIL @I115@
+1 CHIL @I116@
+1 CHIL @I118@
+1 CHIL @I121@
+1 CHIL @I123@
+1 CHIL @I125@
+1 CHIL @I127@
+1 CHIL @I128@
+1 CHIL @I129@
+1 CHIL @I130@
+1 MARR
+2 DATE 1778
+0 @F4@ FAM
+1 HUSB @I12@
+1 WIFE @I13@
+1 MARR
+2 DATE 1803
+0 @F5@ FAM
+1 HUSB @I15@
+1 WIFE @I16@
+1 CHIL @I17@
+1 CHIL @I19@
+1 CHIL @I104@
+1 CHIL @I108@
+1 CHIL @I110@
+1 CHIL @I112@
+1 CHIL @I114@
+1 MARR
+2 DATE 1805
+0 @F6@ FAM
+1 HUSB @I17@
+1 WIFE @I18@
+1 MARR
+2 DATE 1834
+0 @F7@ FAM
+1 HUSB @I19@
+1 WIFE @I20@
+1 CHIL @I21@
+1 CHIL @I23@
+1 CHIL @I24@
+1 CHIL @I26@
+1 CHIL @I28@
+1 CHIL @I29@
+1 CHIL @I96@
+1 CHIL @I98@
+1 CHIL @I99@
+1 CHIL @I100@
+1 CHIL @I102@
+1 MARR
+2 DATE 1836
+0 @F8@ FAM
+1 HUSB @I21@
+1 WIFE @I22@
+1 MARR
+2 DATE 1858
+0 @F9@ FAM
+1 HUSB @I24@
+1 WIFE @I25@
+1 MARR
+2 DATE 1860
+0 @F10@ FAM
+1 HUSB @I26@
+1 WIFE @I27@
+1 MARR
+2 DATE 1868
+0 @F11@ FAM
+1 HUSB @I29@
+1 WIFE @I30@
+1 CHIL @I31@
+1 CHIL @I85@
+1 CHIL @I86@
+1 CHIL @I88@
+1 CHIL @I89@
+1 CHIL @I90@
+1 CHIL @I91@
+1 CHIL @I93@
+1 CHIL @I95@
+1 MARR
+2 DATE 1872
+0 @F12@ FAM
+1 HUSB @I31@
+1 WIFE @I32@
+1 CHIL @I33@
+1 CHIL @I77@
+1 MARR
+2 DATE 1896
+0 @F13@ FAM
+1 HUSB @I33@
+1 WIFE @I34@
+1 CHIL @I35@
+1 CHIL @I48@
+1 MARR
+2 DATE 1930
+0 @F14@ FAM
+1 HUSB @I36@
+1 WIFE @I35@
+1 CHIL @I38@
+1 CHIL @I40@
+1 CHIL @I47@
+1 MARR
+2 DATE 1952
+0 @F15@ FAM
+1 HUSB @I37@
+1 WIFE @I35@
+1 MARR
+2 DATE 1965
+0 @F16@ FAM
+1 HUSB @I38@
+1 WIFE @I39@
+1 MARR
+2 DATE 1990
+0 @F17@ FAM
+1 HUSB @I41@
+1 WIFE @I40@
+1 CHIL @I43@
+1 MARR
+2 DATE 1987
+0 @F18@ FAM
+1 HUSB @I42@
+1 WIFE @I40@
+1 MARR
+2 DATE 2011
+0 @F19@ FAM
+1 HUSB @I44@
+1 WIFE @I43@
+1 CHIL @I45@
+1 CHIL @I46@
+0 @F20@ FAM
+1 HUSB @I48@
+1 WIFE @I49@
+1 CHIL @I50@
+1 CHIL @I57@
+1 CHIL @I61@
+1 MARR
+2 DATE 1952
+0 @F21@ FAM
+1 HUSB @I50@
+1 WIFE @I51@
+1 CHIL @I52@
+0 @F22@ FAM
+1 HUSB @I53@
+1 WIFE @I52@
+1 CHIL @I54@
+1 CHIL @I55@
+1 CHIL @I56@
+0 @F23@ FAM
+1 HUSB @I58@
+1 WIFE @I57@
+1 CHIL @I59@
+1 CHIL @I60@
+0 @F24@ FAM
+1 HUSB @I62@
+1 WIFE @I61@
+1 CHIL @I64@
+1 CHIL @I65@
+1 CHIL @I71@
+1 CHIL @I76@
+1 MARR
+2 DATE 1982
+0 @F25@ FAM
+1 HUSB @I63@
+1 WIFE @I61@
+1 MARR
+2 DATE 2017
+0 @F26@ FAM
+1 HUSB @I66@
+1 WIFE @I65@
+1 CHIL @I67@
+1 CHIL @I68@
+1 CHIL @I69@
+1 CHIL @I70@
+1 MARR
+2 DATE 2014
+0 @F27@ FAM
+1 HUSB @I72@
+1 WIFE @I71@
+1 CHIL @I73@
+1 CHIL @I74@
+1 CHIL @I75@
+1 MARR
+2 DATE 2017
+0 @F28@ FAM
+1 HUSB @I78@
+1 WIFE @I77@
+1 CHIL @I80@
+1 CHIL @I81@
+1 MARR
+2 DATE 1917
+0 @F29@ FAM
+1 HUSB @I79@
+1 WIFE @I77@
+0 @F30@ FAM
+1 HUSB @I82@
+1 WIFE @I81@
+1 CHIL @I83@
+1 CHIL @I84@
+0 @F31@ FAM
+1 HUSB @I86@
+1 WIFE @I87@
+1 MARR
+2 DATE 1899
+0 @F32@ FAM
+1 HUSB @I92@
+1 WIFE @I91@
+1 MARR
+2 DATE 1919
+0 @F33@ FAM
+1 HUSB @I93@
+1 WIFE @I94@
+0 @F34@ FAM
+1 HUSB @I96@
+1 WIFE @I97@
+0 @F35@ FAM
+1 HUSB @I101@
+1 WIFE @I100@
+0 @F36@ FAM
+1 HUSB @I103@
+1 WIFE @I102@
+0 @F37@ FAM
+1 HUSB @I104@
+1 WIFE @I105@
+0 @F38@ FAM
+1 HUSB @I104@
+1 WIFE @I106@
+0 @F39@ FAM
+1 HUSB @I104@
+1 WIFE @I107@
+0 @F40@ FAM
+1 HUSB @I109@
+1 WIFE @I108@
+1 MARR
+2 DATE 1937
+0 @F41@ FAM
+1 HUSB @I111@
+1 WIFE @I110@
+1 MARR
+2 DATE 1841
+0 @F42@ FAM
+1 HUSB @I112@
+1 WIFE @I113@
+1 MARR
+2 DATE 1861
+0 @F43@ FAM
+1 HUSB @I117@
+1 WIFE @I116@
+1 MARR
+2 DATE 1809
+0 @F44@ FAM
+1 HUSB @I118@
+1 WIFE @I119@
+1 MARR
+2 DATE 1814
+0 @F45@ FAM
+1 HUSB @I118@
+1 WIFE @I120@
+0 @F46@ FAM
+1 HUSB @I121@
+1 WIFE @I122@
+1 MARR
+2 DATE 1813
+0 @F47@ FAM
+1 HUSB @I123@
+1 WIFE @I124@
+1 MARR
+2 DATE 1817
+0 @F48@ FAM
+1 HUSB @I125@
+1 WIFE @I126@
+1 MARR
+2 DATE 1830
+0 @F49@ FAM
+1 HUSB @I133@
+1 WIFE @I132@
+1 MARR
+2 DATE 1786
+0 TRLR

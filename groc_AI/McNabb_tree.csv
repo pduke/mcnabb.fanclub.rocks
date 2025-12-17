@@ -1,0 +1,285 @@
+Place,Title,Name,Type,Latitude,Longitude,Code,Enclosed_by,Date
+
+Person,Surname,Given,Call,Suffix,Prefix,Title,Gender,Birth date,Birth place,Birth source,Baptism date,Baptism place,Baptism source,Death date,Death place,Death source,Burial date,Burial place,Burial source,Note
+[P04],,Kathren,,,,,female,1737,,,,,,1784,,,,,,
+[P53],??? Lopez,,,,,,male,,,,,,,,,,,,,
+[P92],Adams,Charles,,,,,male,,,,,,,,,,,,,
+[P02],Aiken,Betty,,,,,female,,,,,,,,,,,,,
+[P124],Bogart,Margaret,,,,,female,,,,,,,,,,,,,
+[P117],Brown,John,,,,,male,,,,,,,,,,,,,
+[P126],Brown,Nancy,,,,,female,,,,,,,,,,,,,
+[P25],Chapman,Eliza A.,,,,,female,,,,,,,,,,,,,
+[P75],Clark,Enid Elise,,,,,female,2020,,,,,,,,,,,,
+[P73],Clark,Jade Lynn,,,,,female,2007,,,,,,,,,,,,
+[P72],Clark,Key Joseph,,,,,male,1977,,,,,,,,,,,,
+[P74],Clark,Koda Walter,,,,,male,2018,,,,,,,,,,,,
+[P109],Cooper,Francis M.,,,,,male,,,,,,,,,,,,,
+[P81],Davidson,Ann Carol,,,,,female,1922,,,,,,2020,,,,,,
+[P78],Davidson,Solomon Johnson,,,,,male,,,,,,,,,,,,,
+[P80],Davidson,Walter Craig,,,,,male,1920,,,,,,,,,,,,
+[P39],Dewhurst,Katharine H.,,,,,female,1957,,,,,,,,,,,,
+[P40],Duke,Ellen Lucille,,,,,female,1955,,,,,,,,,,,,
+[P47],Duke,Laurie Annette,,,,,female,1957,,,,,,,,,,,,
+[P36],Duke,Wylie Edgar Jr.,,,,,male,1930,,,,,,1992,,,,,,
+[P38],Duke,Wylie Paul,,,,,male,1953,,,,,,,,,,,,
+[P20],Flanagan,Easter,,,,,female,1784,,,,,,1860,,,,,,
+[P56],Flores,Dominic Dane Scott,,,,,male,2016,,,,,,,,,,,,
+[P65],Forshee,Arika Neeve,,,,,female,1983,,,,,,,,,,,,
+[P71],Forshee,Ashely Elise,,,,,female,1988,,,,,,,,,,,,
+[P62],Forshee,Eric,,,,,male,,,,,,,,,,,,,
+[P76],Forshee,Jasmyn Elyssa,,,,,female,1991,,,,,,,,,,,,
+[P64],Forshee,Joel Eric,,,,,male,1983,,,,,,,,,,,,
+[P67],Hall,Colter Jonathan,,,,,male,2008,,,,,,,,,,,,
+[P66],Hall,Dustin Doyle,,,,,male,1983,,,,,,,,,,,,
+[P70],Hall,Joshua Dustin,,,,,male,2018,,,,,,,,,,,,
+[P68],Hall,Stella Veda,,,,,female,2015,,,,,,,,,,,,
+[P69],Hall,Sylas Eric,,,,,male,2017,,,,,,,,,,,,
+[P113],Henry,Naomi,,,,,female,,,,,,,,,,,,,
+[P103],Hoff,M.,,,,,male,,,,,,,,,,,,,
+[P27],Kitchen,Eliza Jane,,,,,female,,,,,,,,,,,,,
+[P43],Lazarus,Jillian,,,,,female,1990,,,,,,,,,,,,
+[P41],Lazarus,Michael Stuart,,,,,male,1948,,,,,,2011,,,,,,
+[P22],Long,Mary J.,,,,,female,,,,,,,,,,,,,
+[P54],Lopez,Drake Lee James,,,,,male,2002,,,,,,,,,,,,
+[P13],Lusk,Mary,,,,,female,,,,,,,,,,,,,
+[P16],McCubbins,Ellender,,,,,female,1818,,,,,,1860,,,,,,
+[P49],McCurry,Geraldine,,,,,female,,,,,,,2023,,,,,,
+[P105],McInturff,Serenia C.,,,,,female,,,,,,,,,,,,,
+[P99],McNabb,A.J.,,,,,male,1853,,,,,,,,,,,,
+[P12],McNabb,Absalom,,,,,male,1779,,,,,,1858,,,,,,
+[P90],McNabb,Ada,,,,,female,1889,,,,,,1903,,,,,,
+[P129],McNabb,Alban,,,,,male,1802,,,,,,1880,,,,,,
+[P21],McNabb,Albert Houston W.,,,,,male,1837,,,,,,1923,,,,,,
+[P17],McNabb,Alfred W.,,,,,male,1809,,,,,,1858,,,,,,
+[P140],McNabb,Andrew,,,,,male,,,,,,,,,,,,,
+[P123],McNabb,Andrew Taylor,,,,,male,1795,,,,,,,,,,,,
+[P112],McNabb,Armstrong,,,,,male,1825,,,,,,,,,,,,
+[P03],McNabb,Baptist B.,,,,,male,1723,,,,,,1784,,,,,,
+[P136],McNabb,Betty,,,,,female,,,,,,,1809,,,,,,
+[P35],McNabb,Beverly Nan,,,,,female,1932,,,,,,,,,,,,
+[P115],McNabb,Catherine,,,,,female,1785,,,,,,,,,,,,
+[P93],McNabb,Clark,,,,,male,1896,,,,,,,,,,,,
+[P10],McNabb,David,,,,,male,1755,,,,,,1826,,,,,,
+[P138],McNabb,David,,,,,male,,,,,,,,,,,,,
+[P121],McNabb,David Jr.,,,,,male,1791,,,,,,,,,,,,
+[P114],McNabb,Fode,,,,,unknown,1827,,,,,,,,,,,,
+[P85],McNabb,George R.,,,,,male,1877,,,,,,1880,,,,,,
+[P100],McNabb,Harriet Ann,,,,,female,1855,,,,,,1905,,,,,,
+[P132],McNabb,Isabella,,,,,female,1767,,,,,,,,,,,,
+[P128],McNabb,Issac,,,,,male,1800,,,,,,,,,,,,
+[P118],McNabb,James,,,,,male,1789,,,,,,,,,,,,
+[P137],McNabb,James,,,,,male,,,,,,,,,,,,,
+[P05],McNabb,James Jonathan,,,,,male,,,,,,,,,,,,,
+[P24],McNabb,James M.,,,,,male,1841,,,,,,,,,,,,
+[P19],McNabb,James Pinckney,,,,,male,1814,,,,,,1893,,,,,,
+[P86],McNabb,James Pinckney II,,,,,male,1880,,,,,,1967,,,,,,
+[P116],McNabb,Jane,,,,,female,1787,,,,,,,,,,,,
+[P89],McNabb,Jessie Franklin,,,,,male,1886,,,,,,1970,,,,,,
+[P131],McNabb,John,,,,,male,1757,,,,,,,,,,,,
+[P134],McNabb,John,,,,,male,,,,,,,,,,,,,
+[P06],McNabb,Katrin,,,,,female,,,,,,,,,,,,,
+[P88],McNabb,Lee,,,,,male,1883,,,,,,,,,,,,
+[P110],McNabb,Lorena,,,,,female,1823,,,,,,,,,,,,
+[P108],McNabb,Louisa,,,,,female,1819,,,,,,,,,,,,
+[P102],McNabb,Lucretia,,,,,female,1857,,,,,,,,,,,,
+[P07],McNabb,Margaret,,,,,female,,,,,,,,,,,,,
+[P08],McNabb,Mary,,,,,female,,,,,,,,,,,,,
+[P28],McNabb,Mary E.,,,,,female,1846,,,,,,,,,,,,
+[P23],McNabb,Mathew,,,,,male,1839,,,,,,1857,,,,,,
+[P127],McNabb,Mathew Taylor,,,,,male,1798,,,,,,,,,,,,
+[P95],McNabb,Monti,,,,,male,1897,,,,,,1906,,,,,,
+[P91],McNabb,Myrtle E.,,,,,female,1893,,,,,,1935,,,,,,
+[P29],McNabb,Nathaniel Armstrong,,,,,male,1848,,,,,,1900,,,,,,
+[P104],McNabb,Nathaniel T.,,,,,male,1818,,,,,,1897,,,,,,
+[P15],McNabb,Nathaniel Taylor,,,,,male,1783,,,,,,1840,,,,,,
+[P52],McNabb,Neala Aileen,,,,,female,1979,,,,,,,,,,,,
+[P61],McNabb,Neeve,,,,,female,1964,,,,,,,,,,,,
+[P98],McNabb,Rebecca J.,,,,,female,1852,,,,,,,,,,,,
+[P14],McNabb,Rhoda,,,,,female,1780,,,,,,,,,,,,
+[P135],McNabb,Samuel,,,,,male,,,,,,,,,,,,,
+[P50],McNabb,Scott,,,,,male,1954,,,,,,2020,,,,,,
+[P130],McNabb,Taylor,,,,,male,1805,,,,,,1876,,,,,,
+[P26],McNabb,Theodore Washington,,,,,male,1843,,,,,,1926,,,,,,
+[P57],McNabb,Valerie,,,,,female,1956,,,,,,2024,,,,,,
+[P77],McNabb,Viola Craig,,,,,female,1900,,,,,,1996,,,,,,
+[P31],McNabb,Walter Scott,,,,,male,1874,,,,,,1936,,,,,,
+[P33],McNabb,Warren Gilbert,,,,,male,1898,,,,,,1975,,,,,,
+[P48],McNabb,Warren Neil,,,,,male,1934,,,,,,2025,,,,,,
+[P01],McNabb,William,,,,,male,1702,,,,,,1789,,,,,,
+[P125],McNabb,William,,,,,male,1796,,,,,,,,,,,,
+[P09],McNabb,William 1,,,,,male,,,,,,,,,,,,,
+[P139],McNabb,William 2,,,,,male,,,,,,,,,,,,,
+[P96],McNabb,William A.,,,,,male,1850,,,,,,1900,,,,,,
+[P32],McNeil,Birtie Sophia,,,,,female,1880,,,,,,1969,,,,,,
+[P101],Minor,Franklin,,,,,male,,,,,,,,,,,,,
+[P120],Mynatt,Levesta,,,,,female,,,,,,,,,,,,,
+[P84],Nagel,James Craig,,,,,male,1944,,,,,,,,,,,,
+[P82],Nagel,James Paul,,,,,male,1917,,,,,,2008,,,,,,
+[P83],Nagel,Paula Carol,,,,,female,1942,,,,,,,,,,,,
+[P37],Orr,Harry Joseph,,,,,male,1931,,,,,,2007,,,,,,
+[P51],Prilliman,Sandy,,,,,female,,,,,,,,,,,,,
+[P34],Prutsman,Ruth Pauline,,,,,female,1906,,,,,,1997,,,,,,
+[P18],Ramsey,Susanah A.,,,,,female,,,,,,,,,,,,,
+[P55],Sinha,Layla Grace Kumara,,,,,female,2007,,,,,,,,,,,,
+[P94],Smith,Myrtle,,,,,female,,,,,,,,,,,,,
+[P42],Smith,William,,,,,male,1955,,,,,,,,,,,,
+[P59],Spencer,Beth,,,,,female,,,,,,,,,,,,,
+[P60],Spencer,Daniel,,,,,male,,,,,,,,,,,,,
+[P58],Spencer,Randy,,,,,male,,,,,,,,,,,,,
+[P111],Stanley,Thomas,,,,,male,,,,,,,,,,,,,
+[P11],Taylor,Elizabeth,,,,,female,1757,,,,,,1848,,,,,,
+[P133],Taylor II,Andrew,,,,,male,1733,,,,,,1780,,,,,,
+[P44],Torres,Anthony R.,,,,,male,1972,,,,,,,,,,,,
+[P45],Torres,Noah,,,,,male,2020,,,,,,,,,,,,
+[P46],Torres,Violet Audrey,,,,,female,2024,,,,,,,,,,,,
+[P30],Turner,Rebecca Ann,,,,,female,1857,,,,,,1936,,,,,,
+[P63],Valenzuela,Edgar Armando,,,,,male,1988,,,,,,,,,,,,
+[P106],Walls,Lize Cath,,,,,female,,,,,,,,,,,,,
+[P107],Walls,Nancy Caroline,,,,,female,,,,,,,,,,,,,
+[P97],Webb,Sarah Clementine,,,,,female,,,,,,,,,,,,,
+[P122],Whetson,Margaret,,,,,female,,,,,,,,,,,,,
+[P79],Whitson,Willam,,,,,male,,,,,,,,,,,,,
+[P119],Wright,Mary,,,,,female,,,,,,,,,,,,,
+
+Marriage,Husband,Wife,Date,Place,Source,Note
+[F0000],[P01],[P02],,,,
+[F0001],[P121],[P122],,,,
+[F0002],[P10],[P11],,,,
+[F0003],[P03],[P04],,,,
+[F0004],[P15],[P16],,,,
+[F0005],[P19],[P20],,,,
+[F0006],[P29],[P30],,,,
+[F0007],[P31],[P32],,,,
+[F0008],[P33],[P34],,,,
+[F0009],[P36],[P35],,,,
+[F0010],[P37],[P35],,,,
+[F0011],[P48],[P49],,,,
+[F0012],[P41],[P40],,,,
+[F0013],[P42],[P40],,,,
+[F0014],[P44],[P43],,,,
+[F0015],[P50],[P51],,,,
+[F0016],[P53],[P52],,,,
+[F0017],[P58],[P57],,,,
+[F0018],[P62],[P61],,,,
+[F0019],[P72],[P71],,,,
+[F0020],[P66],[P65],,,,
+[F0021],[P78],[P77],1917,,,
+[F0022],[P82],[P81],,,,
+[F0023],[P63],[P61],,,,
+[F0024],[P12],[P13],,,,
+[F0025],[P117],[P116],1809,,,
+[F0026],[P118],[P119],1814,,,
+[F0027],[P17],[P18],,,,
+[F0028],[P26],[P27],,,,
+[F0029],[P38],[P39],1990,,,
+[F0030],[P92],[P91],,,,
+[F0031],[P125],[P126],1830,,,
+[F0032],[P21],[P22],1858,,,
+[F0033],[P24],[P25],1860,,,
+[F0034],[P79],[P77],,,,
+[F0036],[P93],[P94],,,,
+[F0037],[P96],[P97],,,,
+[F0038],[P101],[P100],1870,,,
+[F0039],[P103],[P102],,,,
+[F0040],[P104],[P105],,,,
+[F0041],[P104],[P106],,,,
+[F0042],[P104],[P107],,,,
+[F0043],[P109],[P108],1937,,,
+[F0044],[P111],[P110],1841,,,
+[F0045],[P112],[P113],1861,,,
+[F0046],[P118],[P120],1814,,,
+[F0047],[P123],[P124],1817,,,
+[F0048],[P133],[P132],1786,,,
+
+Family,Child
+[F0000],[P03]
+[F0000],[P134]
+[F0000],[P135]
+[F0000],[P136]
+[F0000],[P137]
+[F0000],[P138]
+[F0000],[P09]
+[F0000],[P140]
+[F0002],[P12]
+[F0002],[P14]
+[F0002],[P15]
+[F0002],[P115]
+[F0002],[P116]
+[F0002],[P118]
+[F0002],[P121]
+[F0002],[P127]
+[F0002],[P125]
+[F0002],[P128]
+[F0002],[P129]
+[F0002],[P130]
+[F0002],[P123]
+[F0003],[P05]
+[F0003],[P06]
+[F0003],[P07]
+[F0003],[P08]
+[F0003],[P10]
+[F0003],[P131]
+[F0003],[P132]
+[F0003],[P139]
+[F0004],[P17]
+[F0004],[P19]
+[F0004],[P104]
+[F0004],[P108]
+[F0004],[P110]
+[F0004],[P112]
+[F0004],[P114]
+[F0005],[P21]
+[F0005],[P23]
+[F0005],[P24]
+[F0005],[P26]
+[F0005],[P28]
+[F0005],[P29]
+[F0005],[P96]
+[F0005],[P98]
+[F0005],[P99]
+[F0005],[P100]
+[F0005],[P102]
+[F0006],[P31]
+[F0006],[P85]
+[F0006],[P86]
+[F0006],[P88]
+[F0006],[P89]
+[F0006],[P90]
+[F0006],[P91]
+[F0006],[P93]
+[F0006],[P95]
+[F0007],[P33]
+[F0007],[P77]
+[F0008],[P35]
+[F0008],[P48]
+[F0009],[P38]
+[F0009],[P40]
+[F0009],[P47]
+[F0011],[P50]
+[F0011],[P57]
+[F0011],[P61]
+[F0012],[P43]
+[F0014],[P45]
+[F0014],[P46]
+[F0015],[P52]
+[F0016],[P54]
+[F0016],[P55]
+[F0016],[P56]
+[F0017],[P59]
+[F0017],[P60]
+[F0018],[P64]
+[F0018],[P65]
+[F0018],[P71]
+[F0018],[P76]
+[F0019],[P73]
+[F0019],[P74]
+[F0019],[P75]
+[F0020],[P67]
+[F0020],[P68]
+[F0020],[P69]
+[F0020],[P70]
+[F0021],[P80]
+[F0021],[P81]
+[F0022],[P83]
+[F0022],[P84]
+

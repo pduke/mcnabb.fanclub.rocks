@@ -1,0 +1,226 @@
+fam McNabb William.0 1702 1789 + Aiken Betty.1   
+beg
+- h Baptist_B..2 1723 1784 
+- h John.3 0 0 
+- h Samuel.4 0 0 
+- f Betty.5 0 1809 
+- h James.6 0 0 
+- h David.7 0 0 
+- h William_1.8 0 0 
+- h Andrew.9 0 0 
+end
+
+fam McNabb David.10 + Taylor Elizabeth.11 1757 1848 
+beg
+- h Absalom.12 1779 1858 
+- f Rhoda.13 1780 0 
+- h Nathaniel_Taylor.14 1783 1840 
+- f Catherine.15 1785 0 
+- f Jane.16 1787 0 
+- h James.17 1789 0 
+- h David_Jr..18 1791 0 
+- h Mathew_Taylor.19 1798 0 
+- h William.20 1796 0 
+- h Issac.21 1800 0 
+- h Alban.22 1802 1880 
+- h Taylor.23 1805 1876 
+- h Andrew_Taylor.24 1795 0 
+end
+
+fam McNabb Baptist_B..2 +  Kathren.25 1737 1784 
+beg
+- h James_Jonathan.26 0 0 
+- f Katrin.27 0 0 
+- f Margaret.28 0 0 
+- f Mary.29 0 0 
+- h David.10 1755 1826 
+- h John.30 1757 0 
+- f Isabella.31 1767 0 
+- h William_2.32 0 0 
+end
+
+fam McNabb Nathaniel_Taylor.14 + McCubbins Ellender.33 1818 1860 
+beg
+- h Alfred_W..34 1809 1858 
+- h James_Pinckney.35 1814 1893 
+- h Nathaniel_T..36 1818 1897 
+- f Louisa.37 1819 0 
+- f Lorena.38 1823 0 
+- h Armstrong.39 1825 0 
+-  Fode.40 1827 0 
+end
+
+fam McNabb James_Pinckney.35 + Flanagan Easter.41 1784 1860 
+beg
+- h Albert_Houston_W..42 1837 1923 
+- h Mathew.43 1839 1857 
+- h James_M..44 1841 0 
+- h Theodore_Washington.45 1843 1926 
+- f Mary_E..46 1846 0 
+- h Nathaniel_Armstrong.47 1848 1900 
+- h William_A..48 1850 1900 
+- f Rebecca_J..49 1852 0 
+- h A.J..50 1853 0 
+- f Harriet_Ann.51 1855 1905 
+- f Lucretia.52 1857 0 
+end
+
+fam McNabb Nathaniel_Armstrong.47 + Turner Rebecca_Ann.53 1857 1936 
+beg
+- h Walter_Scott.54 1874 1936 
+- h George_R..55 1877 1880 
+- h James_Pinckney_II.56 1880 1967 
+- h Lee.57 1883 0 
+- h Jessie_Franklin.58 1886 1970 
+- f Ada.59 1889 1903 
+- f Myrtle_E..60 1893 1935 
+- h Clark.61 1896  
+- h Monti.62 1897 1906 
+end
+
+fam McNabb Walter_Scott.54 + McNeil Birtie_Sophia.63 1880 1969 
+beg
+- h Warren_Gilbert.64 1898 1975 
+- f Viola_Craig.65 1900 1996 
+end
+
+fam McNabb Warren_Gilbert.64 + Prutsman Ruth_Pauline.66 1906 1997 
+beg
+- f Beverly_Nan.67 1932  
+- h Warren_Neil.68 1934 2025 
+end
+
+fam Duke Wylie_Edgar_Jr..69 1930 1992 + McNabb Beverly_Nan.67 
+beg
+- h Wylie_Paul.70 1953  
+- f Ellen_Lucille.71 1955  
+- f Laurie_Annette.72 1957  
+end
+
+fam Orr Harry_Joseph.73 1931 2007 + McNabb Beverly_Nan.67 
+
+fam McNabb Warren_Neil.68 + McCurry Geraldine.74 0 2023 
+beg
+- h Scott.75 1954 2020 
+- f Valerie.76 1956 2024 
+- f Neeve.77 1964  
+end
+
+fam Lazarus Michael_Stuart.78 1948 2011 + Duke Ellen_Lucille.71 
+beg
+- f Jillian.79 1990  
+end
+
+fam Smith William.80 1955  + Duke Ellen_Lucille.71 
+
+fam Torres Anthony_R..81 1972  + #nm Lazarus Jillian.79 
+beg
+- h Noah.82 2020  
+- f Violet_Audrey.83 2024  
+end
+
+fam McNabb Scott.75 + Prilliman Sandy.84 0  
+beg
+- f Neala_Aileen.85 1979  
+end
+
+fam ???_Lopez .86 0  + #nm McNabb Neala_Aileen.85 
+beg
+- h Drake_Lee_James.87 Lopez 2002  
+- f Layla_Grace_Kumara.88 Sinha 2007  
+- h Dominic_Dane_Scott.89 Flores 2016  
+end
+
+fam Spencer Randy.90 0  + McNabb Valerie.76 
+beg
+- f Beth.91 0  
+- h Daniel.92 0  
+end
+
+fam Forshee Eric.93 0  + McNabb Neeve.77 
+beg
+- h Joel_Eric.94 1983  
+- f Arika_Neeve.95 1983  
+- f Ashely_Elise.96 1988  
+- f Jasmyn_Elyssa.97 1991  
+end
+
+fam Clark Key_Joseph.98 1977  + Forshee Ashely_Elise.96 
+beg
+- f Jade_Lynn.99 2007  
+- h Koda_Walter.100 2018  
+- f Enid_Elise.101 2020  
+end
+
+fam Hall Dustin_Doyle.102 1983  + Forshee Arika_Neeve.95 
+beg
+- h Colter_Jonathan.103 2008  
+- f Stella_Veda.104 2015  
+- h Sylas_Eric.105 2017  
+- h Joshua_Dustin.106 2018  
+end
+
+fam Davidson Solomon_Johnson.107 0 0 +1917 McNabb Viola_Craig.65 
+beg
+- h Walter_Craig.108 1920  
+- f Ann_Carol.109 1922 2020 
+end
+
+fam Nagel James_Paul.110 1917 2008 + Davidson Ann_Carol.109 
+beg
+- f Paula_Carol.111 1942  
+- h James_Craig.112 1944  
+end
+
+fam Valenzuela Edgar_Armando.113 1988  + McNabb Neeve.77 
+
+fam McNabb Absalom.12 + Lusk Mary.114 0 0 
+
+fam Brown John.115 0 0 +1809 McNabb Jane.16 
+
+fam McNabb James.17 +1814 Wright Mary.116 0 0 
+
+fam McNabb David_Jr..18 + Whetson Margaret.117 0 0 
+
+fam McNabb Alfred_W..34 + Ramsey Susanah_A..118 0 0 
+
+fam McNabb Theodore_Washington.45 + Kitchen Eliza_Jane.119 0 0 
+
+fam Duke Wylie_Paul.70 +1990 Dewhurst Katharine_H..120 1957  
+
+fam Adams Charles.121 0 0 + McNabb Myrtle_E..60 
+
+fam McNabb William.20 +1830 Brown Nancy.122 0 0 
+
+fam McNabb Albert_Houston_W..42 +1858 Long Mary_J..123 0 0 
+
+fam McNabb James_M..44 +1860 Chapman Eliza_A..124 0 0 
+
+fam Whitson Willam.125 0 0 + McNabb Viola_Craig.65 
+
+fam McNabb Clark.61 + Smith Myrtle.126 0 0 
+
+fam McNabb William_A..48 + Webb Sarah_Clementine.127 0 0 
+
+fam Minor Franklin.128 0 0 +1870 McNabb Harriet_Ann.51 
+
+fam Hoff M..129 0 0 + McNabb Lucretia.52 
+
+fam McNabb Nathaniel_T..36 + McInturff Serenia_C..130 0 0 
+
+fam McNabb Nathaniel_T..36 + Walls Lize_Cath.131 0 0 
+
+fam McNabb Nathaniel_T..36 + #nm Walls Nancy_Caroline.132 0 0 
+
+fam Cooper Francis_M..133 0 0 +1937 McNabb Louisa.37 
+
+fam Stanley Thomas.134 0 0 +1841 McNabb Lorena.38 
+
+fam McNabb Armstrong.39 +1861 Henry Naomi.135 0 0 
+
+fam McNabb James.17 +1814 Mynatt Levesta.136 0 0 
+
+fam McNabb Andrew_Taylor.24 +1817 Bogart Margaret.137 0 0 
+
+fam Taylor_II Andrew.138 1733 1780 +1786 McNabb Isabella.31 
+
