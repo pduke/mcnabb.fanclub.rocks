@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pduke.github.io/mcnabb.fanclub.rocks/sitemap.xml
