@@ -95,7 +95,12 @@
         .section { scroll-margin-top: 95px; }
         .section summary { background: #e9e6df; font: 600 14px/1.5 system-ui,sans-serif; overflow-wrap: anywhere; }
         .section pre { overflow-wrap: anywhere; font: 14px/1.45 ui-monospace,Consolas,monospace; }
-        @media(max-width:550px) { main { padding: 0 12px; } .controls button { padding: 9px 12px; } }
+        .page-navigation { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin:10px 0 18px; font:14px/1.4 system-ui,sans-serif; }
+        .page-navigation button { background:#193f59; color:white; border:0; border-radius:5px; padding:9px 13px; cursor:pointer; }
+        .page-navigation button:hover:not(:disabled) { background:#315c77; }
+        .page-navigation button:disabled { background:#c9c9c9; color:#555; cursor:not-allowed; }
+        .adjacent-note { color:#78571e; font:13px/1.4 system-ui,sans-serif; margin:5px 10px; }
+        @media(max-width:550px) { main { padding: 0 12px; } .controls button { padding: 9px 12px; } .page-navigation button { padding:9px 10px; } }
     </style>
 </head>
 <body>
@@ -108,7 +113,7 @@
       <div>
         <ol>
           <li>Search for a surname, a place, a date or another topic.</li>
-          <li>Matching pages appear expanded. Close pages you do not need, or open more pages manually.</li>
+          <li>Matching pages appear expanded. Use <strong>Previous Page</strong> or <strong>Next Page</strong> inside any expanded page to include neighboring pages, even if they were not search hits.</li>
           <li>Check the <strong>Buffer</strong> character count, then choose <strong>Copy Expanded</strong> to copy only visible, expanded pages.</li>
           <li>Paste that text into an AI assistant and ask it to trace connections, summarize accounts, compare names or suggest research questions.</li>
           <li>Verify important findings in the original PDF scans, using each page’s <strong>View PDF</strong> link.</li>
@@ -412,7 +417,8 @@
 
         // Load all text files dynamically
         const contentDiv = document.getElementById('text-content');
-        const fetchPromises = files.map(file => {
+        const sections = [];
+        const fetchPromises = files.map((file, index) => {
             const pdfFile = file.replace('.txt', '.pdf');
             const section = document.createElement('details');
             section.className = 'section';
@@ -422,9 +428,17 @@
                     ${file} 
                     <a href="../mcdata/${pdfFile}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">[View PDF]</a>
                 </summary>
+                <p class="adjacent-note" hidden>Adjacent page (not a search match)</p>
                 <pre>Loading...</pre>
+                <div class="page-navigation">
+                    <button type="button" class="previous-page" ${index === 0 ? 'disabled' : ''}>← Previous Page</button>
+                    <button type="button" class="next-page" ${index === files.length - 1 ? 'disabled' : ''}>Next Page →</button>
+                </div>
             `;
             contentDiv.appendChild(section);
+            sections.push(section);
+            section.querySelector('.previous-page').addEventListener('click', () => revealPage(index - 1));
+            section.querySelector('.next-page').addEventListener('click', () => revealPage(index + 1));
 
             // Add event listener for expand/collapse
             section.addEventListener('toggle', updateCopySize);
@@ -454,7 +468,26 @@
             updateCopySize();
         });
 
-        // Search results are displayed in their original page order.
+        // Reveal an adjacent page even when it did not match the current search.
+        // The original search results and already selected pages stay open.
+        function revealPage(index) {
+            if (index < 0 || index >= sections.length) return;
+            const section = sections[index];
+            const term = document.getElementById('search-bar').value.trim();
+            const pre = section.querySelector('pre');
+            const original = pre.dataset.originalText || pre.textContent;
+            const needle = term.toLocaleLowerCase();
+            const matches = !needle || original.toLocaleLowerCase().includes(needle) ||
+                section.dataset.filename.toLocaleLowerCase().includes(needle);
+            section.style.display = '';
+            section.open = true;
+            section.querySelector('.adjacent-note').hidden = !term || matches;
+            highlightText(pre, original, term);
+            updateCopySize();
+            section.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+
+        // Search results and revealed neighbors are copied in original page order.
         function visibleExpandedSections() {
             return [...document.querySelectorAll('.section[open]')]
                 .filter(section => section.style.display !== 'none' && !section.querySelector('pre').dataset.loadError);
@@ -502,6 +535,7 @@
                 const matches = !needle || original.toLocaleLowerCase().includes(needle) || section.dataset.filename.toLocaleLowerCase().includes(needle);
                 section.style.display = matches ? '' : 'none';
                 section.open = !!needle && matches;
+                section.querySelector('.adjacent-note').hidden = true;
                 highlightText(pre, original, matches ? searchTerm : '');
             });
             updateCopySize();
