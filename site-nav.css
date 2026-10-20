@@ -6,3 +6,8 @@ html{scroll-padding-top:calc(var(--archive-nav-height,76px) + 14px)}
 body{padding-top:var(--archive-nav-height,76px)}
 body.archive-biography{margin:0;padding:calc(var(--archive-nav-height,76px) + 10px) 20px 10px}
 [id]{scroll-margin-top:calc(var(--archive-nav-height,76px) + 14px)}
+
+/* Download Book dropdown uses the existing biography dropdown styling. */
+#site-nav .book-menu{min-width:225px}
+#site-nav .book-menu a:last-child{border-bottom:0}
+@media(max-width:500px){#site-nav .book-menu{left:auto;right:0;transform:none;min-width:215px}}
